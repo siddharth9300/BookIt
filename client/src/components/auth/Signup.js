@@ -144,8 +144,8 @@ const Signup = () => {
       <section className="text-gray-600 body-font my-10  h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2 my-10 bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
-            <h3 class="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-              Sign <span class="text-indigo-600">Up</span>
+            <h3 className="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
+              Sign <span className="text-indigo-600">Up</span>
             </h3>
             <div className="relative mb-4">
               <label
@@ -217,7 +217,7 @@ const Signup = () => {
                 <option value="">Select</option>  
 
                 <option value="Student">Student</option>
-                <option value="Faculty">Faculty</option>
+                <option value="Admin">Admin</option>
               </select>
 
               {/* 
@@ -268,8 +268,8 @@ const Signup = () => {
               />
             </div>
 
-            <div class="my-4">
-              <p class="text-s text-red-600	 font-bold">{authStatus}</p>
+            <div className="my-4">
+              <p className="text-s text-red-600	 font-bold">{authStatus}</p>
             </div>
             <div className="mx-auto w-fit">
               <div className="mx-auto">
@@ -281,10 +281,10 @@ const Signup = () => {
                 </button>
               </div>
             </div>
-            <div class="mt-4 text-center">
-              <p class="text-m">
+            <div className="mt-4 text-center">
+              <p className="text-m">
                 Already have an account?{" "}
-                <Link to="/login" class="text-blue-600 hover:underline">
+                <Link to="/login" className="text-blue-600 hover:underline">
                   {" "}
                   Login
                 </Link>

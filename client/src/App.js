@@ -3,16 +3,22 @@ import { Routes, Route } from "react-router-dom";
 import { createContext, useReducer } from "react";
 // importing components
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Logout from "./components/Logout";
+
+// import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
+import Logout from "./components/auth/Logout";
+import Login from "./components/auth/Login";
 import ErrorPage from "./components/ErrorPage";
-import Halls from "./components/Halls";
+import Halls from "./components/halls/Halls";
 import { initialState, reducer } from "./reducer/UseReducer";
-import BookingForm from "./components/BookingForm";
+import BookingForm from "./components/bookings/BookingForm";
+import Booking from "./components/bookings/Bookings";
+import AdminDashboard from "./components/dashboard/AdminDashboard";
+import StudentDashboard from "./components/dashboard/StudentDashboard";
+
 
 
 export const UserContext = createContext();
@@ -25,17 +31,20 @@ const App = () => {
 
       <UserContext.Provider value={{ state, dispatch }}>
 
-        <Navbar />
 
+        <Navbar />
         <Routes>
+        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "student" ? <StudentDashboard /> : <Halls />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/" element={<Halls />} />
+          <Route path="/halls" element={<Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
+          <Route path="/bookings" element={<Booking/>} />
+
    
 
           <Route path="/*" element={<ErrorPage />} />

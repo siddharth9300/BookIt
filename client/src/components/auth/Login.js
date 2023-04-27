@@ -1,7 +1,7 @@
 import React, { useState , useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { UserContext } from "../App";
+import { UserContext } from "./../../App";
 
 const Login = () => {
 
@@ -67,17 +67,25 @@ const Login = () => {
         },
       });
   
-      // const data = response.data;
+        const data = response.data;
 
-
-   
+        console.log(data.work);
+    
       
       // if (response.status === 400 || !data) {
       //   setAuthStatus("Invalid credentials");
       //   window.alert("invalid")
       // } else {
+        
+        
         dispatch({type:"USER",payload:true})
-
+   
+            if (data.work === 'Admin') {
+              dispatch({ type: 'USER_TYPE', payload: "admin" });  
+            } else {
+              dispatch({ type: 'USER_TYPE', payload: "student" });  
+            }
+        
         navigate("/");
       // }
     } catch (error) {
@@ -113,8 +121,8 @@ const Login = () => {
 
         
 
-      <h3 class="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-        Sign <span class="text-indigo-600">In</span>
+      <h3 className="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
+        Sign <span className="text-indigo-600">In</span>
       </h3>
 
 
@@ -157,8 +165,8 @@ const Login = () => {
             </div>
 
 
-            <div class="my-4">
-              <p class="text-s text-red-600	 font-bold">
+            <div className="my-4">
+              <p className="text-s text-red-600	 font-bold">
                 
                  {authStatus} 
               </p>
@@ -176,10 +184,10 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            <div class="mt-4 text-center">
-              <p class="text-m">
+            <div className="mt-4 text-center">
+              <p className="text-m">
                 Don't have an account yet?{" "}
-                <Link to="/signup" class="text-blue-600 hover:underline">
+                <Link to="/signup" className="text-blue-600 hover:underline">
                   {" "}
                   Sign Up
                 </Link>

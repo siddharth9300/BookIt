@@ -93,7 +93,8 @@ router.post("/login", async (req, res) => {
       if (!isMatch) {
         res.status(400).json({ error: "Invalid Cridential" });
       } else {
-        res.status(200).json({ error: "user login successfully" });
+        res.status(200)
+        .send(userLogin).json({ message: "user login successfully" })
       }
     } else {
       res.status(400).json({ error: "Invalid Cridential" });

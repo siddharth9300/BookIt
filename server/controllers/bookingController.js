@@ -13,8 +13,6 @@ const createBooking =  async (req, res, next) => {
         bookedHallId,
         bookedHallName,
         organizingClub,
-        // eventDetailFile,
-        // eventDetailText,
         phoneNumber,
         altNumber
       } = req.body;

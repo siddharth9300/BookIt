@@ -1,6 +1,6 @@
 import React, { useEffect ,useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
+import { UserContext } from './../../App'
 const Logout = () => {
     const {state,dispatch} = useContext(UserContext)
 
@@ -16,8 +16,10 @@ const Logout = () => {
           "Content-Type": "application/json"
         }
       }).then((res)=>{
-        navigate("/login",{replace:true})
         dispatch({type:"USER",payload:false})
+        dispatch({type:"USER_TYPE",payload:false})
+
+        navigate("/login",{replace:true})
         if (res.status !== 200) {
 
             throw new Error(res.error);
