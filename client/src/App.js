@@ -36,6 +36,8 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/" element={<Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
+   
+
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
 

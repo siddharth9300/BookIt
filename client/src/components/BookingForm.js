@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const BookingForm = () => {
+const BookingForm = (props) => {
   const { hallId, hallName } = useParams();
   console.log(hallId);
-
+  // const { hallId, hallName } = props.location.state;
   const [bookingData, setBookingData] = useState(
     {
       eventManager: "",
@@ -395,14 +395,6 @@ const BookingForm = () => {
 
 
             <div class="flex justify-between w-full px-3">
-              {/* <div class="md:flex md:items-center">
-        <label class="block text-gray-500 font-bold">
-          <input class="mr-2 leading-tight" type="checkbox"/>
-          <span class="text-sm">
-            Send me your newsletter!
-          </span>
-        </label>
-      </div> */}
               <button
                 onClick={bookingForm}
                 class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"

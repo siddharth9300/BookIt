@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {useNavigate , Link} from "react-router-dom"
 import axios from 'axios';
+import BookingForm from "./BookingForm";
 
-const Halls = ({sendData }) => {
+const Halls = () => {
   const navigate = useNavigate();
   const [userData,setUserData]=useState({});
 
@@ -39,16 +40,23 @@ const Halls = ({sendData }) => {
 
   },[])
   
+  const handleBookingClick = (hallId,hallName) => {
+    navigate(`/bookingForm/${hallId}/${hallName}`)
+    };
+  
+  
+  // const hallId =userData.hallId
+  // const hallName = userData.hallName
+  
   // const handleBookingClick = (hallId,hallName) => {
-  //   navigate(`/bookingForm/${hallId}/${hallName}`);
-  // };
+  //   navigate('/bookingForm', { state: { hallId, hallName } });
 
-  const data =(userData.hallId,userData.hallName)
+  // };
  
   
-  const handleBookingClick = () => {
-    sendData(data);
-  };
+  // const handleBookingClick = () => {
+  //   sendData(data);
+  // };
 
 
   return (
@@ -155,13 +163,13 @@ const Halls = ({sendData }) => {
 
 
               <div className="mt-6 grid grid-cols-2 gap-4">
-              <Link to={`/bookingForm`}>
+              {/* <Link to={`/bookingForm`}> */}
                 <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                 onClick={() => handleBookingClick(hall._id,hall.name)}
                 >
                   Book Now
                 </button>
-                </Link>
+                {/* </Link> */}
                 {/* <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">
                   View Profile
                 </button> */}
