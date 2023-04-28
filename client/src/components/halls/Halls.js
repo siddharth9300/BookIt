@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
+import LoadingSpinner from "../LoadingSpinner";
+
 // import BookingForm from "./BookingForm";
 
 const Halls = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
-
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const getHallsData = async () => {
@@ -22,6 +24,7 @@ const Halls = () => {
       const data = response.data;
       console.log(data);
       setUserData(data.halls);
+      setIsLoading(false);
 
       if (response.status !== 200) {
         throw new Error(response.error);
@@ -60,7 +63,9 @@ const Halls = () => {
 
 
   return (
-<>
+<>{isLoading ? (
+          <LoadingSpinner />
+        ) : 
     <div className="mt-6"> 
     
     <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
@@ -193,6 +198,7 @@ const Halls = () => {
       )}
 
       </div>
+}
     </>
   );
 };

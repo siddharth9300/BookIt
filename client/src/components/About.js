@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
-
+import LoadingSpinner from "./LoadingSpinner";
+import { toast } from "react-toastify";
 const About = () => {
   const navigate = useNavigate();
   const [userData,setUserData]=useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
 
+ 
 
   const callAboutPage = async () => {
     try {
@@ -21,13 +24,18 @@ const About = () => {
       const data = response.data;
       console.log(data);
       setUserData(data);
-  
+      setIsLoading(false);
+
       if (response.status !== 200) {
         throw new Error(response.error);
       }
     } catch (error) {
       // console.log(error);
-      navigate("/login");
+      if ( error.response.status === 401) {
+        toast.warn("Unauthrized Access! Please Login!")
+        navigate("/login");
+      }
+      // navigate("/login");
     }
   };
   
@@ -35,7 +43,7 @@ const About = () => {
 
   useEffect(() => {
     
-  callAboutPage();
+  callAboutPage()
 
   },[])
   
@@ -45,6 +53,9 @@ const About = () => {
 
   return (
     <>
+    {isLoading ? (
+          <LoadingSpinner />
+        ) : 
       <div className="flex h-screen w-full items-center justify-center m-4">
         <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
@@ -157,6 +168,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      }
     </>
   );
 };

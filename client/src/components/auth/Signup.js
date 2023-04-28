@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoadingSpinner from "../LoadingSpinner";
+import { toast } from "react-toastify";
+
+
+
+
+
 const Signup = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
@@ -54,8 +62,9 @@ const Signup = () => {
   // };
 
   const PostData = async (e) => {
-    
+
     e.preventDefault();
+
     const { name, email, phone, work, password, cpassword } = user;
 
     try {
@@ -82,7 +91,10 @@ const Signup = () => {
       //   console.log(data.error)
       //   window.alert(data.error);
       // } else {
-      window.alert("Registration Successful");
+        setIsLoading(true);
+        toast.success("Sign Up Successfull!")
+
+      // window.alert("Registration Successful");
       navigate("/login");
       // }
     } catch (error) {
@@ -140,7 +152,9 @@ const Signup = () => {
   // };
 
   return (
-    <>
+    <>{isLoading ? (
+      <LoadingSpinner />
+    ) : 
       <section className="text-gray-600 body-font my-10  h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2 my-10 bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
@@ -293,6 +307,7 @@ const Signup = () => {
           </form>
         </div>
       </section>
+}
     </>
   );
 };

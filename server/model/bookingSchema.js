@@ -51,6 +51,11 @@ const bookingSchema = new mongoose.Schema(
     altNumber: {
       type: Number,
       required: true
+    },
+    isApproved: {
+      default: "Pending",
+      type: String,
+      required: true
     }
   },
   {

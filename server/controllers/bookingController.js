@@ -95,19 +95,23 @@ const updateBooking = async (req, res, next) => {
       eventDate,
       startTime,
       endTime,
-      email,
-      bookedHallId,
-      hallId
+      // email,
+      // bookedHallId,
+      // hallId,
+      isApproved
     } = req.body;
 
-    const hall = await Hall.findById(hallId);
-    if (!hall) {
-      return res.status(404).json({ message: 'Hall not found' });
-    }
+    // const hall = await Hall.findById(hallId);
+    // if (!hall) {
+    //   return res.status(404).json({ message: 'Hall not found' });
+    // }
 
     const booking = await Booking.findByIdAndUpdate(
       id,
-      { eventName, email, eventDate, startTime, endTime, hallId: hall._id },
+      { eventName,  eventDate, startTime, endTime,
+
+        //  hallId: hall._id,email,
+         isApproved },
       { new: true },
     ).populate('bookedHallId');
 

@@ -21,6 +21,11 @@ import StudentDashboard from "./components/dashboard/StudentDashboard";
 import BookingByUserId from "./components/bookings/BookingsByUserId";
 
 
+
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 export const UserContext = createContext();
 const App = () => {
 
@@ -43,7 +48,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/halls" element={<Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
-          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Booking />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 
    
@@ -52,7 +57,18 @@ const App = () => {
         </Routes>
 
       </UserContext.Provider>
-
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {useNavigate} from "react-router-dom"
-
+import { toast } from "react-toastify";
+import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
 const BookingForm = () => {
   const navigate = useNavigate();
   const { hallId, hallName } = useParams();
   console.log(hallId);
+  const [isLoading, setIsLoading] = useState(true);
   // const { hallId, hallName } = props.location.state;
   const [bookingData, setBookingData] = useState(
     {userId:"",
@@ -45,6 +47,7 @@ const BookingForm = () => {
         email: data.email,
         phoneNumber: data.phone,
       });
+      setIsLoading(false);
 
       if (response.status !== 200) {
         throw new Error(response.error);
@@ -114,9 +117,11 @@ const BookingForm = () => {
       const data = response.data;
 
       if (!data) {
-        console.log("Message not send");
+        toast.error("Request not send!")
+        // console.log("Message not send");
       } else {
-        alert("Message send");
+        toast.success("Request send Successfull!")
+        // alert("Message send");
         navigate("/bookings")
         // setBookingData({ ...bookingData });
       }
@@ -126,6 +131,10 @@ const BookingForm = () => {
   };
 
   return (
+    <>
+    {isLoading ? (
+      <LoadingSpinner />
+    ) : 
     <div>
       <div className="max-w-screen-md mx-auto p-5 my-10 bg-white shadow-2xl shadow-blue-200">
         <div className="text-center mb-16">
@@ -415,6 +424,8 @@ const BookingForm = () => {
         </form>
       </div>
     </div>
+          }
+          </>
   );
 };
 

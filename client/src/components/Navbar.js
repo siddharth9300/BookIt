@@ -86,7 +86,7 @@ console.log(state);
                 <Link to="/">Home</Link>
               </li>
               <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
-                <Link to="/bookings">My Bookings</Link>
+                <Link to="/bookings">Bookings</Link>
               </li>
               <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                 <Link to="/about">About</Link>

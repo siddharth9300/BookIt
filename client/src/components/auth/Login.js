@@ -2,12 +2,14 @@ import React, { useState , useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./../../App";
-
+import LoadingSpinner from "../LoadingSpinner";
+import { toast } from "react-toastify";
 const Login = () => {
 
 
 
   const {state,dispatch} = useContext(UserContext)
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const navigate = useNavigate();
@@ -55,6 +57,8 @@ const Login = () => {
 
   const loginUser = async (e) => {
     e.preventDefault();
+   
+
   
     try {
       const response = await axios.post("http://localhost:9002/login", {
@@ -85,7 +89,9 @@ const Login = () => {
             } else {
               dispatch({ type: 'USER_TYPE', payload: "student" });  
             }
-        
+            toast.success("Login Successfull")
+            setIsLoading(true);
+            
         navigate("/");
       // }
     } catch (error) {
@@ -111,7 +117,9 @@ const Login = () => {
 
 
   return (
-    <>
+    <>{isLoading ? (
+      <LoadingSpinner />
+    ) : 
       <section className="text-gray-600 body-font h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2  bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
@@ -197,6 +205,7 @@ const Login = () => {
           
         </div>
       </section>
+}
     </>
   );
 };

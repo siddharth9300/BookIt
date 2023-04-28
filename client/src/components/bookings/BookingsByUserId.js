@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 // import BookingForm from "./BookingForm";
-
+import LoadingSpinner from "../LoadingSpinner";
 const Bookings = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
-
+  const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
 
-  const userContact = async () => {
+  const userData = async () => {
     try {
       const response = await axios.get("http://localhost:9002/getdata", {
         withCredentials: true, // include credentials in the request
@@ -26,18 +26,20 @@ const Bookings = () => {
         throw new Error(response.error);
       }
 
-      getHallsData(data._id);
+      
+      getBookingData(data._id);
+      
+
+
     } catch (error) {
       console.log(error);
     }
   };
 
-  // useEffect(() => {
-  //   userContact();
-  // }, []);
+
   console.log(userId);
 
-  const getHallsData = async (userId) => {
+  const getBookingData = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:9002/bookings/${userId}`, {
         withCredentials: true, // include credentials in the request
@@ -50,12 +52,12 @@ const Bookings = () => {
       const data = response.data;
       console.log(data);
       setBookingData(data.booking);
-
+      setIsLoading(false);
       if (response.status !== 200) {
         throw new Error(response.error);
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       // navigate("/login");
     }
   };
@@ -63,15 +65,15 @@ const Bookings = () => {
 
 
   useEffect(() => {
-    userContact();
+    userData();
 
 
 
   }, [])
 
-  const handleBookingClick = (hallId, hallName) => {
-    navigate(`/bookingForm/${hallId}/${hallName}`)
-  };
+  // const handleBookingClick = (hallId, hallName) => {
+  //   navigate(`/bookingForm/${hallId}/${hallName}`)
+  // };
 
 
   // const hallId =userData.hallId
@@ -94,7 +96,9 @@ const Bookings = () => {
       <div className="mt-6">
         <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
           Your<span className="text-indigo-700"> Bookings</span> </h1>
-        {Array.isArray(bookingData) && bookingData.length > 0 ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : Array.isArray(bookingData) && bookingData.length > 0 ? (
           bookingData.map((booking) => (
             <div key={booking._id} className="my-2 ">
               <div className="flex  w-full items-center justify-center ">
@@ -142,7 +146,7 @@ const Bookings = () => {
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">Hall Id</p>
+                          <p className="font-bold text-zinc-700">Booking Id</p>
                         </div>
 
                         <div>
@@ -273,177 +277,42 @@ const Bookings = () => {
                         </div>
 
                         <div>
-                          <p className="text-m  text-xl sm:text-3xl md:text-4xl  lg:text-3xl xl:text-3xl  text-green-500 font-black ">Approved</p>
+                          {booking.isApproved === "Approved" && (
+                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
+                              {booking.isApproved}
+                            </p>
+                          )}
+                          {booking.isApproved === "Pending" && (
+                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-yellow-500 font-black">
+                              {booking.isApproved}
+                            </p>
+                          )}
+                          {booking.isApproved === "Rejected" && (
+                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
+                              {booking.isApproved}
+                            </p>
+                          )}
                         </div>
                       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* 
-                      <div className="mt-6 grid grid-cols-2 gap-4 text-center">
-
-                          <h1 className="text-xl sm:text-3xl md:text-4xl  lg:text-3xl xl:text-3xl text-center text-green-500 font-black leading-7  md:leading-10">
-           Approved </h1>
-
-
-                          <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-green-500 font-black leading-7  md:leading-10">
-           Approved </h1>
-                      {/* <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
-                        onClick={() => handleBookingClick(booking._id, booking.name)}
-                      >
-                        Approve
-                      </button>
-                      <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white">
-                          Reject
-                       </button> 
-                    </div>
- */}
-
                     </div>
                   </div>
-
-
-
-
-{/* 
-
-                  <div class="h-full w-full py-16">
-
-
-                    <div class="container mx-auto">
-
-                      <dh-component>
-                        <div class="w-11/12 lg:w-2/6 mx-auto">
-                          <div class="bg-gray-200 h-1 flex items-center justify-between">
-                            <div class="w-1/3 bg-indigo-700 h-1 flex items-center">
-                              <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" />
-                                  <path d="M5 12l5 5l10 -10" />
-                                </svg>
-
-                              </div>
-                            </div>
-                            <div class="w-1/3 flex justify-between bg-indigo-700 h-1 items-center relative">
-                              <div class="absolute right-0 -mr-2">
-                                <div class="relative bg-white shadow-lg px-2 py-1 rounded mt-16 -mr-12">
-                                  <svg class="absolute top-0 -mt-1 w-full right-0 left-0" width="16px" height="8px" viewBox="0 0 16 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                      <g id="Progress-Bars" transform="translate(-322.000000, -198.000000)" fill="#FFFFFF">
-                                        <g id="Group-4" transform="translate(310.000000, 198.000000)">
-                                          <polygon id="Triangle" points="20 0 28 8 12 8"></polygon>
-                                        </g>
-                                      </g>
-                                    </g>
-                                  </svg>
-                                  <p tabindex="0" class="focus:outline-none text-indigo-700 text-xs font-bold">Request Pending</p>
-                                </div>
-                              </div>
-
-                                <div class="absolute right-0 -mr-2">
-                                <div class="relative bg-white shadow-lg px-2 py-1 rounded mt-16 -mr-12">
-                                  <svg class="absolute top-0 -mt-1 w-full right-0 left-0" width="16px" height="8px" viewBox="0 0 16 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                      <g id="Progress-Bars" transform="translate(-322.000000, -198.000000)" fill="#FFFFFF">
-                                        <g id="Group-4" transform="translate(310.000000, 198.000000)">
-                                          <polygon id="Triangle" points="20 0 28 8 12 8"></polygon>
-                                        </g>
-                                      </g>
-                                    </g>
-                                  </svg>
-                                  <p tabindex="0" class="focus:outline-none text-indigo-700 text-xs font-bold">Request Pending</p>
-                                </div>
-                              </div>
-
-
-
-
-
-
-                              
-                              <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" />
-                                  <path d="M5 12l5 5l10 -10" />
-                                </svg>
-                              </div>
-                              <div class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
-                                <div class="h-3 w-3 bg-indigo-700 rounded-full"></div>
-                              </div>
-
-                            </div>
-
-                            
-                            <div class="w-1/3 flex justify-end">
-                              <div class="bg-white h-6 w-6 rounded-full shadow"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </dh-component>
-
-                    </div>
-                  </div> */}
-
-
-
-
-
-
 
                 </div>
               </div>
             </div>
+
           ))
         ) : (
-          // <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
-          // Bookings user </h1>
+
+
           <h2 className="text-2xl font-bold text-zinc-700 text-center mt-4">No Bookings found.</h2>
 
-        )}
+
+
+
+        )
+        }
+        
 
       </div>
     </>
