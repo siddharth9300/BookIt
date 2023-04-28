@@ -9,7 +9,7 @@ const BookingForm = () => {
   console.log(hallId);
   // const { hallId, hallName } = props.location.state;
   const [bookingData, setBookingData] = useState(
-    {
+    {userId:"",
       eventManager: "",
       eventName: "",
       eventDate: "",
@@ -40,6 +40,7 @@ const BookingForm = () => {
       console.log(data);
       setBookingData({
         ...bookingData,
+        userId:data._id,
         eventManager: data.name,
         email: data.email,
         phoneNumber: data.phone,
@@ -73,6 +74,7 @@ const BookingForm = () => {
   const bookingForm = async (e) => {
     e.preventDefault();
     const { eventManager,
+      userId,
       eventName,
       eventDate,
       startTime,
@@ -88,6 +90,7 @@ const BookingForm = () => {
       const response = await axios.post(
         "http://localhost:9002/bookings",
         {
+          userId,
           eventManager,
           eventName,
           eventDate,
@@ -114,6 +117,7 @@ const BookingForm = () => {
         console.log("Message not send");
       } else {
         alert("Message send");
+        navigate("/bookings")
         // setBookingData({ ...bookingData });
       }
     } catch (error) {

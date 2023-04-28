@@ -4,6 +4,7 @@ const authenticate = require("../middleware/authenticate");
 const createBooking =  async (req, res, next) => {
     try {
       const { 
+        userId,
         eventManager,
         eventName,
         eventDate,
@@ -20,12 +21,10 @@ const createBooking =  async (req, res, next) => {
       const hall = await Hall.findById(bookedHallId);
       if (!hall) {
         return res.status(404).json({ message: 'Hall not found' });
-      }else{
-
-        
       }
   
       const booking = new Booking({
+        userId,
         eventManager,
         eventName,
         eventDate,
@@ -69,6 +68,23 @@ const getBookingById = async (req, res, next) => {
     next(error);
   }
 };
+
+const getBookingByUserId = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const booking = await Booking.find({ userId : userId}).populate('bookedHallId');
+    // if (!mongoose.Types.ObjectId.isValid(userId)) {
+    //   return res.status(400).json({ message: 'Invalid userId' });
+    // }
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+    res.json({ booking });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 const updateBooking = async (req, res, next) => {
   try {
@@ -118,4 +134,4 @@ const deleteBooking = async (req, res, next) => {
   }
 };
 
-module.exports = {authenticate, createBooking, getBookings, getBookingById, updateBooking, deleteBooking };
+module.exports = {authenticate, createBooking, getBookings, getBookingById, updateBooking, deleteBooking ,getBookingByUserId};

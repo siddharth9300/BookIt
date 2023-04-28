@@ -18,7 +18,7 @@ import BookingForm from "./components/bookings/BookingForm";
 import Booking from "./components/bookings/Bookings";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import StudentDashboard from "./components/dashboard/StudentDashboard";
-
+import BookingByUserId from "./components/bookings/BookingsByUserId";
 
 
 export const UserContext = createContext();
@@ -43,7 +43,8 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/halls" element={<Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
-          <Route path="/bookings" element={<Booking/>} />
+          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
+          {/* <Route path="/bookings" element={<Booking/>} /> */}
 
    
 
