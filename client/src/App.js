@@ -6,23 +6,21 @@ import Navbar from "./components/Navbar";
 // import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
-
-// import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Logout from "./components/auth/Logout";
 import Login from "./components/auth/Login";
 import ErrorPage from "./components/ErrorPage";
 import Halls from "./components/halls/Halls";
-import { initialState, reducer } from "./reducer/UseReducer";
 import BookingForm from "./components/bookings/BookingForm";
 import Booking from "./components/bookings/Bookings";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import StudentDashboard from "./components/dashboard/StudentDashboard";
 import BookingByUserId from "./components/bookings/BookingsByUserId";
+import { initialState, reducer } from "./reducer/UseReducer";
 
 
 
-import { Slide, ToastContainer } from "react-toastify";
+import {  ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 

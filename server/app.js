@@ -19,7 +19,7 @@ require("./model/userSchema")
 require("./model/hallSchema")
 require("./model/bookingSchema")
 
-app.use(require("./router/auth"));
+app.use(require("./router/authRoutes"));
 app.use(require("./router/bookingRoutes"));
 app.use(require("./router/hallRoutes"));
 

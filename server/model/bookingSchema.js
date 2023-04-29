@@ -16,7 +16,8 @@ const bookingSchema = new mongoose.Schema(
     },
     eventDate: {
       type: Date,
-      required: true
+      required: true,
+  
     },
     startTime: {
       type: String,
@@ -63,6 +64,7 @@ const bookingSchema = new mongoose.Schema(
   }
 );
 
+bookingSchema.index({ eventDate: 1 }, { expireAfterSeconds: 86400 });
 const Booking = mongoose.model('Booking', bookingSchema);
 
 module.exports = Booking;

@@ -75,10 +75,10 @@ const Halls = () => {
         userData.map((hall) => (
           <div key={hall._id} className="my-2 ">
             <div className="flex w-full items-center justify-center">
-              <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white">
+              <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-8/12 bg-white">
 
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                  <div className="grid-cols-1 lg:col-span-3">
+                  {/* <div className="grid-cols-1 lg:col-span-3">
                     <div className="mx-auto flex h-[90px] w-[90px] items-center justify-center rounded-full bg-blue-100 p-4">
                       <svg
                         id="logo-39"
@@ -108,7 +108,7 @@ const Halls = () => {
                         ></path>
                       </svg>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-span-1 lg:col-span-9">
                     <div className="text-center lg:text-left">

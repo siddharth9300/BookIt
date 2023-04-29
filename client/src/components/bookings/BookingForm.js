@@ -6,6 +6,8 @@ import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
 const BookingForm = () => {
   const navigate = useNavigate();
+  const [authStatus, setAuthStatus] = useState("");
+
   const { hallId, hallName } = useParams();
   console.log(hallId);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +55,8 @@ const BookingForm = () => {
         throw new Error(response.error);
       }
     } catch (error) {
-      console.log(error);
+   
+      // console.log(error);
       navigate("/login");
     }
   };
@@ -126,7 +129,15 @@ const BookingForm = () => {
         // setBookingData({ ...bookingData });
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 422 && error.response) {
+        const data = error.response.data;
+        setAuthStatus(data.error);
+        console.log(data.error);
+        // window.alert(data.error);
+      } else {
+        console.error(error);
+      }
+      // console.log(error);
     }
   };
 
@@ -232,6 +243,8 @@ const BookingForm = () => {
                 id="grid-event-date"
                 type="date"
                 placeholder="Event Date"
+                min={new Date().toISOString().split("T")[0]}
+
               />
             </div>
           </div>
@@ -290,7 +303,7 @@ const BookingForm = () => {
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
                 for="grid-hall-id"
               >
-                Hall Name
+                Hall Id
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -385,6 +398,9 @@ const BookingForm = () => {
 
 
 
+          <div className="my-4">
+              <p className="text-s text-red-600	 font-bold">{authStatus}</p>
+            </div>
 
 
 
@@ -409,7 +425,6 @@ const BookingForm = () => {
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               ></textarea>
             </div> */}
-
 
             <div className="flex justify-between w-full px-3">
               <button

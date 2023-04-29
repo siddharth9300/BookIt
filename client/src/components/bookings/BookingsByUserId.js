@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+// import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 // import BookingForm from "./BookingForm";
 import LoadingSpinner from "../LoadingSpinner";
 const Bookings = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
@@ -67,8 +67,6 @@ const Bookings = () => {
   useEffect(() => {
     userData();
 
-
-
   }, [])
 
   // const handleBookingClick = (hallId, hallName) => {
@@ -102,10 +100,10 @@ const Bookings = () => {
           bookingData.map((booking) => (
             <div key={booking._id} className="my-2 ">
               <div className="flex  w-full items-center justify-center ">
-                <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white ">
+                <div className="w-full rounded-xl p-12  shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white ">
 
-                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                    <div className="grid-cols-1 lg:col-span-3">
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-6">
+                    {/* <div className="grid-cols-1 lg:col-span-3">
                       <div className="mx-auto flex h-[90px] w-[90px] items-center justify-center rounded-full bg-blue-100 p-4">
                         <svg
                           id="logo-39"
@@ -135,7 +133,7 @@ const Bookings = () => {
                           ></path>
                         </svg>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="col-span-1 lg:col-span-9">
                       <div className="text-center lg:text-left">

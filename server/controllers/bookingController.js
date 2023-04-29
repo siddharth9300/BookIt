@@ -1,55 +1,144 @@
 const Booking = require('../model/bookingSchema');
 const Hall = require('../model/hallSchema');
-const authenticate = require("../middleware/authenticate");
-const createBooking =  async (req, res, next) => {
-    try {
-      const { 
-        userId,
-        eventManager,
-        eventName,
-        eventDate,
-        startTime,
-        endTime,
-        email,
-        bookedHallId,
-        bookedHallName,
-        organizingClub,
-        phoneNumber,
-        altNumber
-      } = req.body;
-  
-      const hall = await Hall.findById(bookedHallId);
-      if (!hall) {
-        return res.status(404).json({ message: 'Hall not found' });
-      }
-  
-      const booking = new Booking({
-        userId,
-        eventManager,
-        eventName,
-        eventDate,
-        startTime,
-        endTime,
-        email,
-        bookedHallId: hall._id,
-        bookedHallName,
-        organizingClub,
-        // eventDetailFile,
-        // eventDetailText,
-        phoneNumber,
-        altNumber
-      });
-      await booking.save();
-  
-      res.status(201).json({ message: 'Booking created successfully' });
-    } catch (error) {
-      next(error);
+
+const createBooking = async (req, res, next) => {
+  try {
+    const {
+      userId,
+      eventManager,
+      eventName,
+      eventDate,
+      startTime,
+      endTime,
+      email,
+      bookedHallId,
+      bookedHallName,
+      organizingClub,
+      phoneNumber,
+      altNumber
+    } = req.body;
+
+    const hall = await Hall.findById(bookedHallId);
+    if (!hall) {
+      return res.status(422).json({ error: 'Hall not found' });
     }
-  };
+
+    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
+      return res.status(422).json({ error: "Please fill all details" });
+    }
+    // Regular expression to validate full name with at least two words separated by a space
+
+    const nameRegex = /^[\w']+\s[\w']+$/;
+
+    if (!nameRegex.test(eventManager)) {
+      return res.status(422).json({ error: "Please enter your full Event Manager name" });
+    }
+
+
+
+    // Phone validation
+    if (phoneNumber.length !== 10) {
+      return res.status(422).json({ error: "Please enter a valid 10-digit phone number" });
+    }
+
+    if (altNumber.length !== 10) {
+      return res.status(422).json({ error: "Please enter a valid 10-digit alternate number" });
+    }
+    // const now = new Date();
+    // const bookingDate = new Date(eventDate);
+
+    // if (bookingDate <= now) {
+    //   return res
+    //     .status(400)
+    //     .json({ error: "Event date must be in the future" });
+    // }
+
+
+    const booking = new Booking({
+      userId,
+      eventManager,
+      eventName,
+      eventDate,
+      startTime,
+      endTime,
+      email,
+      bookedHallId: hall._id,
+      bookedHallName,
+      organizingClub,
+      // eventDetailFile,
+      // eventDetailText,
+      phoneNumber,
+      altNumber
+    });
+    await booking.save();
+
+    res.status(201).json({ message: 'Booking created successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const getEvents = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find({ isApproved: 'Approved' }).populate('bookedHallId');
+
+    
+    res.json({ bookings });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getBookings = async (req, res, next) => {
   try {
     const bookings = await Booking.find().populate('bookedHallId');
+
+    
     res.json({ bookings });
   } catch (error) {
     next(error);
@@ -72,7 +161,7 @@ const getBookingById = async (req, res, next) => {
 const getBookingByUserId = async (req, res, next) => {
   try {
     const { userId } = req.params;
-    const booking = await Booking.find({ userId : userId}).populate('bookedHallId');
+    const booking = await Booking.find({ userId: userId }).populate('bookedHallId');
     // if (!mongoose.Types.ObjectId.isValid(userId)) {
     //   return res.status(400).json({ message: 'Invalid userId' });
     // }
@@ -89,8 +178,8 @@ const getBookingByUserId = async (req, res, next) => {
 const updateBooking = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
-    const { 
+
+    const {
       eventName,
       eventDate,
       startTime,
@@ -108,10 +197,12 @@ const updateBooking = async (req, res, next) => {
 
     const booking = await Booking.findByIdAndUpdate(
       id,
-      { eventName,  eventDate, startTime, endTime,
+      {
+        eventName, eventDate, startTime, endTime,
 
         //  hallId: hall._id,email,
-         isApproved },
+        isApproved
+      },
       { new: true },
     ).populate('bookedHallId');
 
@@ -138,4 +229,4 @@ const deleteBooking = async (req, res, next) => {
   }
 };
 
-module.exports = {authenticate, createBooking, getBookings, getBookingById, updateBooking, deleteBooking ,getBookingByUserId};
+module.exports = { createBooking, getBookings, getBookingById, updateBooking, deleteBooking, getBookingByUserId, getEvents };

@@ -102,6 +102,8 @@ const Login = () => {
         // window.alert(data.error);
       }else{
         setAuthStatus("Something Went Worng")
+        console.log(error)
+
       }
       // console.log(error);  
     }
