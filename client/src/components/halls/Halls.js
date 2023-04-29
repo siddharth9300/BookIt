@@ -69,7 +69,7 @@ const Halls = () => {
     <div className="mt-6"> 
     
     <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
-   Available Halls  </h1>
+   Available <span className="text-indigo-700"> Halls</span>  </h1>
 
       {Array.isArray(userData) && userData.length > 0 ? (
         userData.map((hall) => (
@@ -193,7 +193,7 @@ const Halls = () => {
           </div>
         ))
       ) : (
-        <h2 className="text-2xl font-bold text-zinc-700">No halls found.</h2>
+        <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No halls found.</h2>
 
       )}
 

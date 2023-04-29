@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
-
+import { format, parseISO } from "date-fns"
 // import BookingForm from "./BookingForm";
 
 const Bookings = () => {
@@ -27,7 +27,14 @@ const Bookings = () => {
       const data = response.data;
       console.log(data);
 
-      setBookingData(data.bookings);
+      const sortedBookingData = data.bookings.sort((a, b) => {
+        // Convert the event date strings to Date objects and compare them
+        return new Date(a.eventDate) - new Date(b.eventDate);
+      });
+
+      setBookingData(sortedBookingData);
+
+      // setBookingData(data.bookings);
       setIsLoading(false);
 
 
@@ -74,6 +81,8 @@ const Bookings = () => {
 
 
   const updateBooking = async (bookingId, isApproved) => {
+    setIsLoading(true);
+
     console.log(isApproved);
     try {
       const response = await axios.put(`http://localhost:9002/bookings/${bookingId}`, {
@@ -89,15 +98,12 @@ const Bookings = () => {
       const data = response.data;
       console.log(data);
 
-      const sortedBookingData = data.bookings.sort((a, b) => {
-        // Convert the event date strings to Date objects and compare them
-        return new Date(a.eventDate) - new Date(b.eventDate);
-      });
 
-      setBookingData(sortedBookingData);
       // setBookingData(data.bookings);
+      
       getBookingData();
-
+      // setIsLoading(false);
+      toast.success(`Request ${isApproved} Successfull!`)
 
       if (response.status !== 200) {
 
@@ -139,98 +145,103 @@ const Bookings = () => {
             Array.isArray(bookingData) && bookingData.length > 0 ? (
               bookingData.map((booking) => (
                 <div key={booking._id} className="my-2 ">
+                  
                   <div className="flex  w-full items-center justify-center ">
-                    <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12  lg:w-10/12 bg-white ">
+                    <div className="w-full rounded-xl p-12  shadow-2xl shadow-blue-200 md:w-8/12  lg:w-10/12 bg-white ">
 
-                      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                        {/* <div className="grid-cols-1 lg:col-span-3">
-                          <div className="mx-auto flex h-[90px] w-[90px] items-center justify-center rounded-full bg-blue-100 p-4">
-                            <svg
-                              id="logo-39"
-                              width="50"
-                              height="40"
-                              viewBox="0 0 50 40"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M25.0001 0L50 15.0098V24.9863L25.0001 40L0 24.9863V15.0099L25.0001 0Z"
-                                fill="#A5B4FC"
-                                className="ccompli2"
-                              ></path>
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M0 15.0098L25 0L50 15.0098V24.9863L25 40L0 24.9863V15.0098ZM25 33.631L44.6967 21.8022V18.1951L44.6957 18.1945L25 30.0197L5.30426 18.1945L5.3033 18.1951V21.8022L25 33.631ZM25 24.5046L40.1018 15.4376L36.4229 13.2298L25 20.0881L13.5771 13.2298L9.89822 15.4376L25 24.5046ZM25 14.573L31.829 10.4729L25 6.37467L18.171 10.4729L25 14.573Z"
-                                fill="#4F46E5"
-                                className="ccustom"
-                              ></path>
-                              <path
-                                d="M25.0001 0L0 15.0099V24.9863L25 40L25.0001 0Z"
-                                fill="#A5B4FC"
-                                className="ccompli2"
-                                fill-opacity="0.3"
-                              ></path>
-                            </svg>
-                          </div>
+                      <div className="grid grid-cols-1 gap-6  lg:grid-cols-12">
+
+{/* 
+                        <div className="grid-cols-1 lg:col-end-12 col-span-1">
+                         a
                         </div> */}
 
-                        <div className="col-span-1 lg:col-span-9">
+
+                        <div className="col-span-1 lg:col-span-12 ">
                           <div className="text-center lg:text-left">
                             <h2 className="text-2xl font-bold text-zinc-700">{booking.name}</h2>
                             {/* <p className="mt-2 text-l font-semibold text-zinc-700">{booking.location}</p> */}
                             {/* <p className="mt-4 text-zinc-500">I am a Front End Developer and UI/UX Designer</p> */}
                           </div>
-
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">Booking Id</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking._id}</p>
-                            </div>
-                          </div>
-
-
-
-
-                          {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                <div>
-                  <p className="font-bold text-zinc-700">Name</p>
-                </div>
-
-                <div>
-                  <p className="text-m font-semibold text-zinc-700">Name</p>
-                </div>
-              </div> */}
-
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">bookedHallName</p>
+                              <p className="font-bold text-zinc-700">Booked Hall Name</p>
                             </div>
 
                             <div>
                               <p className="text-m font-semibold text-zinc-700">{booking.bookedHallName}</p>
+                            
+                            </div>
+                            
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Event Name</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.eventName}</p>
+                            </div>
+                          </div>
+
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Organizing Club</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.organizingClub}</p>
+                            </div>
+                          </div>
+                          {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">Booking Id</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{booking._id}</p>
+                        </div>
+                      </div> */}
+
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Event Date</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700"> {format(new Date(booking.eventDate), "EEEE dd-MM-yyyy")}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Start Time</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.startTime).slice(0, -1)), "hh:mm aa")}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">End Time</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.endTime).slice(0, -1)), "hh:mm aa")}</p>
                             </div>
                           </div>
 
 
 
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">createdAt</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.createdAt}</p>
-                            </div>
-                          </div>
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">eventManager</p>
+                              <p className="font-bold text-zinc-700">Event Manager</p>
                             </div>
 
                             <div>
@@ -240,7 +251,7 @@ const Bookings = () => {
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">phoneNumber</p>
+                              <p className="font-bold text-zinc-700">Phone Number</p>
                             </div>
 
                             <div>
@@ -250,7 +261,7 @@ const Bookings = () => {
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">altNumber</p>
+                              <p className="font-bold text-zinc-700">Alternate Number</p>
                             </div>
 
                             <div>
@@ -260,52 +271,11 @@ const Bookings = () => {
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">eventName</p>
+                              <p className="font-bold text-zinc-700">Created At</p>
                             </div>
 
                             <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.eventName}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">organizingClub</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.organizingClub}</p>
-                            </div>
-                          </div>
-
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">eventDate</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.eventDate}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">startTime</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.startTime}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">endTime</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{booking.endTime}</p>
+                              <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.createdAt)), "EEEE dd-MM-yyyy hh:mm aa")}</p>
                             </div>
                           </div>
 
@@ -346,12 +316,24 @@ const Bookings = () => {
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Approved")}
                             >
-                              Approve
+                              <>
+                              {isLoading ? (
+                                <LoadingSpinner />
+                                ) : 
+                                 
+                                    "Approve"}
+                                    </>
                             </button>
                             {/* </Link> */}
                             <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Rejected")}>
-                              Reject
+                               <>
+                              {isLoading ? (
+                                <LoadingSpinner />
+                                ) : 
+                                 
+                                    "Reject"}
+                                    </>
                             </button>
                           </div>
 
@@ -363,7 +345,7 @@ const Bookings = () => {
                 </div>
               ))
             ) : (
-              <h2 className="text-2xl font-bold text-zinc-700">No halls found.</h2>
+              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No Bookings Requests found.</h2>
 
             )}
 

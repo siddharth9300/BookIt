@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom"
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
+import { parseISO, set } from 'date-fns';
+
 const BookingForm = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
@@ -100,8 +102,8 @@ const BookingForm = () => {
           eventManager,
           eventName,
           eventDate,
-          startTime,
-          endTime,
+          startTime:parseISO(`2000-01-01T${startTime}:00.000Z`),
+          endTime:parseISO(`2000-01-01T${endTime}:00.000Z`),
           email,
           bookedHallId,
           bookedHallName,

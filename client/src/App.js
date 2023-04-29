@@ -37,7 +37,7 @@ const App = () => {
 
         <Navbar />
         <Routes>
-        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "student" ? <StudentDashboard /> : <Halls />} />
+        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "student" ? <StudentDashboard /> : <StudentDashboard />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -46,7 +46,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/halls" element={<Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
-          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Booking />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 
    

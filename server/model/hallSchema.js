@@ -13,6 +13,14 @@ const hallSchema = new mongoose.Schema({
   capacity: {
     type: Number,
     required: true,
+  },  
+  amenities: {
+    type: [String],
+    default: [],
+  },  
+  description: {
+    type: String,
+    default: "",
   },
 });
 

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
-import {format,parseISO} from "date-fns"
+
 // import BookingForm from "./BookingForm";
 
 const Events = () => {
@@ -27,18 +27,7 @@ const Events = () => {
       const data = response.data;
       console.log(data);
 
-
-      const sortedEventData = data.bookings.sort((a, b) => {
-        // Convert the event date strings to Date objects and compare them
-        return new Date(a.eventDate) - new Date(b.eventDate);
-      });
-
-
-      
-
-      setEventData(sortedEventData);
-
-      // setEventData(data.bookings);   
+      setEventData(data.bookings);
       setIsLoading(false);
 
 
@@ -61,10 +50,10 @@ const Events = () => {
       }
     } catch (error) {
       console.log(error);
-      // if (error.response.status === 401) {
-      //   toast.warn("Unauthrized Access! Please Login!")
-      //   navigate("/login");
-      // }
+      if (error.response.status === 401) {
+        toast.warn("Unauthrized Access! Please Login!")
+        navigate("/login");
+      }
       // navigate("/login");
     }
   };
@@ -78,7 +67,7 @@ const Events = () => {
 
     getEventData();
 
-  },[])
+  }, [])
 
 
 
@@ -99,10 +88,11 @@ const Events = () => {
             Array.isArray(eventData) && eventData.length > 0 ? (
               eventData.map((event) => (
                 <div key={event._id} className="my-2 ">
-                  <div className="flex  w-full items-center justify-center m-4">
-                    <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-10/12 bg-white">
+                  <div className="flex  w-full items-center justify-center ">
+                    <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white ">
+
                       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                        {/* <div className="grid-cols-1 lg:col-span-3">
+                        <div className="grid-cols-1 lg:col-span-3">
                           <div className="mx-auto flex h-[90px] w-[90px] items-center justify-center rounded-full bg-blue-100 p-4">
                             <svg
                               id="logo-39"
@@ -132,79 +122,16 @@ const Events = () => {
                               ></path>
                             </svg>
                           </div>
-                        </div> */}
+                        </div>
 
                         <div className="col-span-1 lg:col-span-9">
                           <div className="text-center lg:text-left">
-                            <h2 className="text-2xl font-bold text-zinc-700">{event.eventName}</h2>
-                            {/* <p className="mt-2 text-l font-semibold text-zinc-700">{event.bookedHallName}</p> */}
+                            <h2 className="text-2xl font-bold text-zinc-700">{event.name}</h2>
+                            {/* <p className="mt-2 text-l font-semibold text-zinc-700">{event.location}</p> */}
                             {/* <p className="mt-4 text-zinc-500">I am a Front End Developer and UI/UX Designer</p> */}
                           </div>
 
-                          
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Event Venue</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{event.bookedHallName}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Location</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{event.bookedHallId.location}</p>
-                            </div>
-                          </div>
-
-                          
-
-
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Organizing Club</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{event.organizingClub}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Event Date</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700"> {format(new Date(event.eventDate), "EEEE dd-MM-yyyy")}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Starts At</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{format(parseISO((event.startTime).slice(0, -1)), "hh:mm aa")}</p>
-                            </div>
-                          </div>
-
-                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                            <div>
-                              <p className="font-bold text-zinc-700">Ends At</p>
-                            </div>
-
-                            <div>
-                              <p className="text-m font-semibold text-zinc-700">{format(parseISO((event.endTime).slice(0, -1)), "hh:mm aa")}</p>
-                            </div>
-                          </div>
+                         
 
 
 
@@ -218,11 +145,32 @@ const Events = () => {
                   <p className="text-m font-semibold text-zinc-700">Name</p>
                 </div>
               </div> */}
+<div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">eventName</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.eventName}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">bookedHallName</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.bookedHallName}</p>
+                            </div>
+                          </div>
+
+
 
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">Event Manager</p>
+                              <p className="font-bold text-zinc-700">eventManager</p>
                             </div>
 
                             <div>
@@ -230,11 +178,9 @@ const Events = () => {
                             </div>
                           </div>
 
-
-
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">Phone</p>
+                              <p className="font-bold text-zinc-700">phoneNumber</p>
                             </div>
 
                             <div>
@@ -242,6 +188,60 @@ const Events = () => {
                             </div>
                           </div>
 
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">altNumber</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.altNumber}</p>
+                            </div>
+                          </div>
+
+                          
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">organizingClub</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.organizingClub}</p>
+                            </div>
+                          </div>
+
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">eventDate</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.eventDate}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">startTime</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.startTime}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">endTime</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{event.endTime}</p>
+                            </div>
+                          </div>
+
+                         
 
 
 
@@ -251,17 +251,7 @@ const Events = () => {
 
 
 
-
-                          {/* 
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">
-                  Follow
-                </button>
-
-                <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">
-                  View Profile
-                </button>
-              </div> */}
+                          
 
 
                         </div>
@@ -276,10 +266,10 @@ const Events = () => {
 
 
 
-
+                
               ))
             ) : (
-              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No Upcomming Events.</h2>
+              <h2 className="text-2xl font-bold text-zinc-700">No halls found.</h2>
 
             )}
 

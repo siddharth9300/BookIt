@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 // import BookingForm from "./BookingForm";
 import LoadingSpinner from "../LoadingSpinner";
+import { format, parseISO } from "date-fns"
 const Bookings = () => {
   // const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
@@ -26,9 +27,9 @@ const Bookings = () => {
         throw new Error(response.error);
       }
 
-      
+
       getBookingData(data._id);
-      
+
 
 
     } catch (error) {
@@ -141,8 +142,36 @@ const Bookings = () => {
                         {/* <p className="mt-2 text-l font-semibold text-zinc-700">{booking.location}</p> */}
                         {/* <p className="mt-4 text-zinc-500">I am a Front End Developer and UI/UX Designer</p> */}
                       </div>
+                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">Booked Hall Name</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{booking.bookedHallName}</p>
+                        </div>
+                      </div>
+                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">Event Name</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{booking.eventName}</p>
+                        </div>
+                      </div>
+
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">Organizing Club</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{booking.organizingClub}</p>
+                        </div>
+                      </div>
+                      {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
                           <p className="font-bold text-zinc-700">Booking Id</p>
                         </div>
@@ -150,47 +179,45 @@ const Bookings = () => {
                         <div>
                           <p className="text-m font-semibold text-zinc-700">{booking._id}</p>
                         </div>
-                      </div>
-
-
-
-
-                      {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                <div>
-                  <p className="font-bold text-zinc-700">Name</p>
-                </div>
-
-                <div>
-                  <p className="text-m font-semibold text-zinc-700">Name</p>
-                </div>
-              </div> */}
+                      </div> */}
 
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">bookedHallName</p>
+                          <p className="font-bold text-zinc-700">Event Date</p>
                         </div>
 
                         <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.bookedHallName}</p>
-                        </div>
-                      </div>
-
-
-
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
-                          <p className="font-bold text-zinc-700">createdAt</p>
-                        </div>
-
-                        <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.createdAt}</p>
+                          <p className="text-m font-semibold text-zinc-700"> {format(new Date(booking.eventDate), "EEEE dd-MM-yyyy")}</p>
                         </div>
                       </div>
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">eventManager</p>
+                          <p className="font-bold text-zinc-700">Start Time</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.startTime).slice(0, -1)), "hh:mm aa")}</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">End Time</p>
+                        </div>
+
+                        <div>
+                          <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.endTime).slice(0, -1)), "hh:mm aa")}</p>
+                        </div>
+                      </div>
+
+
+
+
+                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                        <div>
+                          <p className="font-bold text-zinc-700">Event Manager</p>
                         </div>
 
                         <div>
@@ -200,7 +227,7 @@ const Bookings = () => {
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">phoneNumber</p>
+                          <p className="font-bold text-zinc-700">Phone Number</p>
                         </div>
 
                         <div>
@@ -210,7 +237,7 @@ const Bookings = () => {
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">altNumber</p>
+                          <p className="font-bold text-zinc-700">Alternate Number</p>
                         </div>
 
                         <div>
@@ -220,54 +247,16 @@ const Bookings = () => {
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
-                          <p className="font-bold text-zinc-700">eventName</p>
+                          <p className="font-bold text-zinc-700">Created At</p>
                         </div>
 
                         <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.eventName}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
-                          <p className="font-bold text-zinc-700">organizingClub</p>
-                        </div>
-
-                        <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.organizingClub}</p>
+                          <p className="text-m font-semibold text-zinc-700">{format(parseISO((booking.createdAt)), "EEEE dd-MM-yyyy hh:mm aa")}</p>
                         </div>
                       </div>
 
 
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
-                          <p className="font-bold text-zinc-700">eventDate</p>
-                        </div>
 
-                        <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.eventDate}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
-                          <p className="font-bold text-zinc-700">startTime</p>
-                        </div>
-
-                        <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.startTime}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
-                          <p className="font-bold text-zinc-700">endTime</p>
-                        </div>
-
-                        <div>
-                          <p className="text-m font-semibold text-zinc-700">{booking.endTime}</p>
-                        </div>
-                      </div>
 
                       <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                         <div>
@@ -310,7 +299,7 @@ const Bookings = () => {
 
         )
         }
-        
+
 
       </div>
     </>

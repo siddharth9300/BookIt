@@ -52,7 +52,14 @@ const createBooking = async (req, res, next) => {
     //     .status(400)
     //     .json({ error: "Event date must be in the future" });
     // }
-
+   // Validate start and end time
+   const startDateTime = new Date(`2000-01-01T${startTime}:00Z`);
+   const endDateTime = new Date(`2000-01-01T${endTime}:00Z`);
+   
+   // Check if end time is after start time
+   if (endDateTime <= startDateTime) {
+     return res.status(422).json({ error: 'End time should be after start time' });
+    }
 
     const booking = new Booking({
       userId,
@@ -70,6 +77,7 @@ const createBooking = async (req, res, next) => {
       phoneNumber,
       altNumber
     });
+    // await booking.validate();
     await booking.save();
 
     res.status(201).json({ message: 'Booking created successfully' });
