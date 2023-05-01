@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
-
+import { toast } from "react-toastify";
 // import BookingForm from "./BookingForm";
 
 const HallsAdmin = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  const [authStatus, setAuthStatus] = useState("");
 
   const getHallsData = async () => {
     try {
@@ -43,6 +43,50 @@ const HallsAdmin = () => {
 
   }, [])
 
+
+  
+  const handleDeleteClick = async (hallId) => {
+    // e.preventDefault();
+
+
+    try {
+      const response = await axios.delete (
+        `http://localhost:9002/halls/${hallId}`,
+
+        {
+          withCredentials: true, // To include credentials in the request
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = response.data;
+
+      if (!data) {
+        toast.error("Request not send!")
+        // console.log("Message not send");
+      } else {
+        getHallsData();
+        toast.success("Request send Successfull!")
+        // alert("Message send");
+        navigate("/halls")
+        // setBookingData({ ...bookingData });
+      }
+    } catch (error) {
+      if (error.response.status === 422 && error.response) {
+        const data = error.response.data;
+        setAuthStatus(data.error);
+        console.log(data.error);
+        // window.alert(data.error);
+      } else {
+        console.error(error);
+      }
+      // console.log(error);
+    }
+  };
+
+
   const handleBookingClick = (hallId, hallName) => {
     navigate(`/bookingForm/${hallId}/${hallName}`)
   };
@@ -50,7 +94,6 @@ const HallsAdmin = () => {
   const handleEditClick = (hallId, hallName) => {
     navigate(`/halls/${hallId}/${hallName}`)
   };
-
 
 
   // const hallId =userData.hallId
@@ -195,7 +238,7 @@ const HallsAdmin = () => {
 
 
 
-                    <div className="mt-6 grid grid-cols-2 gap-4">
+                    <div className="mt-6 grid grid-cols-3 gap-4">
                       {/* <Link to={`/bookingForm`}> */}
                       <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => handleBookingClick(hall._id, hall.name)}
@@ -207,6 +250,12 @@ const HallsAdmin = () => {
                         onClick={() => handleEditClick(hall._id, hall.name)}
                       >
                         Edit Hall
+                      </button>
+
+                      <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
+                        onClick={() => handleDeleteClick(hall._id, hall.name)}
+                      >
+                        Delete Hall
                       </button>
                       {/* </Link> */}
                       {/* <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">

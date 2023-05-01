@@ -21,7 +21,7 @@ const HallForm = () => {
   const CreateHall = async (e) => {
     e.preventDefault();
     const { name,location,capacity,amenities,description } = hallData;
-
+    // setIsLoading(true)
     try {
       const response = await axios.post(
         `http://localhost:9002/halls`,
@@ -37,6 +37,7 @@ const HallForm = () => {
       );
 
       const data = response.data;
+      setIsLoading(false)
 
       if (!data) {
         toast.error("Request not send!")
@@ -94,10 +95,10 @@ const HallForm = () => {
         <div className="max-w-screen-md mx-auto p-5 my-10 bg-white shadow-2xl shadow-blue-200">
           <div className="text-center mb-16">
             <p className="mt-4 text-sm leading-7 text-gray-500 font-regular uppercase">
-              Update Hall
+            Create Hall
             </p>
             <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-              Update Your <span className="text-indigo-600">Hall </span>
+              Create Your <span className="text-indigo-600">Hall </span>
             </h3>
           </div>
   
@@ -290,7 +291,7 @@ const HallForm = () => {
                   className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
                   type="submit"
                 >
-                  Update
+                  Create
                 </button>
               </div>
             </div>

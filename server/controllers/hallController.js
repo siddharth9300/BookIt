@@ -3,6 +3,15 @@ const Hall = require('../model/hallSchema');
 const createHall = async (req, res, next) => {
   try {
     const { name, location, capacity,amenities,description } = req.body;
+
+
+    if (!name || !location || !capacity || !amenities || !description) {
+      return res.status(422).json({ error: "Please fill all details" });
+    }
+
+    if (capacity <= 0) {
+      return res.status(422).json({ error: "Please enter a valid capacity greater than zero" });
+    }
     const hall = new Hall({ name, location, capacity,amenities,description });
     await hall.save();
     res.status(201).json({ message: 'Hall created successfully' });
