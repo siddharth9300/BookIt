@@ -16,12 +16,16 @@ import Booking from "./components/bookings/Bookings";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import StudentDashboard from "./components/dashboard/StudentDashboard";
 import BookingByUserId from "./components/bookings/BookingsByUserId";
+import Footer from "./components/Footer";
+import HallsAdmin from "./components/halls/HallsAdmin";
 import { initialState, reducer } from "./reducer/UseReducer";
 
 
 
 import {  ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HallsEdit from "./components/halls/HallsEdit";
+import HallForm from "./components/halls/HallForm";
 
 
 export const UserContext = createContext();
@@ -44,16 +48,18 @@ const App = () => {
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/halls" element={<Halls />} />
-          <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
+          <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : state.userType === "student" ? <Halls/> : <Halls />}/>
+          <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />
+          <Route path="/hallForm/" element={<HallForm />} />
           <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
+          <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 
    
 
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
-
+      <Footer/>
       </UserContext.Provider>
       <ToastContainer
         position="bottom-left"

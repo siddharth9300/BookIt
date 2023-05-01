@@ -2,8 +2,8 @@ const Hall = require('../model/hallSchema');
 
 const createHall = async (req, res, next) => {
   try {
-    const { name, location, capacity } = req.body;
-    const hall = new Hall({ name, location, capacity });
+    const { name, location, capacity,amenities,description } = req.body;
+    const hall = new Hall({ name, location, capacity,amenities,description });
     await hall.save();
     res.status(201).json({ message: 'Hall created successfully' });
   } catch (error) {
@@ -22,8 +22,8 @@ const getHalls = async (req, res, next) => {
 
 const getHallById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const hall = await Hall.findById(id);
+    const { hallId } = req.params;
+    const hall = await Hall.findById(hallId);
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }
@@ -36,8 +36,8 @@ const getHallById = async (req, res, next) => {
 const updateHall = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, location, capacity } = req.body;
-    const hall = await Hall.findByIdAndUpdate(id, { name, location, capacity }, { new: true });
+    const { name, location, capacity ,amenities,description} = req.body;
+    const hall = await Hall.findByIdAndUpdate(id, { name, location, capacity,amenities,description }, { new: true });
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }

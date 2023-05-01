@@ -5,7 +5,7 @@ import LoadingSpinner from "../LoadingSpinner";
 
 // import BookingForm from "./BookingForm";
 
-const Halls = () => {
+const HallsAdmin = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -30,8 +30,8 @@ const Halls = () => {
         throw new Error(response.error);
       }
     } catch (error) {
-      // console.log(error);
-      navigate("/login");
+      console.log(error);
+      // navigate("/login");
     }
   };
 
@@ -46,6 +46,11 @@ const Halls = () => {
   const handleBookingClick = (hallId, hallName) => {
     navigate(`/bookingForm/${hallId}/${hallName}`)
   };
+
+  const handleEditClick = (hallId, hallName) => {
+    navigate(`/halls/${hallId}/${hallName}`)
+  };
+
 
 
   // const hallId =userData.hallId
@@ -161,6 +166,7 @@ const Halls = () => {
                       </div>
                     </div>
 
+
                     <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                       <div>
                         <p className="font-bold text-zinc-700">Amenities</p>
@@ -189,13 +195,18 @@ const Halls = () => {
 
 
 
-
                     <div className="mt-6 grid grid-cols-2 gap-4">
                       {/* <Link to={`/bookingForm`}> */}
                       <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => handleBookingClick(hall._id, hall.name)}
                       >
                         Book Now
+                      </button>
+
+                      <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
+                        onClick={() => handleEditClick(hall._id, hall.name)}
+                      >
+                        Edit Hall
                       </button>
                       {/* </Link> */}
                       {/* <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">
@@ -221,4 +232,4 @@ const Halls = () => {
   );
 };
 
-export default Halls;
+export default HallsAdmin;

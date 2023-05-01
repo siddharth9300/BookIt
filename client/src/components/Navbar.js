@@ -14,6 +14,23 @@ console.log(state);
 // console.log(dashboard); // "Admin"
 
 
+ const RederUser = () => {
+
+  if(state.userType === "admin"){
+  return (<>
+    <Link to="/halls">Halls</Link>
+  </>
+    ) }else if (state.userType === "student"){
+      
+      return(<Link to="/bookings">Bookings</Link>
+        )
+    }else{
+      return(
+        <Link to="/halls">Halls</Link>
+      )
+    }
+}
+
 
   const RenderMenu = () => {
 
@@ -29,7 +46,6 @@ console.log(state);
         </>
       )
     } else {
-      
 
       return (
 
@@ -52,15 +68,15 @@ console.log(state);
 
     <nav className="w-full border-b">
       <div className="py-5 md:py-0 container mx-auto px-6 flex items-center justify-between">
-        <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
-          <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
-          {/* <h1>asd</h1> */}
           <Link to={"/"}>
+        <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
+          {/* <h1>asd</h1> */}
+          <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
             <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
               Book  <span className="text-indigo-700">It</span> </h1>
-          </Link>
          
         </div>
+          </Link>
 
         <div>
           <button onclick="toggleMenu(true)" className="sm:block md:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
@@ -86,14 +102,15 @@ console.log(state);
                 <Link to="/">Home</Link>
               </li>
               <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
-                <Link to="/bookings">Bookings</Link>
-              </li>
-              <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
-                <Link to="/about">About</Link>
+                {/* <Link to="/bookings">Bookings</Link> */}
+                <RederUser/>
               </li>
 
               <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                 <Link to="/contact">Contact</Link>
+              </li>
+              <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                <Link to="/about">Profile</Link>
               </li>
             </ul>
           </div>

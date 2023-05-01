@@ -15,12 +15,12 @@ const hallSchema = new mongoose.Schema({
     required: true,
   },  
   amenities: {
-    type: [String],
-    default: [],
+    type: String,
+    required: true,
   },  
   description: {
     type: String,
-    default: "",
+    required: true,
   },
 });
 
