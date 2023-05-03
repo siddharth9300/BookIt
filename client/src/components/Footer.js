@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <>
-    <footer class="text-gray-600 body-font mt-5">
-  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <footer class="text-gray-600 body-font mt-5 ">
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
     <Link to={"/"} class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
     <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}

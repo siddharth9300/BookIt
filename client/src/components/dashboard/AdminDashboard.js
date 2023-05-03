@@ -1,5 +1,5 @@
 import React from 'react'
-import Bookings from '../bookings/Bookings'
+import Bookings from '../bookings/BookingsAdmin'
 import Events from '../bookings/Events'
 
 const AdminDashboard = () => {

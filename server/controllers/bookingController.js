@@ -226,8 +226,8 @@ const updateBooking = async (req, res, next) => {
 
 const deleteBooking = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const booking = await Booking.findByIdAndDelete(id);
+    const { bookingId } = req.params;
+    const booking = await Booking.findByIdAndDelete(bookingId);
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found' });
     }

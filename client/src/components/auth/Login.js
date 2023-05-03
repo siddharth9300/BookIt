@@ -89,6 +89,8 @@ const Login = () => {
             } else {
               dispatch({ type: 'USER_TYPE', payload: "student" });  
             }
+
+           localStorage.setItem("userId",data._id)
             toast.success("Login Successfull")
             setIsLoading(true);
             

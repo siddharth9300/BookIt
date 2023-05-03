@@ -11,7 +11,7 @@ router.use(cookieParser());
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.get('/logout', authenticate, authController.logout);
+router.get('/logout/:userId', authController.logout);
 
 
 router.get('/about', authenticate, authController.about);

@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer ,useEffect} from "react";
 // importing components
 import Navbar from "./components/Navbar";
 // import Home from "./components/Home";
@@ -12,7 +12,7 @@ import Login from "./components/auth/Login";
 import ErrorPage from "./components/ErrorPage";
 import Halls from "./components/halls/Halls";
 import BookingForm from "./components/bookings/BookingForm";
-import Booking from "./components/bookings/Bookings";
+import Booking from "./components/bookings/BookingsAdmin";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import StudentDashboard from "./components/dashboard/StudentDashboard";
 import BookingByUserId from "./components/bookings/BookingsByUserId";
@@ -31,7 +31,11 @@ import HallForm from "./components/halls/HallForm";
 export const UserContext = createContext();
 const App = () => {
 
-  const [state, dispatch] = useReducer(reducer, initialState)
+
+    const [state, dispatch] = useReducer(reducer, initialState)
+
+
+
   return (
 
     <>
@@ -50,7 +54,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : state.userType === "student" ? <Halls/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />
-          <Route path="/hallForm/" element={<HallForm />} />
+          <Route path="/hallForm" element={<HallForm />} />
           <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
@@ -61,6 +65,8 @@ const App = () => {
         </Routes>
       <Footer/>
       </UserContext.Provider>
+
+
       <ToastContainer
         position="bottom-left"
         autoClose={3000}

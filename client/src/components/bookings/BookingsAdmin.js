@@ -116,7 +116,45 @@ const Bookings = () => {
     }
   };
 
+  const deleteBooking = async (bookingId) => {
+    // e.preventDefault();
 
+
+    try {
+      const response = await axios.delete (
+        `http://localhost:9002/bookings/${bookingId}`,
+
+        {
+          withCredentials: true, // To include credentials in the request
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = response.data;
+
+      if (!data) {
+        toast.error("Request not send!")
+        // console.log("Message not send");
+      } else {
+        getBookingData();
+        toast.success("Request send Successfull!")
+        // alert("Message send");
+        navigate("/")
+        // setBookingData({ ...bookingData });
+      }
+    } catch (error) {
+      if (error.response.status === 422 && error.response) {
+        const data = error.response.data;
+        console.log(data.error);
+        // window.alert(data.error);
+      } else {
+        console.error(error);
+      }
+      // console.log(error);
+    }
+  };
 
 
 
@@ -311,7 +349,7 @@ const Bookings = () => {
 
 
 
-                          <div className="mt-6 grid grid-cols-2 gap-4">
+                          <div className="mt-6 grid grid-cols-3 gap-4">
                             {/* <Link to={`/bookingForm`}> */}
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Approved")}
@@ -335,6 +373,11 @@ const Bookings = () => {
                                     "Reject"}
                                     </>
                             </button>
+                            <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
+                        onClick={() => deleteBooking(booking._id)}
+                      >
+                        Delete Booking
+                      </button>
                           </div>
 
 

@@ -96,7 +96,7 @@ const Events = () => {
           Upcomming<span className="text-indigo-700"> Events</span>  </h1>{isLoading ? (
             <LoadingSpinner />
           ) :
-            Array.isArray(eventData) && eventData.length > 0 ? (
+            Array.isArray(eventData) && eventData.length && eventData.bookedHallId > 0 ? (
               eventData.map((event) => (
                 <div key={event._id} className="my-2 ">
                   <div className="flex  w-full items-center justify-center m-4">
@@ -269,11 +269,6 @@ const Events = () => {
                     </div>
                   </div>
                 </div>
-
-
-
-
-
 
 
 

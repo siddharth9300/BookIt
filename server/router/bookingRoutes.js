@@ -11,6 +11,6 @@ router.get('/events',  bookingController.getEvents);
 router.get('/bookings/:userId',authenticate,  bookingController.getBookingByUserId);
 router.post('/bookings',authenticate, bookingController.createBooking);
 router.put('/bookings/:id',authenticate, bookingController.updateBooking);
-router.delete('/bookings/:id',authenticate, bookingController.deleteBooking);
+router.delete('/bookings/:bookingId',authenticate, bookingController.deleteBooking);
 
 module.exports = router;

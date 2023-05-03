@@ -58,8 +58,8 @@ const updateHall = async (req, res, next) => {
 
 const deleteHall = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const hall = await Hall.findByIdAndDelete(id);
+    const { hallId } = req.params;
+    const hall = await Hall.findByIdAndDelete(hallId);
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }

@@ -85,8 +85,13 @@ const login = async (req, res,next) => {
         token = await userLogin.generateAuthToken();
         res.cookie("jwtoken", token, {
           expires: new Date(Date.now() + 9000000),
-          httpOnly: true,
+          path :"/",
+          // expires: new Date(Date.now() + 900),
+
+          // httpOnly: true,
         });
+
+
         console.log(token);
   
         if (!isMatch) {
@@ -151,25 +156,25 @@ const login = async (req, res,next) => {
   
 
   
-  const logout = async (req, res,next) => {
-    console.log("logout page");
+  const logout = async (req, res, next) => {
+    // const userId = req.userId; // get the userId from the request header
     try {
-      // Remove the token from the user document in the database
-      // const userId = req.userID;
+      const userId = req.params.userId;
+      // remove the user token from the database
       const user = await User.findByIdAndUpdate(
-        {_id:req.userID},
+        {_id: userId},
         { $unset: { tokens: 1 } },
         { new: true }
       );
   
-      // Clear the cookie
+      // clear the cookie
       res.clearCookie("jwtoken",{path:"/"});
   
       res.status(200).send("User logged out successfully");
     } catch (error) {
-        next(error);
+      next(error);
       res.status(500).json({ error: "Internal server error" });
     }
   }
-
+  
 module.exports = { register, login, about, getdata, contact ,logout};
