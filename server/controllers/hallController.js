@@ -44,9 +44,9 @@ const getHallById = async (req, res, next) => {
 
 const updateHall = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { hallId } = req.params;
     const { name, location, capacity ,amenities,description} = req.body;
-    const hall = await Hall.findByIdAndUpdate(id, { name, location, capacity,amenities,description }, { new: true });
+    const hall = await Hall.findByIdAndUpdate(hallId, { name, location, capacity,amenities,description }, { new: true });
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }

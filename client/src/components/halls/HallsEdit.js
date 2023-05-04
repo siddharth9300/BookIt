@@ -77,7 +77,7 @@ const HallsEdit = () => {
         toast.error("Request not send!")
         // console.log("Message not send");
       } else {
-        toast.success("Request send Successfull!")
+        toast.success("Hall Updated Successfull!")
         // alert("Message send");
         navigate("/halls")
         // setBookingData({ ...bookingData });

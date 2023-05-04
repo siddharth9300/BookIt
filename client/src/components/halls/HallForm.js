@@ -43,7 +43,7 @@ const HallForm = () => {
         toast.error("Request not send!")
         // console.log("Message not send");
       } else {
-        toast.success("Request send Successfull!")
+        toast.success("Hall Created Successfull!")
         // alert("Message send");
         navigate("/halls")
         // setBookingData({ ...bookingData });

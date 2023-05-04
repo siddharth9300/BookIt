@@ -68,7 +68,7 @@ const HallsAdmin = () => {
         // console.log("Message not send");
       } else {
         getHallsData();
-        toast.success("Request send Successfull!")
+        toast.success("Hall Deleted Successfull!")
         // alert("Message send");
         navigate("/halls")
         // setBookingData({ ...bookingData });
@@ -116,15 +116,18 @@ const HallsAdmin = () => {
         ) : 
     <div className="mt-6"> 
     
-    <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
+   <div className="py-5 md:py-0 flex container mx-auto px-6 justify-between  items-center">
+   <div className="mx-auto ">
+    <h1 className="text-xl  sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
    Available <span className="text-indigo-700"> Halls</span>  </h1>
-   <div className="py-5 md:py-0 container mx-auto px-6 flex items-center ">
 
+   </div>
    <Link to="/hallForm">
             <button className="flex self-end focus:outline-none lg:text-lg lg:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700  md:block bg-transparent transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-indigo-700 text-indigo-700  sm:px-8 py-1 sm:py-3 text-sm">
               Create Hall</button>
           </Link>
    </div>
+
       {Array.isArray(userData) && userData.length > 0 ? (
         userData.map((hall) => (
           <div key={hall._id} className="my-2 ">

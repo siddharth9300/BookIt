@@ -17,18 +17,18 @@ const Events = () => {
   const getEventData = async () => {
     try {
       const response = await axios.get("http://localhost:9002/events", {
-        withCredentials: true, // include credentials in the request
+        // withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
         }
       });
 
-      const data = response.data;
+      const data = response.data.bookings;
       console.log(data);
 
 
-      const sortedEventData = data.bookings.sort((a, b) => {
+      const sortedEventData = data.sort((a, b) => {
         // Convert the event date strings to Date objects and compare them
         return new Date(a.eventDate) - new Date(b.eventDate);
       });
@@ -96,7 +96,7 @@ const Events = () => {
           Upcomming<span className="text-indigo-700"> Events</span>  </h1>{isLoading ? (
             <LoadingSpinner />
           ) :
-            Array.isArray(eventData) && eventData.length && eventData.bookedHallId > 0 ? (
+            Array.isArray(eventData) && eventData.length ? (
               eventData.map((event) => (
                 <div key={event._id} className="my-2 ">
                   <div className="flex  w-full items-center justify-center m-4">
