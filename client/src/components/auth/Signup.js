@@ -22,16 +22,48 @@ const Signup = () => {
     cpassword: "",
   });
 
+
   let name, value;
   const handleInputs = (e) => {
     // console.log(e);
     name = e.target.name;
     value = e.target.value;
-
+    AdminAuth()
     setUser({ ...user, [name]: value });
     console.log(user);
   };
 
+
+
+
+
+
+  const AdminAuth =()=>{
+    if (user.work==="Admin"){
+
+      <>
+      
+      <div className="relative mb-4">
+      <label
+        htmlFor="adminKey"
+        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+        Admin Key
+      </label>
+      <input
+        type="text"
+       
+        required
+        value={user.adminKey}
+        onChange={handleInputs}
+        id="adminKey"
+        name="adminKey"
+        placeholder="Admin Key"
+        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+      />
+    </div>
+    </>
+    }
+  }
   // const PostData = async (e) => {
   //   e.preventDefault();
   //   const { name, email, phone, work, password, cpassword } = user;
@@ -68,6 +100,8 @@ const Signup = () => {
     const { name, email, phone, work, password, cpassword } = user;
 
     try {
+      
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
         "http://localhost:9002/register",
         {
@@ -85,7 +119,7 @@ const Signup = () => {
         }
       );
 
-      // const data = response.data;
+      
 
       // if (response.status === 422 || !data) {
       //   console.log(data.error)
@@ -246,6 +280,10 @@ const Signup = () => {
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               /> */}
             </div>
+
+           < AdminAuth/>
+
+
 
             <div className="relative mb-4">
               <label

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import  { useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from './../../App'
 import { toast } from "react-toastify";
@@ -44,6 +44,7 @@ const userId = localStorage.getItem("userId")
     }
   useEffect(() => {
     logoutUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return null;

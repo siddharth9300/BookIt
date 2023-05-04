@@ -8,7 +8,7 @@ const Login = () => {
 
 
 
-  const {state,dispatch} = useContext(UserContext)
+  const {dispatch} = useContext(UserContext)
   const [isLoading, setIsLoading] = useState(false);
 
 

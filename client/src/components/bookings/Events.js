@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import {format,parseISO} from "date-fns"
 // import BookingForm from "./BookingForm";
 
 const Events = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [eventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { createContext, useReducer ,useEffect} from "react";
+import { createContext, useReducer } from "react";
 // importing components
 import Navbar from "./components/Navbar";
 // import Home from "./components/Home";
@@ -63,6 +63,7 @@ const App = () => {
 
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
+        
       <Footer/>
       </UserContext.Provider>
 
