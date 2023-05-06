@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
-  work: {
+  userType: {
     type: String,
     require: true,
   },

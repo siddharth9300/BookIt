@@ -22,7 +22,7 @@ console.log(state);
   return (<>
     <Link to="/halls">Halls</Link>
   </>
-    ) }else if (state.userType === "student"){
+    ) }else if (state.userType === "faculty"){
       
       return(<Link to="/bookings">Bookings</Link>
         )

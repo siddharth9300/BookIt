@@ -1,4 +1,4 @@
-import React, { useState , useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "./../../App";
@@ -8,7 +8,7 @@ const Login = () => {
 
 
 
-  const {dispatch} = useContext(UserContext)
+  const { dispatch } = useContext(UserContext)
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -17,32 +17,32 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [authStatus, setAuthStatus] = useState("");
 
-//   const loginUser = async (e) => {
-//     e.prevenDefault();
+  //   const loginUser = async (e) => {
+  //     e.prevenDefault();
 
-//     const res = await fetch("http://localhost:9002/login", {
-//       method: "POST",
-//       credentials: 'include',
-//       headers: {
-//         "Content-Type": "application/json",
-        
-//       },
-//       body: JSON.stringify({
-//         email,
+  //     const res = await fetch("http://localhost:9002/login", {
+  //       method: "POST",
+  //       credentials: 'include',
+  //       headers: {
+  //         "Content-Type": "application/json",
 
-//         password,
-//       }),
-//     });
+  //       },
+  //       body: JSON.stringify({
+  //         email,
 
-//     const data = await res.json();
+  //         password,
+  //       }),
+  //     });
 
-//     if (res.status === 400 || !data) {
-//       window.alert("invalid credentials");
-//     } else {
-//       window.alert("Login Successfull");
-//       navigate("/login");
-//     }
-//   };
+  //     const data = await res.json();
+
+  //     if (res.status === 400 || !data) {
+  //       window.alert("invalid credentials");
+  //     } else {
+  //       window.alert("Login Successfull");
+  //       navigate("/login");
+  //     }
+  //   };
 
 
 
@@ -57,9 +57,9 @@ const Login = () => {
 
   const loginUser = async (e) => {
     e.preventDefault();
-   
 
-  
+
+
     try {
       const response = await axios.post("http://localhost:9002/login", {
         email,
@@ -70,31 +70,33 @@ const Login = () => {
           "Content-Type": "application/json",
         },
       });
-  
-        const data = response.data;
 
-        console.log(data.work);
-    
-      
+      const data = response.data;
+
+      console.log(data.userType);
+
+
       // if (response.status === 400 || !data) {
       //   setAuthStatus("Invalid credentials");
       //   window.alert("invalid")
       // } else {
-        
-        
-        dispatch({type:"USER",payload:true})
-   
-            if (data.work === 'Admin') {
-              dispatch({ type: 'USER_TYPE', payload: "admin" });  
-            } else {
-              dispatch({ type: 'USER_TYPE', payload: "student" });  
-            }
 
-           localStorage.setItem("userId",data._id)
-            toast.success("Login Successfull")
-            setIsLoading(true);
-            
-        navigate("/");
+
+      dispatch({ type: "USER", payload: true })
+
+      if (data.userType === 'admin') {
+        dispatch({ type: 'USER_TYPE', payload: "admin" });
+      } else if (data.userType === 'hod') {
+        dispatch({ type: 'USER_TYPE', payload: "hod" });
+      } else {
+        dispatch({ type: 'USER_TYPE', payload: "faculty" });
+      }
+
+      localStorage.setItem("userId", data._id)
+      toast.success("Login Successfull")
+      setIsLoading(true);
+
+      navigate("/");
       // }
     } catch (error) {
       if (error.response.status === 400 && error.response) {
@@ -102,7 +104,7 @@ const Login = () => {
         setAuthStatus(data.error)
         console.log(data.error)
         // window.alert(data.error);
-      }else{
+      } else {
         setAuthStatus("Something Went Worng")
         console.log(error)
 
@@ -123,7 +125,7 @@ const Login = () => {
   return (
     <>{isLoading ? (
       <LoadingSpinner />
-    ) : 
+    ) :
       <section className="text-gray-600 body-font h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2  bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
@@ -131,11 +133,11 @@ const Login = () => {
               Login
             </h2> */}
 
-        
 
-      <h3 className="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-        Sign <span className="text-indigo-600">In</span>
-      </h3>
+
+            <h3 className="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
+              Sign <span className="text-indigo-600">In</span>
+            </h3>
 
 
             <div className="relative mb-4">
@@ -179,8 +181,8 @@ const Login = () => {
 
             <div className="my-4">
               <p className="text-s text-red-600	 font-bold">
-                
-                 {authStatus} 
+
+                {authStatus}
               </p>
             </div>
 
@@ -206,10 +208,10 @@ const Login = () => {
               </p>
             </div>
           </form>
-          
+
         </div>
       </section>
-}
+    }
     </>
   );
 };

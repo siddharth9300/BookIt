@@ -1,15 +1,13 @@
 import React from 'react'
-import BookingsAdmin from '../bookings/BookingsAdmin'
-// import BookingsHod from '../bookings/BookingsHod'
-
+import BookingsHod from '../bookings/BookingsHod'
 import Events from '../bookings/Events'
 
-const AdminDashboard = () => {
+const HodDashboard = () => {
   return (
     <><div className='mt-6'>
 
       <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
-        Admin  <span className="text-indigo-700">Dashboard</span> </h1>
+        HOD  <span className="text-indigo-700">Dashboard</span> </h1>
 
 
 
@@ -17,8 +15,7 @@ const AdminDashboard = () => {
 
       <div className='mt-6 grid grid-flow-col col-auto	'>
         <div className='  '>
-          <BookingsAdmin />
-          {/* <BookingsHod /> */}
+          <BookingsHod />
         </div>
         <div className=''>
           <Events />
@@ -29,4 +26,4 @@ const AdminDashboard = () => {
   )
 }
 
-export default AdminDashboard;
+export default HodDashboard;

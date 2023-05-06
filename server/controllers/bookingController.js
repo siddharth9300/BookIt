@@ -183,6 +183,21 @@ const getBookingByUserId = async (req, res, next) => {
 };
 
 
+const getBookingAdmin = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved", "Rejected"] } }).populate('bookedHallId');    ;
+
+    
+    res.json({ bookings });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
 const updateBooking = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -237,4 +252,4 @@ const deleteBooking = async (req, res, next) => {
   }
 };
 
-module.exports = { createBooking, getBookings, getBookingById, updateBooking, deleteBooking, getBookingByUserId, getEvents };
+module.exports = { createBooking, getBookings, getBookingById, updateBooking, deleteBooking, getBookingByUserId, getEvents,getBookingAdmin };

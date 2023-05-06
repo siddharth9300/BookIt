@@ -17,7 +17,7 @@ const Signup = () => {
     name: "",
     email: "",
     phone: "",
-    work: "",
+    userType: "",
     password: "",
     cpassword: "",
   });
@@ -39,7 +39,7 @@ const Signup = () => {
 
 
   const AdminAuth =()=>{
-    if (user.work==="Admin"){
+    if (user.userType==="Admin"){
 
       <>
       
@@ -66,7 +66,7 @@ const Signup = () => {
   }
   // const PostData = async (e) => {
   //   e.preventDefault();
-  //   const { name, email, phone, work, password, cpassword } = user;
+  //   const { name, email, phone, userType, password, cpassword } = user;
 
   //   const res = await fetch("http://localhost:9002/register", {
   //     method: "POST",
@@ -77,7 +77,7 @@ const Signup = () => {
   //       name,
   //       email,
   //       phone,
-  //       work,
+  //       userType,
   //       password,
   //       cpassword,
   //     }),
@@ -97,7 +97,7 @@ const Signup = () => {
 
     e.preventDefault();
 
-    const { name, email, phone, work, password, cpassword } = user;
+    const { name, email, phone, userType, password, cpassword } = user;
 
     try {
       
@@ -108,7 +108,7 @@ const Signup = () => {
           name,
           email,
           phone,
-          work,
+          userType,
           password,
           cpassword,
         },
@@ -145,13 +145,13 @@ const Signup = () => {
 
   // const PostData = async (e) => {
   //       e.preventDefault();
-  //   const { name, email, phone, work, password, cpassword } = user;
+  //   const { name, email, phone, userType, password, cpassword } = user;
   //   try {
   //     const response = await axios.post("http://localhost:9002/register", {
   //       name,
   //       email,
   //       phone,
-  //       work,
+  //       userType,
   //       password,
   //       cpassword,
   //     }
@@ -251,31 +251,32 @@ const Signup = () => {
 
             <div className="relative mb-4">
               <label
-                htmlFor="work"
+                htmlFor="userType"
                 className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
                 Your Profession
               </label>
 
               <select
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                id="work"
-                name="work"
-                value={user.work}
+                id="userType"
+                name="userType"
+                value={user.userType}
                 onChange={handleInputs}>
                 <option value="">Select</option>  
 
-                <option value="Student">Student</option>
-                <option value="Admin">Admin</option>
+                <option value="faculty">Faculty</option>
+                <option value="admin">Admin</option>
+                <option value="hod">HOD</option>
               </select>
 
               {/* 
               <input
                 type="text"
                 required
-                value={user.work}
+                value={user.userType}
                 onChange={handleInputs}
-                id="work"
-                name="work"
+                id="userType"
+                name="userType"
                 placeholder="Your Profession"
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               /> */}

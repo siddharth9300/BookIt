@@ -89,7 +89,7 @@ const bookingSchema = new mongoose.Schema(
       required: true
     },
     isApproved: {
-      default: "Pending",
+      default: "Forwarded To HOD",
       type: String,
       required: true
     }

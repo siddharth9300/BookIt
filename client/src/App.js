@@ -12,9 +12,11 @@ import Login from "./components/auth/Login";
 import ErrorPage from "./components/ErrorPage";
 import Halls from "./components/halls/Halls";
 import BookingForm from "./components/bookings/BookingForm";
-import Booking from "./components/bookings/BookingsAdmin";
+import BookingsAdmin from "./components/bookings/BookingsAdmin";
+import BookingsHod from "./components/bookings/BookingsHod";
+
 import AdminDashboard from "./components/dashboard/AdminDashboard";
-import StudentDashboard from "./components/dashboard/StudentDashboard";
+import FacultyDashboard from "./components/dashboard/FacultyDashboard";
 import BookingByUserId from "./components/bookings/BookingsByUserId";
 import Footer from "./components/Footer";
 import HallsAdmin from "./components/halls/HallsAdmin";
@@ -26,6 +28,7 @@ import {  ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HallsEdit from "./components/halls/HallsEdit";
 import HallForm from "./components/halls/HallForm";
+import HodDashboard from "./components/dashboard/HodDashboard";
 
 
 export const UserContext = createContext();
@@ -45,17 +48,17 @@ const App = () => {
 
         <Navbar />
         <Routes>
-        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "student" ? <StudentDashboard /> : <StudentDashboard />} />
+        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "faculty" ? <FacultyDashboard /> : state.userType === "hod" ? <HodDashboard /> : <FacultyDashboard />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : state.userType === "student" ? <Halls/> : <Halls />}/>
+          <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />
           <Route path="/hallForm" element={<HallForm />} />
-          <Route path="/bookings" element={state.userType === "admin" ? <Booking/> : state.userType === "student" ? <BookingByUserId/> : <Halls />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingByUserId/> : state.userType === "hod" ? <BookingsHod/>  : <Halls />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 

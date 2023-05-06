@@ -5,18 +5,18 @@ import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns"
 // import BookingForm from "./BookingForm";
-import {RequestSend , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
-const BookingsAdmin = () => {
+import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
+const BookingsHod = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [filterValue, setFilterValue] = useState("Approved By HOD");
+  const [filterValue, setFilterValue] = useState("Forwarded To HOD");
 
 
 
   const getBookingData = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/bookingsAdmin", {
+      const response = await axios.get("http://localhost:9002/bookings", {
         withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",
@@ -155,23 +155,22 @@ const BookingsAdmin = () => {
       // console.log(error);
     }
   };
-
-
   const handleFilter = (value) => {
     setFilterValue(value);
   };
 
   const filteredBookings = Object.values(bookingData).filter((bookingData) => {
-    if (filterValue === "Approved By HOD") {
-      return bookingData.isApproved === "Approved By HOD";
+    if (filterValue === "Forwarded To HOD") {
+      return bookingData.isApproved === "Forwarded To HOD";
     } else if (filterValue === "Approved") {
       return bookingData.isApproved === "Approved";
     }else if (filterValue === "Rejected") {
-      return bookingData.isApproved === "Rejected";
+      return bookingData.isApproved === "Rejected By HOD";
     } else {
       return bookingData
     }
   });
+
   // const hallId =userData.hallId
   // const hallName = userData.hallName
 
@@ -192,8 +191,9 @@ const BookingsAdmin = () => {
       <div className="mt-6">
         <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
           Booking<span className="text-indigo-700"> Requests</span>  </h1>
-    
+          
 
+          
           <div className="flex flex-wrap mb-4 justify-center my-6">
             <button
               className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "all" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
@@ -202,8 +202,8 @@ const BookingsAdmin = () => {
               All
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Approved By HOD")}
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Forwarded To HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Forwarded To HOD")}
             >
               Pending
             </button>
@@ -221,13 +221,11 @@ const BookingsAdmin = () => {
             </button>
           </div>
 
-
-      
+          
+          
           {isLoading ? (
             <LoadingSpinner />
           ) :
-          
-          
             Array.isArray(filteredBookings) && filteredBookings.length > 0 ? (
               filteredBookings.map((booking) => (
                 <div key={booking._id} className="my-2 ">
@@ -365,40 +363,45 @@ const BookingsAdmin = () => {
                             </div>
                           </div>
 
-
-
                           <div className="mt-6 ">
-                            {/* <div>
-                              <p className="text-m  text-xl sm:text-3xl md:text-4xl  lg:text-3xl xl:text-3xl  text-zinc-700 font-bold ">Status</p>
-                            </div> */}
+                        {/* <div>
+                          <p className="text-m  text-xl sm:text-3xl md:text-4xl  lg:text-3xl xl:text-3xl  text-zinc-700 font-bold ">Status</p>
+                        </div> */}
 
-                           
-                              {booking.isApproved === "Approved" && (
-                                  <ApprovedByAdmin/>
-
-                                // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
-                                //   {booking.isApproved}
-                                // </p>
-                              )}
-                                {booking.isApproved === "Approved By HOD" && (
-                                  <ApprovedByHod/>
-
+                        <div>
+                          {booking.isApproved === "Forwarded To HOD" && (
+                            <RequestSent/>
                             // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-yellow-500 font-black">
                             //   {booking.isApproved}
+
                             // </p>
-                                )}  
-
-                              {booking.isApproved === "Rejected" && (
-                                  <RejectedByAdmin/>
-                                // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
-                                //   {booking.isApproved}
-
-                                // </p>
-                              )}
-                            
-                          </div>
-
-
+                          )}
+                          {booking.isApproved === "Approved By HOD" && (
+                            <ApprovedByHod/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )} 
+                          {booking.isApproved === "Approved" && (
+                            <ApprovedByAdmin/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )}
+                          {booking.isApproved === "Rejected By HOD" && (
+                            <RejectedByHod/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )}  
+                          {booking.isApproved === "Rejected" && (
+                            <RejectedByAdmin/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )}
+                        </div>
+                      </div>
 
 
 
@@ -409,7 +412,7 @@ const BookingsAdmin = () => {
                           <div className="mt-6 grid grid-cols-3 gap-4">
                             {/* <Link to={`/bookingForm`}> */}
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
-                              onClick={() => updateBooking(booking._id, "Approved")}
+                              onClick={() => updateBooking(booking._id, "Approved By HOD")}
                             >
                               <>
                               {isLoading ? (
@@ -421,7 +424,7 @@ const BookingsAdmin = () => {
                             </button>
                             {/* </Link> */}
                             <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
-                              onClick={() => updateBooking(booking._id, "Rejected")}>
+                              onClick={() => updateBooking(booking._id, "Rejected By HOD")}>
                                <>
                               {isLoading ? (
                                 <LoadingSpinner />
@@ -455,4 +458,4 @@ const BookingsAdmin = () => {
   );
 };
 
-export default BookingsAdmin;
+export default BookingsHod;

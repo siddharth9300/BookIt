@@ -13,9 +13,9 @@ const User = require("../model/userSchema");
 // router.use(cookieParser());
 
 const register = async (req, res,next) => {
-    const { name, email, phone, work, password, cpassword } = req.body;
+    const { name, email, phone, userType, password, cpassword } = req.body;
   
-    if (!name || !email || !phone || !work || !password || !cpassword) {
+    if (!name || !email || !phone || !userType || !password || !cpassword) {
       return res.status(422).json({ error: "Please fill all details" });
     }
     // Regular expression to validate full name with at least two words separated by a space
@@ -51,7 +51,7 @@ const register = async (req, res,next) => {
       if (userExist) {
         return res.status(422).json({ error: "Email already exists" });
       } else {
-        const user = new User({ name, email, phone, work, password, cpassword });
+        const user = new User({ name, email, phone, userType, password, cpassword });
   
         // Perform additional validation or data processing here
   

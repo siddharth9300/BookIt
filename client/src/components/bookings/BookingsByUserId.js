@@ -4,12 +4,14 @@ import axios from 'axios';
 // import BookingForm from "./BookingForm";
 import LoadingSpinner from "../LoadingSpinner";
 import { format, parseISO } from "date-fns"
+import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
+
 const Bookings = () => {
   // const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
-
+  const [filterValue, setFilterValue] = useState("Forwarded To HOD");
   const userData = async () => {
     try {
       const response = await axios.get("http://localhost:9002/getdata", {
@@ -70,6 +72,23 @@ const Bookings = () => {
 
   }, [])
 
+
+  const handleFilter = (value) => {
+    setFilterValue(value);
+  };
+
+  const filteredBookings = Object.values(bookingData).filter((bookingData) => {
+    if (filterValue === "Forwarded To HOD") {
+      return bookingData.isApproved === "Forwarded To HOD";
+    } else if (filterValue === "Approved By HOD") {
+      return bookingData.isApproved === "Approved By HOD";
+    }else if (filterValue === "Rejected") {
+      return bookingData.isApproved === "Rejected";
+    } else {
+      return bookingData
+    }
+  });
+
   // const handleBookingClick = (hallId, hallName) => {
   //   navigate(`/bookingForm/${hallId}/${hallName}`)
   // };
@@ -95,10 +114,39 @@ const Bookings = () => {
       <div className="mt-6">
         <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
           Your<span className="text-indigo-700"> Bookings</span> </h1>
+
+          <div className="flex flex-wrap mb-4 justify-center my-6">
+            <button
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "all" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("all")}
+            >
+              All
+            </button>
+            <button
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Forwarded To HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Forwarded To HOD")}
+            >
+              Pending
+            </button>
+            <button
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Approved By HOD")}
+            >
+              Approved
+            </button>
+            <button
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Rejected" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Rejected")}
+            >
+              Rejected
+            </button>
+          </div>
+
+
         {isLoading ? (
           <LoadingSpinner />
-        ) : Array.isArray(bookingData) && bookingData.length > 0 ? (
-          bookingData.map((booking) => (
+        ) : Array.isArray(filteredBookings) && filteredBookings.length > 0 ? (
+          filteredBookings.map((booking) => (
             <div key={booking._id} className="my-2 ">
               <div className="flex  w-full items-center justify-center ">
                 <div className="w-full rounded-xl p-12  shadow-2xl shadow-blue-200 md:w-8/12 lg:w-6/12 bg-white ">
@@ -258,26 +306,42 @@ const Bookings = () => {
 
 
 
-                      <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
-                        <div>
+                      <div className="mt-6 ">
+                        {/* <div>
                           <p className="text-m  text-xl sm:text-3xl md:text-4xl  lg:text-3xl xl:text-3xl  text-zinc-700 font-bold ">Status</p>
-                        </div>
+                        </div> */}
 
                         <div>
+                          {booking.isApproved === "Forwarded To HOD" && (
+                            <RequestSent/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-yellow-500 font-black">
+                            //   {booking.isApproved}
+
+                            // </p>
+                          )}
+                          {booking.isApproved === "Approved By HOD" && (
+                            <ApprovedByHod/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )} 
                           {booking.isApproved === "Approved" && (
-                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
-                              {booking.isApproved}
-                            </p>
+                            <ApprovedByAdmin/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
                           )}
-                          {booking.isApproved === "Pending" && (
-                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-yellow-500 font-black">
-                              {booking.isApproved}
-                            </p>
-                          )}
+                          {booking.isApproved === "Rejected By HOD" && (
+                            <RejectedByHod/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
+                          )}  
                           {booking.isApproved === "Rejected" && (
-                            <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
-                              {booking.isApproved}
-                            </p>
+                            <RejectedByAdmin/>
+                            // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
+                            //   {booking.isApproved}
+                            // </p>
                           )}
                         </div>
                       </div>
