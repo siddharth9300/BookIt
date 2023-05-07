@@ -16,7 +16,7 @@ const Events = () => {
 
   const getEventData = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/events", {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/events`, {
         // withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",

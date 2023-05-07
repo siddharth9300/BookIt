@@ -35,7 +35,7 @@ const BookingForm = () => {
 
   const userContact = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/getdata", {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getdata`, {
         withCredentials: true, // include credentials in the request
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const BookingForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9002/bookings",
+        `${process.env.REACT_APP_SERVER_URL}/bookings`,
         {
           userId,
           eventManager,

@@ -103,7 +103,7 @@ const Signup = () => {
       
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
-        "http://localhost:9002/register",
+        `${process.env.REACT_APP_SERVER_URL}/register`,
         {
           name,
           email,

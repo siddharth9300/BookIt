@@ -4,8 +4,9 @@ import axios from "axios";
 import { UserContext } from "./../../App";
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
-const Login = () => {
 
+
+const Login = () => {
 
 
   const { dispatch } = useContext(UserContext)
@@ -61,7 +62,8 @@ const Login = () => {
 
 
     try {
-      const response = await axios.post("http://localhost:9002/login", {
+      // const response = await axios.post("http://localhost:9002/login", {
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, {
         email,
         password,
       }, {

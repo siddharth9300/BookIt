@@ -13,7 +13,7 @@ const About = () => {
 
   const callAboutPage = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/about", {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/about`, {
         withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",

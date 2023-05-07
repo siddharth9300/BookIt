@@ -10,7 +10,7 @@ const Contact = () => {
 
   const userContact = async () => {
     try {
-      const response = await axios.get("http://localhost:9002/getdata", {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getdata`, {
         withCredentials: true, // include credentials in the request
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9002/contact",
+        `${process.env.REACT_APP_SERVER_URL}/contact`,
         {
           name,
           email,
