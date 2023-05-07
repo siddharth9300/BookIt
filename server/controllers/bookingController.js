@@ -5,6 +5,7 @@ const createBooking = async (req, res, next) => {
   try {
     const {
       userId,
+      department,
       eventManager,
       eventName,
       eventDate,
@@ -15,7 +16,8 @@ const createBooking = async (req, res, next) => {
       bookedHallName,
       organizingClub,
       phoneNumber,
-      altNumber
+      altNumber,
+      isApproved
     } = req.body;
 
     const hall = await Hall.findById(bookedHallId);
@@ -23,7 +25,7 @@ const createBooking = async (req, res, next) => {
       return res.status(422).json({ error: 'Hall not found' });
     }
 
-    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
+    if (!eventManager || !department || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
       return res.status(422).json({ error: "Please fill all details" });
     }
     // Regular expression to validate full name with at least two words separated by a space
@@ -62,7 +64,9 @@ const createBooking = async (req, res, next) => {
     }
 
     const booking = new Booking({
+
       userId,
+      department,
       eventManager,
       eventName,
       eventDate,
@@ -75,7 +79,8 @@ const createBooking = async (req, res, next) => {
       // eventDetailFile,
       // eventDetailText,
       phoneNumber,
-      altNumber
+      altNumber,
+      isApproved
     });
     // await booking.validate();
     await booking.save();
@@ -153,6 +158,7 @@ const getBookings = async (req, res, next) => {
   }
 };
 
+
 const getBookingById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -194,6 +200,19 @@ const getBookingAdmin = async (req, res, next) => {
   }
 };
 
+
+const getBookingHod = async (req, res, next) => {
+  const hodDepartment = req.rootUser.department
+  console.log(hodDepartment);
+  try {
+    const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId');    ;
+
+    
+    res.json({ bookings });
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 
@@ -252,4 +271,4 @@ const deleteBooking = async (req, res, next) => {
   }
 };
 
-module.exports = { createBooking, getBookings, getBookingById, updateBooking, deleteBooking, getBookingByUserId, getEvents,getBookingAdmin };
+module.exports = { createBooking, getBookings, getBookingById, updateBooking, deleteBooking, getBookingByUserId, getEvents,getBookingAdmin ,getBookingHod};

@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  department:{
+    type: String,
+    required: true
+  },
   phone: {
     type: Number,
     require: true,
@@ -40,6 +44,10 @@ const userSchema = new mongoose.Schema({
       email: {
         type: String,
         require: true,
+      },
+      department:{
+        type: String,
+        required: true
       },
       phone: {
         type: Number,

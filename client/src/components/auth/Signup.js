@@ -16,6 +16,7 @@ const Signup = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    department: "",
     phone: "",
     userType: "",
     password: "",
@@ -97,7 +98,7 @@ const Signup = () => {
 
     e.preventDefault();
 
-    const { name, email, phone, userType, password, cpassword } = user;
+    const { name, email,department, phone, userType, password, cpassword } = user;
 
     try {
       
@@ -107,6 +108,7 @@ const Signup = () => {
         {
           name,
           email,
+          department,
           phone,
           userType,
           password,
@@ -226,6 +228,24 @@ const Signup = () => {
                 id="email"
                 name="email"
                 placeholder="Email"
+                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+
+            <div className="relative mb-4">
+              <label
+                htmlFor="department"
+                className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                Department
+              </label>
+              <input
+                type="text"
+                required
+                value={user.department}
+                onChange={handleInputs}
+                id="department"
+                name="department"
+                placeholder="Department"
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>

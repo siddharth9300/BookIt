@@ -94,7 +94,7 @@ const About = () => {
             <div className="col-span-1 lg:col-span-9">
               <div className="text-center lg:text-left">
                 <h2 className="text-2xl font-bold text-zinc-700">{userData.name}</h2>
-                <p className="mt-2 text-l font-semibold text-zinc-700">{userData.work}</p>
+                <p className="mt-2 text-l font-semibold text-zinc-700">{userData.userType}</p>
                 {/* <p className="mt-4 text-zinc-500">I am a Front End Developer and UI/UX Designer</p> */}
               </div>
 
@@ -130,6 +130,15 @@ const About = () => {
                 </div>
               </div>
 
+              <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                <div>
+                  <p className="font-bold text-zinc-700">Department</p>
+                </div>
+
+                <div>
+                  <p className="text-m font-semibold text-zinc-700">{userData.department}</p>
+                </div>
+              </div>
 
 
               <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">

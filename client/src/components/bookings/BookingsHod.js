@@ -16,7 +16,7 @@ const BookingsHod = () => {
 
   const getBookingData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookings`, {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookingsHod`, {
         withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",
@@ -294,6 +294,16 @@ const BookingsHod = () => {
 
                             <div>
                               <p className="text-m font-semibold text-zinc-700">{booking.organizingClub}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Department</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.department}</p>
                             </div>
                           </div>
                           {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">

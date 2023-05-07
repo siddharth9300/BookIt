@@ -13,9 +13,9 @@ const User = require("../model/userSchema");
 // router.use(cookieParser());
 
 const register = async (req, res,next) => {
-    const { name, email, phone, userType, password, cpassword } = req.body;
+    const { name, email,department, phone, userType, password, cpassword } = req.body;
   
-    if (!name || !email || !phone || !userType || !password || !cpassword) {
+    if (!name || !department || !email || !phone || !userType || !password || !cpassword) {
       return res.status(422).json({ error: "Please fill all details" });
     }
     // Regular expression to validate full name with at least two words separated by a space
@@ -51,7 +51,7 @@ const register = async (req, res,next) => {
       if (userExist) {
         return res.status(422).json({ error: "Email already exists" });
       } else {
-        const user = new User({ name, email, phone, userType, password, cpassword });
+        const user = new User({ name, email,department, phone, userType, password, cpassword });
   
         // Perform additional validation or data processing here
   
@@ -129,9 +129,9 @@ const login = async (req, res,next) => {
 
   const contact = async (req, res,next) => {
     try {
-      const { name, email, phone, message } = req.body;
+      const { name, email,department, phone, message } = req.body;
   
-      if (!name || !email || !phone || !message) {
+      if (!name || !department || !email || !phone || !message) {
         console.log("error in contact form");
         return res.json({ error: "Plz fill form correctly" });
       }

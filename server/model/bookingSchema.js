@@ -6,6 +6,10 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    department:{
+      type: String,
+      required: true
+    },
     eventManager: {
       type: String,
       required: true
@@ -27,41 +31,6 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: true
     },
-    // eventDate: {
-    //   type: Date,
-    //   required: true,
-    //   validate: {
-    //     validator: async function(date) {
-    //       const bookings = await this.constructor.find({ hall: this.hall, eventDate: date });
-    //       return bookings.length === 0;
-    //     },
-    //     message: 'This hall is already booked for the selected date.',
-    //   },
-    // },
-  
-
-    // startTime: {
-    //   type: Date,
-    //   required: true,
-    //   validate: {
-    //     validator: function(date) {
-    //       const endTime = this.endTime;
-    //       return !endTime || date < endTime;
-    //     },
-    //     message: 'The start time must be before the end time.',
-    //   },
-    // },
-    // endTime: {
-    //   type: Date,
-    //   required: true,
-    //   validate: {
-    //     validator: function(date) {
-    //       const startTime = this.startTime;
-    //       return !startTime || date > startTime;
-    //     },
-    //     message: 'The end time must be after the start time.',
-    //   },
-    // },
     email: {
       type: String,
       required: true

@@ -17,16 +17,19 @@ const BookingForm = () => {
   const [bookingData, setBookingData] = useState(
     {userId:"",
       eventManager: "",
+      department:"",
       eventName: "",
       eventDate: "",
       startTime: "",
       endTime: "",
       email: "",
+      userType:"",
       bookedHallId: hallId,
       bookedHallName: hallName,
       organizingClub: "",
       phoneNumber: "",
-      altNumber: ""
+      altNumber: "",  
+      isApproved:""
 
 
     });
@@ -44,13 +47,24 @@ const BookingForm = () => {
 
       const data = response.data;
       console.log(data);
+
+      let status;
+      if(data.userType === "admin"){
+        status = "Approved By Admin"
+      }else if (data.userType === "hod"){
+        status = "Approved By HOD"
+      }
+
       setBookingData({
         ...bookingData,
         userId:data._id,
         eventManager: data.name,
         email: data.email,
+        department:data.department,
+        isApproved:status
         // phoneNumber: data.phone,
       });
+
       setIsLoading(false);
 
       if (response.status !== 200) {
@@ -84,33 +98,40 @@ const BookingForm = () => {
     e.preventDefault();
     const { eventManager,
       userId,
+      department,
       eventName,
       eventDate,
       startTime,
       endTime,
       email,
+      userType,
       bookedHallId,
+      
       bookedHallName,
       organizingClub,
       phoneNumber,
-      altNumber } = bookingData;
+      altNumber,isApproved } = bookingData;
 
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/bookings`,
         {
           userId,
+          department,
           eventManager,
           eventName,
           eventDate,
           startTime:parseISO(`2000-01-01T${startTime}:00.000Z`),
           endTime:parseISO(`2000-01-01T${endTime}:00.000Z`),
           email,
+          userType,
+         
           bookedHallId,
           bookedHallName,
           organizingClub,
           phoneNumber,
-          altNumber
+          altNumber,
+          isApproved
         },
         {
           withCredentials: true, // To include credentials in the request
@@ -304,19 +325,19 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-hall-id"
+                for="grid-department"
               >
-                Hall Id
+                Department
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-hall-id"
+                id="grid-department"
                 type="text"
-                value={bookingData.bookedHallId}
-                name="bookedHallId"
+                value={bookingData.department}
+                name="department"
                 onChange={handleInputs}
-                placeholder="Hall Id"
-                disabled
+                placeholder="Department"
+                
               />
               {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
             </div>

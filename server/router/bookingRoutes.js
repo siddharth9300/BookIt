@@ -7,6 +7,8 @@ const authenticate = require("../middleware/authenticate");
 
 router.get('/bookings', authenticate, bookingController.getBookings);
 router.get('/bookingsAdmin', authenticate, bookingController.getBookingAdmin);
+router.get('/bookingsHod', authenticate, bookingController.getBookingHod);
+
 router.get('/events',  bookingController.getEvents);
 // router.get('/bookings/:id', bookingController.getBookingById);
 router.get('/bookings/:userId',authenticate,  bookingController.getBookingByUserId);
