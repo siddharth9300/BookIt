@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ const BookingsHod = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [filterValue, setFilterValue] = useState("Forwarded To HOD");
+  const [filterValue, setFilterValue] = useState("Request Sent");
 
 
 
@@ -74,6 +74,7 @@ const BookingsHod = () => {
 
     getBookingData();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -160,13 +161,17 @@ const BookingsHod = () => {
   };
 
   const filteredBookings = Object.values(bookingData).filter((bookingData) => {
-    if (filterValue === "Forwarded To HOD") {
-      return bookingData.isApproved === "Forwarded To HOD";
-    } else if (filterValue === "Approved") {
-      return bookingData.isApproved === "Approved";
-    }else if (filterValue === "Rejected") {
+    if (filterValue === "Request Sent") {
+      return bookingData.isApproved === "Request Sent";
+    } else if (filterValue === "Approved By HOD") {
+      return bookingData.isApproved === "Approved By HOD";
+    }else if (filterValue === "Approved By Admin") {
+      return bookingData.isApproved === "Approved By Admin";
+    }else if (filterValue === "Rejected By HOD") {
       return bookingData.isApproved === "Rejected By HOD";
-    } else {
+    }else if (filterValue === "Rejected By Admin") {
+      return bookingData.isApproved === "Rejected By Admin";
+    }else {
       return bookingData
     }
   });
@@ -196,28 +201,40 @@ const BookingsHod = () => {
           
           <div className="flex flex-wrap mb-4 justify-center my-6">
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "all" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "all" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
               onClick={() => handleFilter("all")}
             >
               All
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Forwarded To HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Forwarded To HOD")}
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "Request Sent" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Request Sent")}
             >
               Pending
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Approved")}
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "Approved By HOD" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Approved By HOD")}
             >
-              Approved
+              Forwarded To Admin
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Rejected" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Rejected")}
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "Approved By Admin" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Approved By Admin")}
             >
-              Rejected
+              Approved By Admin
+            </button>
+            <button
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "Rejected" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Rejected By HOD")}
+            >
+              Rejected By HOD
+            </button>
+            <button
+              className={`rounded-lg px-4 py-2 mx-2 focus:outline-none ${filterValue === "Rejected" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Rejected By Admin")}
+            >
+              Rejected By Admin
             </button>
           </div>
 
@@ -369,7 +386,7 @@ const BookingsHod = () => {
                         </div> */}
 
                         <div>
-                          {booking.isApproved === "Forwarded To HOD" && (
+                          {booking.isApproved === "Request Sent" && (
                             <RequestSent/>
                             // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-yellow-500 font-black">
                             //   {booking.isApproved}
@@ -382,7 +399,7 @@ const BookingsHod = () => {
                             //   {booking.isApproved}
                             // </p>
                           )} 
-                          {booking.isApproved === "Approved" && (
+                          {booking.isApproved === "Approved By Admin" && (
                             <ApprovedByAdmin/>
                             // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
                             //   {booking.isApproved}
@@ -394,7 +411,7 @@ const BookingsHod = () => {
                             //   {booking.isApproved}
                             // </p>
                           )}  
-                          {booking.isApproved === "Rejected" && (
+                          {booking.isApproved === "Rejected By Admin" && (
                             <RejectedByAdmin/>
                             // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
                             //   {booking.isApproved}

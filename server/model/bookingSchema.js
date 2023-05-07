@@ -89,7 +89,7 @@ const bookingSchema = new mongoose.Schema(
       required: true
     },
     isApproved: {
-      default: "Forwarded To HOD",
+      default: "Request Sent",
       type: String,
       required: true
     }

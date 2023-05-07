@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom"
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
-import { parseISO, set } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const BookingForm = () => {
         userId:data._id,
         eventManager: data.name,
         email: data.email,
-        phoneNumber: data.phone,
+        // phoneNumber: data.phone,
       });
       setIsLoading(false);
 
@@ -65,6 +65,7 @@ const BookingForm = () => {
 
   useEffect(() => {
     userContact();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // handle change here

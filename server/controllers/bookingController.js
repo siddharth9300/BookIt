@@ -117,7 +117,7 @@ const createBooking = async (req, res, next) => {
 
 const getEvents = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ isApproved: "Approved" }).populate('bookedHallId');
+    const bookings = await Booking.find({ isApproved: "Approved By Admin" }).populate('bookedHallId');
 
     
     res.json({ bookings });
@@ -185,7 +185,7 @@ const getBookingByUserId = async (req, res, next) => {
 
 const getBookingAdmin = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved", "Rejected"] } }).populate('bookedHallId');    ;
+    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved By Admin", "Rejected By Admin"] } }).populate('bookedHallId');    ;
 
     
     res.json({ bookings });

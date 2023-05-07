@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns"
 // import BookingForm from "./BookingForm";
-import {RequestSend , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
+import { ApprovedByAdmin,ApprovedByHod,RejectedByAdmin} from "../Steps"
 const BookingsAdmin = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
@@ -74,6 +74,7 @@ const BookingsAdmin = () => {
 
     getBookingData();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -164,10 +165,10 @@ const BookingsAdmin = () => {
   const filteredBookings = Object.values(bookingData).filter((bookingData) => {
     if (filterValue === "Approved By HOD") {
       return bookingData.isApproved === "Approved By HOD";
-    } else if (filterValue === "Approved") {
-      return bookingData.isApproved === "Approved";
-    }else if (filterValue === "Rejected") {
-      return bookingData.isApproved === "Rejected";
+    } else if (filterValue === "Approved By Admin") {
+      return bookingData.isApproved === "Approved By Admin";
+    }else if (filterValue === "Rejected By Admin") {
+      return bookingData.isApproved === "Rejected By Admin";
     } else {
       return bookingData
     }
@@ -208,16 +209,16 @@ const BookingsAdmin = () => {
               Pending
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Approved")}
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By Admin" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Approved By Admin")}
             >
               Approved
             </button>
             <button
-              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Rejected" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
-              onClick={() => handleFilter("Rejected")}
+              className={`rounded-lg px-4 py-2 mx-4 focus:outline-none ${filterValue === "Rejected By Admin" ? "bg-blue-500 text-white" : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-100"}`}
+              onClick={() => handleFilter("Rejected By Admin")}
             >
-              Rejected
+              Rejected 
             </button>
           </div>
 
@@ -373,7 +374,7 @@ const BookingsAdmin = () => {
                             </div> */}
 
                            
-                              {booking.isApproved === "Approved" && (
+                              {booking.isApproved === "Approved By Admin" && (
                                   <ApprovedByAdmin/>
 
                                 // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
@@ -388,7 +389,7 @@ const BookingsAdmin = () => {
                             // </p>
                                 )}  
 
-                              {booking.isApproved === "Rejected" && (
+                              {booking.isApproved === "Rejected By Admin" && (
                                   <RejectedByAdmin/>
                                 // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-red-500 font-black">
                                 //   {booking.isApproved}
@@ -409,7 +410,7 @@ const BookingsAdmin = () => {
                           <div className="mt-6 grid grid-cols-3 gap-4">
                             {/* <Link to={`/bookingForm`}> */}
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
-                              onClick={() => updateBooking(booking._id, "Approved")}
+                              onClick={() => updateBooking(booking._id, "Approved By Admin")}
                             >
                               <>
                               {isLoading ? (
@@ -421,7 +422,7 @@ const BookingsAdmin = () => {
                             </button>
                             {/* </Link> */}
                             <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
-                              onClick={() => updateBooking(booking._id, "Rejected")}>
+                              onClick={() => updateBooking(booking._id, "Rejected By Admin")}>
                                <>
                               {isLoading ? (
                                 <LoadingSpinner />
