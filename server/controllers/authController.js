@@ -156,7 +156,7 @@ const register = async (req, res,next) => {
   <thead>
     <tr>
       <td style="padding-left: 0; padding-right: 0">
-        <img src="https://uploads-ssl.webflow.com/5e96c040bda7162df0a5646d/5f91d2a4d4d57838829dcef4_image-blue%20waves%402x.png" style="width:80%; max-width:750px" />
+        <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
       </td>
     </tr>
     <tr>
