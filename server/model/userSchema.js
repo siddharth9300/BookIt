@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  adminKey: {
+    type: String,
+    require: true,
+  },
   password: {
     type: String,
     require: true,
@@ -67,6 +71,10 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
+  verifyToken: {
+    type: String,
+  },
+  
 });
 
 // yaha per password hashing ker rahe hai

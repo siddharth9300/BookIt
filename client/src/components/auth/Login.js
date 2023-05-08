@@ -180,7 +180,6 @@ const Login = () => {
               />
             </div>
 
-
             <div className="my-4">
               <p className="text-s text-red-600	 font-bold">
 
@@ -189,12 +188,21 @@ const Login = () => {
             </div>
 
 
+            <div className="my-4">
+                <Link to="/passwordReset" className=" text-m font-bold  hover:underline">
+                    Forgot Your Password?
+
+                  </Link>
+            </div>
+
+
+
             <div className="mx-auto w-fit">
               <div className="mx-auto">
                 <button
                   type="submit"
                   onClick={loginUser}
-                  className="text-white bg-indigo-600 shadow focus:shadow-outline focus:outline-none border-0 py-2 px-10 font-bold  hover:bg-indigo-600 rounded text-lg"
+                  className="text-white bg-indigo-600 shadow focus:shadow-outline focus:outline-none border-0 py-2 px-10 font-bold  hover:bg-indigo-800 rounded text-lg"
                 >
                   Login
                 </button>

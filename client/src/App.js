@@ -29,8 +29,9 @@ import "react-toastify/dist/ReactToastify.css";
 import HallsEdit from "./components/halls/HallsEdit";
 import HallForm from "./components/halls/HallForm";
 import HodDashboard from "./components/dashboard/HodDashboard";
+import PasswordReset from "./components/auth/PasswordReset";
 
-
+import ForgotPassword from "./components/auth/ForgotPassword";
 export const UserContext = createContext();
 const App = () => {
 
@@ -55,6 +56,10 @@ const App = () => {
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/passwordReset" element={<PasswordReset />} />
+          <Route path="/forgotPassword/:id/:token" element={<ForgotPassword />} />
+          
+          
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />
           <Route path="/hallForm" element={<HallForm />} />

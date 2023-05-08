@@ -16,11 +16,12 @@ const Signup = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    department: "",
     phone: "",
     userType: "",
+    department: "",
     password: "",
     cpassword: "",
+    adminKey: ""
   });
 
 
@@ -29,88 +30,36 @@ const Signup = () => {
     // console.log(e);
     name = e.target.name;
     value = e.target.value;
-    AdminAuth()
+
     setUser({ ...user, [name]: value });
     console.log(user);
   };
 
 
 
+  
 
 
 
-  const AdminAuth =()=>{
-    if (user.userType==="Admin"){
-
-      <>
-      
-      <div className="relative mb-4">
-      <label
-        htmlFor="adminKey"
-        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-        Admin Key
-      </label>
-      <input
-        type="text"
-       
-        required
-        value={user.adminKey}
-        onChange={handleInputs}
-        id="adminKey"
-        name="adminKey"
-        placeholder="Admin Key"
-        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-      />
-    </div>
-    </>
-    }
-  }
-  // const PostData = async (e) => {
-  //   e.preventDefault();
-  //   const { name, email, phone, userType, password, cpassword } = user;
-
-  //   const res = await fetch("http://localhost:9002/register", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name,
-  //       email,
-  //       phone,
-  //       userType,
-  //       password,
-  //       cpassword,
-  //     }),
-  //   });
-
-  //   const data = await res.json();
-
-  //   if (res.status === 422 || !data) {
-  //     window.alert("invalid Registration");
-  //   } else {
-  //     window.alert("Registration Successfull");
-  //     navigate("/login");
-  //   }
-  // };
 
   const PostData = async (e) => {
 
     e.preventDefault();
 
-    const { name, email,department, phone, userType, password, cpassword } = user;
+    const { name, email, phone, userType, department, adminKey, password, cpassword } = user;
 
     try {
-      
+
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/register`,
         {
           name,
           email,
-          department,
           phone,
           userType,
+          department,
+          adminKey,
           password,
           cpassword,
         },
@@ -121,14 +70,14 @@ const Signup = () => {
         }
       );
 
-      
+
 
       // if (response.status === 422 || !data) {
       //   console.log(data.error)
       //   window.alert(data.error);
       // } else {
-        setIsLoading(true);
-        toast.success("Sign Up Successfull!")
+      setIsLoading(true);
+      toast.success("Sign Up Successfull!")
 
       // window.alert("Registration Successful");
       navigate("/login");
@@ -190,7 +139,7 @@ const Signup = () => {
   return (
     <>{isLoading ? (
       <LoadingSpinner />
-    ) : 
+    ) :
       <section className="text-gray-600 body-font my-10  h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2 my-10 bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
@@ -232,23 +181,6 @@ const Signup = () => {
               />
             </div>
 
-            <div className="relative mb-4">
-              <label
-                htmlFor="department"
-                className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                Department
-              </label>
-              <input
-                type="text"
-                required
-                value={user.department}
-                onChange={handleInputs}
-                id="department"
-                name="department"
-                placeholder="Department"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
 
             <div className="relative mb-4">
               <label
@@ -282,11 +214,11 @@ const Signup = () => {
                 name="userType"
                 value={user.userType}
                 onChange={handleInputs}>
-                <option value="">Select</option>  
+                <option value="">Select</option>
 
                 <option value="faculty">Faculty</option>
-                <option value="admin">Admin</option>
                 <option value="hod">HOD</option>
+                <option value="admin">Admin</option>
               </select>
 
               {/* 
@@ -302,8 +234,53 @@ const Signup = () => {
               /> */}
             </div>
 
-           < AdminAuth/>
 
+
+            {user.userType === "admin" ?
+              (
+
+
+                <div className="relative mb-4">
+                  <label
+                    htmlFor="adminKey"
+                    className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                    Admin Key
+                  </label>
+                  <input
+                    type="text"
+
+                    required
+                    value={user.adminKey}
+                    onChange={handleInputs}
+                    id="adminKey"
+                    name="adminKey"
+                    placeholder="Admin Key"
+                    className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+              )
+              :
+              (
+                <div className="relative mb-4">
+                <label
+                  htmlFor="department"
+                  className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                  Department
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={user.department}
+                  onChange={handleInputs}
+                  id="department"
+                  name="department"
+                  placeholder="Department"
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+  
+            )
+            }
 
 
             <div className="relative mb-4">
@@ -349,7 +326,7 @@ const Signup = () => {
                 <button
                   type="submit"
                   onClick={PostData}
-                  className="text-white bg-indigo-600 shadow focus:shadow-outline focus:outline-none border-0 py-2 px-10 font-bold  hover:bg-indigo-600 rounded text-lg">
+                  className="text-white bg-indigo-600 shadow focus:shadow-outline focus:outline-none border-0 py-2 px-10 font-bold  hover:bg-indigo-800 rounded text-lg">
                   Sign Up
                 </button>
               </div>
@@ -366,7 +343,7 @@ const Signup = () => {
           </form>
         </div>
       </section>
-}
+    }
     </>
   );
 };
