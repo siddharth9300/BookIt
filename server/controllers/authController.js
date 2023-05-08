@@ -161,7 +161,7 @@ const register = async (req, res,next) => {
     </tr>
     <tr>
       <td style="text-align:center; padding-bottom: 20px">
-        <img src="./BookIt-Logo.png" style="max-width: 250px; width: 30%;" />
+        <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
       </td>
     </tr>
   </thead>
