@@ -108,7 +108,6 @@ const About = () => {
                 </div>
               </div>
 
-
               {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                 <div>
                   <p className="font-bold text-zinc-700">Name</p>
@@ -116,8 +115,9 @@ const About = () => {
 
                 <div>
                   <p className="text-m font-semibold text-zinc-700">Name</p>
-                </div>
+                </div>  
               </div> */}
+
 
 
               <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">

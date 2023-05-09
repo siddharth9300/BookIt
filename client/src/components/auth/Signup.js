@@ -37,7 +37,7 @@ const Signup = () => {
 
 
 
-  
+
 
 
 
@@ -221,17 +221,6 @@ const Signup = () => {
                 <option value="admin">Admin</option>
               </select>
 
-              {/* 
-              <input
-                type="text"
-                required
-                value={user.userType}
-                onChange={handleInputs}
-                id="userType"
-                name="userType"
-                placeholder="Your Profession"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              /> */}
             </div>
 
 
@@ -261,25 +250,56 @@ const Signup = () => {
               )
               :
               (
-                <div className="relative mb-4">
-                <label
-                  htmlFor="department"
-                  className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                  Department
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={user.department}
-                  onChange={handleInputs}
-                  id="department"
-                  name="department"
-                  placeholder="Department"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
-              </div>
-  
-            )
+
+
+                <>
+                  <div className="relative mb-4">
+                    <label
+                      htmlFor="department"
+                      className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                      department
+                    </label>
+
+                    <select
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      id="department"
+                      name="department"
+                      value={user.department}
+                      onChange={handleInputs}>
+                      <option value="">Select</option>
+                      <option value="CS">Computer Science</option>
+                      <option value="IT">Information Technology</option>
+                      <option value="CSIT">Computer Science and Information Technology</option>
+                      <option value="ECE">Electronics and Communication Engineering</option>
+                      <option value="CE">Civil Engineering</option>
+                      <option value="MCA">Master of Computer Applications</option>
+                    </select>
+
+                  </div>
+
+
+
+
+                  {/* <div className="relative mb-4">
+                    <label
+                      htmlFor="department"
+                      className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                      Department
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={user.department}
+                      onChange={handleInputs}
+                      id="department"
+                      name="department"
+                      placeholder="Department"
+                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div> */}
+                </>
+
+              )
             }
 
 
