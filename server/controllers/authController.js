@@ -203,7 +203,101 @@ const register = async (req, res,next) => {
     `;
   };
 
+  const verifyEmailTemplate = (resetLink,userName) => {
+    return `
+    
+<head>
+<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+  a,
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: #00788a;
+  }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h2,
+  h2 a,
+  h2 a:visited,
+  h3,
+  h3 a,
+  h3 a:visited,
+  h4,
+  h5,
+  h6,
+  .t_cht {
+    color: #000 !important;
+  }
+
+  .ExternalClass p,
+  .ExternalClass span,
+  .ExternalClass font,
+  .ExternalClass td {
+    line-height: 100%;
+  }
+
+  .ExternalClass {
+    width: 100%;
+  }
+</style>
+</head>
+
+<body style="font-size: 1.25rem;font-family: 'Roboto', sans-serif;padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px; background-color: #FAFAFA; width: 75%; max-width: 1280px; min-width: 600px; margin-right: auto; margin-left: auto">
+<table cellpadding="12" cellspacing="0" width="100%" bgcolor="#FAFAFA" style="border-collapse: collapse;margin: auto">
+  <thead>
+    <tr>
+      <td style="padding-left: 0; padding-right: 0">
+        <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; padding-bottom: 20px">
+        <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 50px; background-color: #fff; max-width: 660px">
+        <table width="100%" style="">
+          <tr>
+            <td style="text-align:center">
+              <h1 style="font-size: 30px; color: #202225; margin-top: 0;">Hello ${userName}</h1>
+              <p style="font-size: 18px; margin-bottom: 30px; color: #202225; max-width: 60ch; margin-left: auto; margin-right: auto">A request has been received to verify your email address for your account.<br>Below link will expire in 5 minutes.</p>
+              <a href="${resetLink}"  style="background-color: #4f46e5; color: #fff; padding: 8px 24px; border-radius: 8px; border-style: solid; border-color: #4f46e5; font-size: 14px; text-decoration: none; cursor: pointer">Verify Email </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td style="text-align: center; padding-top: 30px">
+        <table>
+          <tr>
+            <td><img src="https://uploads-ssl.webflow.com/5e96c040bda7162df0a5646d/5f91d2a4d80f5ebbf2ec0119_image-hand%20with%20wrench%402x.png" style="width: 100px;" /></td>
+            <td>
+            <td style="text-align: left;color:#B6B6B6; font-size: 18px; padding-left: 12px">If you didn’t request this, you can ignore this email or let us know.</td>
+      </td>
+    </tr>
+</table>
+
+</td>
+</tr>
+</tfoot>
+</table>
+</body>
+
+
+
+    `;
+  };
 const passwordLink = async (req, res,next) => {
   // console.log(req.body);
   // res.json({message:"login success"})
@@ -323,6 +417,106 @@ const setNewPassword = async (req, res,next) => {
 }
 
 
+
+
+
+
+
+
+
+
+
+const emailVerificationLink = async (req, res,next) => {
+  // console.log(req.body);
+  // res.json({message:"login success"})
+  try {
+
+    const { email } = req.body;
+    if (!email ) {
+      return res.status(400).json({ error: "Please Enter yout Email" });
+    }
+
+    const userFind = await User.findOne({ email });
+
+    if (userFind) {
+        const token = jwt.sign({_id:userFind._id},process.env.SECRET_KEY,{
+          expiresIn:"300s"
+        })
+        
+        const setUserToken = await User.findByIdAndUpdate({_id:userFind._id},{verifyToken:token},{new:true})
+        
+
+        if (setUserToken) {
+          const mailOptions = {
+            from:process.env.SENDER_EMAIL,
+            to:email,
+            subject:"Book It Email Verification",
+            html:verifyEmailTemplate((`${process.env.CLIENT_URL}/verifyEmail/${userFind.id}/${setUserToken.verifyToken}`),userFind.name)
+            // text:`This link is valid for 5 minutes \n ${process.env.CLIENT_URL}/forgotPassword/${userFind.id}/${setUserToken.verifyToken} \n click on above link`
+          }
+        
+          transporter.sendMail(mailOptions,(error,info)=>
+          {
+            if (error) {
+              console.log(error);
+              res.status(401).json({status:401,message:"Email not Send"})
+            }else{
+              console.log("Email Sent ",info.response);
+              res.status(201).json({status:201,message:"Email Send Successfully"})
+            }
+          })
+        }
+
+
+
+        console.log(setUserToken);
+
+    } else {
+      res.status(400).json({ error: "Invalid Cridential" });
+    }
+  } catch (error) {
+    res.status(401).json({status:401,message:"Invalid User"})
+      next(error);
+  }
+}
+
+
+
+
+
+const verifyEmail = async (req, res,next) => {
+  const {id,token} = req.params
+  try {
+    const validUser = await User.findOne({_id:id,verifyToken:token})
+
+      const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
+
+      if (validUser && verifyToken._id) {
+        const setUserToken = await User.findByIdAndUpdate({_id:validUser._id},{emailVerified:true})
+        setUserToken.save()
+        res.status(201).json({status:201,validUser,message:"Verify successfully"})
+      }
+      else{
+        res.status(401).json({status:401,error:"user not exist"})
+      }
+      console.log(setUserToken);
+
+  //  console.log(validUser); 
+  } catch (error) {
+    // res.status(401).json({status:422,error})
+    next(error);
+
+  }
+   
+  
+}
+
+
+
+
+
+
+
 const login = async (req, res,next) => {
     // console.log(req.body);
     // res.json({message:"login success"})
@@ -433,4 +627,4 @@ const login = async (req, res,next) => {
     }
   }
   
-module.exports = { register, login, about, getdata, contact ,logout,passwordLink,forgotPassword,setNewPassword};
+module.exports = { register, login, about, getdata, contact ,logout,passwordLink,forgotPassword,setNewPassword,emailVerificationLink,verifyEmail};

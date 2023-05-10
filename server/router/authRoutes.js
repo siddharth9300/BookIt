@@ -14,6 +14,11 @@ router.post('/login', authController.login);
 router.post('/passwordLink', authController.passwordLink);
 router.get('/forgotPassword/:id/:token', authController.forgotPassword);
 router.post('/:id/:token', authController.setNewPassword);
+
+router.post('/emailVerificationLink', authenticate,  authController.emailVerificationLink);
+router.get('/verifyEmail/:id/:token', authController.verifyEmail);
+
+
 router.get('/logout/:userId', authController.logout);
 
 

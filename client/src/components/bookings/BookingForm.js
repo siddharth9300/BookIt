@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Link} from "react-router-dom"
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { parseISO } from 'date-fns';
 const BookingForm = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
+  const [emailVerified, setEmailVerified] = useState(false);
 
   const { hallId, hallName } = useParams();
   console.log(hallId);
@@ -54,6 +55,11 @@ const BookingForm = () => {
       }else if (data.userType === "hod"){
         status = "Approved By HOD"
       }
+
+      if(data.emailVerified){
+        setEmailVerified(true)
+      }
+
 
       setBookingData({
         ...bookingData,
@@ -169,7 +175,32 @@ const BookingForm = () => {
     <>
     {isLoading ? (
       <LoadingSpinner />
-    ) : 
+    )   : !emailVerified ? (
+
+      
+
+      <div class="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
+        <div class="w-full lg:w-1/2">
+          {/* <img alt='error' class="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
+          <img alt='error' class="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
+          <img alt='error' class="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
+          
+        </div>
+        <div class="w-full lg:w-1/2">
+          <h1 class="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Looks Like Yout Have Not Verified Your Email!</h1>
+          <p class="py-4 text-xl text-gray-800">Please click on the below button and verify email before booking.</p>
+          {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
+          <div>
+
+            <Link to="/about" ><button
+              class="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
+            </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+    ) : (
     <div>
       <div className="max-w-screen-md mx-auto p-5 my-10 bg-white shadow-2xl shadow-blue-200">
         <div className="text-center mb-16">
@@ -463,7 +494,7 @@ const BookingForm = () => {
         </form>
       </div>
     </div>
-          }
+          )}
           </>
   );
 };

@@ -19,7 +19,6 @@ console.log(email);
 
 
     try {
-      // const response = await axios.post("http://localhost:9002/login", {
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/passwordLink`, {
         email
 
@@ -31,24 +30,14 @@ console.log(email);
 
        const data = response.data
 
-
-
-      // if (response.status === 400 || !data) {
-      //   setAuthStatus("Invalid credentials");
-      //   window.alert("invalid")
-      // } else {
             if(data){
 
                 setAuthStatus("Please Check yout Email")    
                 toast.success("Email Sent Successfull")
             }
-
-          
-
           setEmail("")
           setAuthStatus("")
 
-      // }
     } catch (error) {
       if (error.response.status === 400 && error.response) {
         const data = error.response.data;
@@ -60,7 +49,6 @@ console.log(email);
         console.log(error.response.data)
 
       }
-      // console.log(error);  
     }
   };
 

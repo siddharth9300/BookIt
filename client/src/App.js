@@ -32,6 +32,7 @@ import HodDashboard from "./components/dashboard/HodDashboard";
 import PasswordReset from "./components/auth/PasswordReset";
 
 import ForgotPassword from "./components/auth/ForgotPassword";
+import VerifySuccess from "./components/auth/VerifySuccess";
 export const UserContext = createContext();
 const App = () => {
 
@@ -58,7 +59,9 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/passwordReset" element={<PasswordReset />} />
           <Route path="/forgotPassword/:id/:token" element={<ForgotPassword />} />
-          
+
+          {/* <Route path="/passwordReset" element={<PasswordReset />} /> */}
+          <Route path="/verifyEmail/:id/:token" element={<VerifySuccess/>} />       
           
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />

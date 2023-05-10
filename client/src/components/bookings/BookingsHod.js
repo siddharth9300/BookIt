@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate ,Link} from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
@@ -11,9 +11,44 @@ const BookingsHod = () => {
   const [bookingData, setBookingData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [filterValue, setFilterValue] = useState("Request Sent");
+  const [emailVerified, setEmailVerified] = useState(false);
 
 
 
+  const userContact = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getdata`, {
+        withCredentials: true, // include credentials in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = response.data;
+      console.log(data);
+
+      if(data.emailVerified){
+        setEmailVerified(true)
+      }
+
+
+
+      setIsLoading(false);
+
+      if (response.status !== 200) {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+   
+      // console.log(error);
+      
+    }
+  };
+
+  useEffect(() => {
+    userContact();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const getBookingData = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookingsHod`, {
@@ -242,7 +277,27 @@ const BookingsHod = () => {
           
           {isLoading ? (
             <LoadingSpinner />
-          ) :
+          ) : !emailVerified ? (
+
+      
+
+            <div class="flex items-center flex-col my-12 justify-center  ">
+      
+              {/* <div class="w-full lg:w-1/2"> */}
+                <h1 class=" text-2xl  lg:text-4xl font-extrabold text-gray-800 my-3">Looks Like Yout Have Not Verified Your Email!</h1>
+                <p class=" text-xl text-gray-800 my-5">Please click on the below button and verify email before booking.</p>
+                {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
+                <div>
+      
+                  <Link to="/about" ><button
+                    class="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
+                  </button>
+                  </Link>
+                </div>
+              {/* </div> */}
+            </div>
+      
+          ) : (
             Array.isArray(filteredBookings) && filteredBookings.length > 0 ? (
               filteredBookings.map((booking) => (
                 <div key={booking._id} className="my-2 ">
@@ -477,7 +532,8 @@ const BookingsHod = () => {
             ) : (
               <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No Bookings Requests found.</h2>
 
-            )}
+            )
+          )}
 
 
       </div>

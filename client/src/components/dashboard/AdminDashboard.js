@@ -16,8 +16,8 @@ const AdminDashboard = () => {
 
 
       <div className='mt-6 grid grid-flow-col col-auto	'>
-        <div className='  '>
-          <BookingsAdmin />
+        <div className=''>
+          <BookingsAdmin/>
           {/* <BookingsHod /> */}
         </div>
         <div className=''>

@@ -74,6 +74,9 @@ const userSchema = new mongoose.Schema({
   verifyToken: {
     type: String,
   },
+  emailVerified:{
+    type:Boolean
+  }
   
 });
 

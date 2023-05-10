@@ -93,33 +93,6 @@ const createBooking = async (req, res, next) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const getEvents = async (req, res, next) => {
   try {
     const bookings = await Booking.find({ isApproved: "Approved By Admin" }).populate('bookedHallId');
