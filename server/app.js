@@ -6,10 +6,9 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser");
 const app = express();
 app.use(cookieParser());
-app.use(cors({
-  credentials: true,
-  origin: ['http://localhost:3000', 'https://bookit-client-lezg.onrender.com/']
-}));
+app.use(cors({credentials: true,
+  origin: true}));
+  
 app.use(express.json());
 
 dotenv.config({path:"./.env"})
