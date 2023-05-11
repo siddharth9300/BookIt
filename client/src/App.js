@@ -33,6 +33,7 @@ import PasswordReset from "./components/auth/PasswordReset";
 
 import ForgotPassword from "./components/auth/ForgotPassword";
 import VerifySuccess from "./components/auth/VerifySuccess";
+import Unauthorized from "./components/Unauthorized";
 export const UserContext = createContext();
 const App = () => {
 
@@ -64,9 +65,9 @@ const App = () => {
           <Route path="/verifyEmail/:id/:token" element={<VerifySuccess/>} />       
           
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
-          <Route exact path="/halls/:hallId/:hallName" element={<HallsEdit />} />
-          <Route path="/hallForm" element={<HallForm />} />
-          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingByUserId/> : state.userType === "hod" ? <BookingsHod/>  : <Halls />} />
+          <Route exact path="/halls/:hallId/:hallName" element={state.userType === "admin" ?<HallsEdit /> : <Unauthorized />} />
+          <Route path="/hallForm" element={state.userType === "admin" ?<HallForm /> : <Unauthorized />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingByUserId/> : state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 

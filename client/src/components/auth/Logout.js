@@ -31,7 +31,9 @@ const userId = localStorage.getItem("userId")
           localStorage.removeItem("userId");
 
           // Show success message
-          toast.success("Logout Successful")
+          toast.success("Logout Successful", {
+            toastId: 'logout',
+        })
 
           // Navigate to login page
           navigate("/login", { replace: true })
@@ -47,7 +49,7 @@ const userId = localStorage.getItem("userId")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return null;
+  return (null);
 }
 
 export default Logout;

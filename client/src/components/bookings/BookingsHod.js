@@ -93,7 +93,9 @@ const BookingsHod = () => {
     } catch (error) {
       console.log(error);
       if (error.response.status === 401) {
-        toast.warn("Unauthrized Access! Please Login!")
+        toast.warn("Unauthrized Access! Please Login!", {
+          toastId: 'Unauthrized'
+      })
         navigate("/login");
       }
       // navigate("/login");
