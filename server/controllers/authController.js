@@ -535,10 +535,10 @@ const login = async (req, res,next) => {
         token = await userLogin.generateAuthToken();
         res.cookie("jwtoken", token, {
           expires: new Date(Date.now() + 9000000),
-          path :"/"
+          path :"/",
           // expires: new Date(Date.now() + 900),
 
-          // httpOnly: true,
+          httpOnly: false,
         });
 
 
