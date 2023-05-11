@@ -63,6 +63,7 @@ const Login = () => {
 
     try {
       // const response = await axios.post("http://localhost:9002/login", {
+
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, {
         email,
         password,
@@ -79,6 +80,7 @@ const Login = () => {
       console.log(data.userLogin);
       console.log(data.token);
 
+      // sessionStorage.setItem("jwtoken", data.token);
       // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/`;
       // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/; domain=bookit-server.onrender.com`;
 

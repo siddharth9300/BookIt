@@ -540,6 +540,8 @@ const login = async (req, res,next) => {
           
           // httpOnly: false,
         })
+
+        // window.sessionStorage.setItem("jwtoken", data.token);
        
         if (!isMatch) {
           res.status(400).json({ error: "Invalid Cridential" });
