@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import LoadingSpinner from "../LoadingSpinner";
 import axios from 'axios';
@@ -69,6 +69,7 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     userValid();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -79,7 +80,7 @@ const ForgotPassword = () => {
   const sendPassword = async (e) => {
     e.preventDefault();
 
-
+setIsLoading(true)
 
     try {
       // const response = await axios.post("http://localhost:9002/login", {
@@ -96,6 +97,8 @@ const ForgotPassword = () => {
       console.log(data);
 
       if (data.status === 201) {
+        setIsLoading(false)
+
         toast.success("Password Changed Successfully!")
         navigate("/login")
         console.log("user Valid");

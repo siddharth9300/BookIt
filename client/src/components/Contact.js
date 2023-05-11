@@ -36,6 +36,7 @@ const Contact = () => {
 
   useEffect(() => {
     userContact();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // handle change here

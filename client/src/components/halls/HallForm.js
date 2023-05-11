@@ -3,14 +3,14 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios';
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import BookingForm from "./BookingForm";
 
 const HallForm = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [authStatus, setAuthStatus] = useState("");
-  const { hallId, hallName } = useParams();
+  // const { hallId, hallName } = useParams();
   const [hallData, setHallData] = useState({
     
     name:"",location:"",capacity:"",amenities:"",description:""

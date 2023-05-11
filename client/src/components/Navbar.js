@@ -1,10 +1,10 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 
 
 const Navbar = () => {
-  const { state, dispatch } = useContext(UserContext)
+  const { state } = useContext(UserContext)
 
 
 

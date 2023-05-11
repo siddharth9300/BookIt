@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
@@ -11,7 +11,7 @@ const HallsEdit = () => {
   const [hallData, setHallData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [authStatus, setAuthStatus] = useState("");
-  const { hallId, hallName } = useParams();
+  const { hallId } = useParams();
 
 
 
@@ -45,6 +45,7 @@ const HallsEdit = () => {
 
     getHallsData();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

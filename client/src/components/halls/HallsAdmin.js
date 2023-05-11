@@ -9,7 +9,7 @@ const HallsAdmin = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [authStatus, setAuthStatus] = useState("");
+  // const [authStatus, setAuthStatus] = useState("");
 
   const getHallsData = async () => {
     try {
@@ -76,7 +76,7 @@ const HallsAdmin = () => {
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
-        setAuthStatus(data.error);
+        // setAuthStatus(data.error);
         console.log(data.error);
         // window.alert(data.error);
       } else {

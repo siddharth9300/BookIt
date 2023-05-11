@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import LoadingSpinner from "../LoadingSpinner";
 import axios from 'axios';
@@ -15,7 +15,7 @@ console.log(email);
 
   const forgotPassword = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true)
 
 
     try {
@@ -31,6 +31,7 @@ console.log(email);
        const data = response.data
 
             if(data){
+              setIsLoading(false)
 
                 setAuthStatus("Please Check yout Email")    
                 toast.success("Email Sent Successfull")

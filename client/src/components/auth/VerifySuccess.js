@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom"
+import {  Link } from "react-router-dom"
 
 import LoadingSpinner from "../LoadingSpinner";
 import axios from 'axios';
@@ -8,10 +8,10 @@ import { useParams } from "react-router-dom";
 
 const VerifySuccess = () => {
 
-  const navigate = useNavigate()
-  const [password, setPassword] = useState("");
-  const [cpassword, setCPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const navigate = useNavigate()
+  // const [password, setPassword] = useState("");
+  // const [cpassword, setCPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [authStatus, setAuthStatus] = useState(false);
   const { id, token } = useParams();
   // console.log(email);
@@ -31,10 +31,10 @@ const VerifySuccess = () => {
 
     const data = response.data
 
-    // setIsLoading(false)
     
 
 
+    setIsLoading(false)
     if (data.status === 201) {
       console.log("user Valid");
       setAuthStatus(true)
@@ -75,6 +75,7 @@ const VerifySuccess = () => {
 
   useEffect(() => {
     userValid();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
