@@ -67,7 +67,7 @@ const Login = () => {
         email,
         password,
       }, {
-        withCredentials: true, 
+        // withCredentials: true, 
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
