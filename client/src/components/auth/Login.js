@@ -67,9 +67,10 @@ const Login = () => {
         email,
         password,
       }, {
-        withCredentials: true, // To include credentials in the request
+        withCredentials: true, 
         headers: {
-          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Content-Type": "application/json"
         },
       });
 
