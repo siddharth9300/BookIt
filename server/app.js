@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 app.use(cookieParser());
 app.use(cors({credentials: true,
-  origin: true}));
+  origin: true})); 
   
   app.set("trust proxy",1); 
 app.use(express.json());
