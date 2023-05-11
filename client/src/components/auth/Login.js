@@ -73,10 +73,13 @@ const Login = () => {
           "Content-Type": "application/json"
         },
       });
-
+      
       const data = response.data;
+      
+      console.log(data.userLogin);
+      console.log(data.token);
 
-      console.log(data.userType);
+      document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/`;
 
 
       // if (response.status === 400 || !data) {
@@ -87,15 +90,15 @@ const Login = () => {
 
       dispatch({ type: "USER", payload: true })
 
-      if (data.userType === 'admin') {
+      if (data.userLogin.userType === 'admin') {
         dispatch({ type: 'USER_TYPE', payload: "admin" });
-      } else if (data.userType === 'hod') {
+      } else if (data.userLogin.userType === 'hod') {
         dispatch({ type: 'USER_TYPE', payload: "hod" });
       } else {
         dispatch({ type: 'USER_TYPE', payload: "faculty" });
       }
 
-      localStorage.setItem("userId", data._id)
+      localStorage.setItem("userId", data.userLogin._id)
       toast.success("Login Successfull")
       setIsLoading(true);
 

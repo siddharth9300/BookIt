@@ -532,28 +532,26 @@ const login = async (req, res,next) => {
   
       if (userLogin) {
         const isMatch = await bcrypt.compare(password, userLogin.password);
-  
         token = await userLogin.generateAuthToken();
-        res.cookie("jwtoken", token, {
-          expires: new Date(Date.now() + 9000000),
-          path :"/",
-          // expires: new Date(Date.now() + 900),
-
-          // httpOnly: false,
-        });
-
-
-        console.log(token);
-  
+        // res.cookie("jwtoken", token, {
+        //   expires: new Date(Date.now() + 9000000),
+        //   path :"/",
+        //   // expires: new Date(Date.now() + 900),
+          
+        //   // httpOnly: false,
+        // })
+       
         if (!isMatch) {
           res.status(400).json({ error: "Invalid Cridential" });
         } else {
-          res.status(200)
-          .send(userLogin).json({ message: "user login successfully" })
+          res.status(200).json({ userLogin, token: token, message: "User logged in successfully" });
+          // res.status(200)
+          // .send(userLogin).json({ message: "user login successfully" })
         }
       } else {
         res.status(400).json({ error: "Invalid Cridential" });
       }
+      
     } catch (error) {
         next(error);
     }
