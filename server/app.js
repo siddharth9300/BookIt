@@ -14,8 +14,11 @@ app.use(express.json());
 
 dotenv.config({path:"./.env"})
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 const connectDB = require("./DB/conn")
-
 require("./model/userSchema")
 require("./model/hallSchema")
 require("./model/bookingSchema")
