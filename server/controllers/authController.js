@@ -531,6 +531,7 @@ const login = async (req, res,next) => {
         res.cookie("jwtoken", token, {
           expires: new Date(Date.now() + 9000000),
           path :"/",
+          domain:".render.com",
           // expires: new Date(Date.now() + 900),
           
           httpOnly: true,
