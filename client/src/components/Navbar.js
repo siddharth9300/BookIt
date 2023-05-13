@@ -7,7 +7,6 @@ const Navbar = () => {
   const { state } = useContext(UserContext)
 
 
-
 console.log(state);
 
 

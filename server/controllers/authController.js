@@ -4,23 +4,18 @@ const bcrypt = require("bcryptjs");
 const User = require("../model/userSchema");
 const nodemailer = require("nodemailer")
 const jwt = require("jsonwebtoken")
-// const router = express.Router();
-// // const jwt = require("jsonwebtoken")
-// const cookieParser = require("cookie-parser");
 
-// // const cookieParser = require("cookie-parser");
-// // router.use(cookieParser());
 
-// router.use(cookieParser());
+
 
 const register = async (req, res,next) => {
   try {
     const { name, email,department, phone, userType,adminKey, password, cpassword } = req.body;
   console.log(process.env.ADMIN_KEY);
-  const hodExist = await User.findOne({ department });
+  const hodExist = await User.findOne({ department , userType: "hod" });
 
     if (userType === "admin") {
-      
+
       if (!name || !adminKey || !email || !phone || !userType || !password || !cpassword) {
         return res.status(422).json({ error: "Please fill all details" });
       }else if(adminKey !== process.env.ADMIN_KEY){
