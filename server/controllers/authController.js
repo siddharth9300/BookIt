@@ -533,7 +533,7 @@ const login = async (req, res,next) => {
           path :"/",
           // expires: new Date(Date.now() + 900),
           
-          // httpOnly: false,
+          httpOnly: true,
         })
 
         // window.sessionStorage.setItem("jwtoken", data.token);
