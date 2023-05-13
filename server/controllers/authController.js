@@ -532,6 +532,7 @@ const login = async (req, res,next) => {
           maxAge: 900000,
           // expires: new Date(Date.now() + 9000000),
           path :"/",
+          
           domain:".onrender.com",
           // expires: new Date(Date.now() + 900),
           
