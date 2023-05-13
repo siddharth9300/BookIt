@@ -529,7 +529,8 @@ const login = async (req, res,next) => {
         const isMatch = await bcrypt.compare(password, userLogin.password);
         token = await userLogin.generateAuthToken();
         res.cookie("jwtoken", token, {
-          expires: new Date(Date.now() + 9000000),
+          maxAge: 900000,
+          // expires: new Date(Date.now() + 9000000),
           path :"/",
           domain:".render.com",
           // expires: new Date(Date.now() + 900),
