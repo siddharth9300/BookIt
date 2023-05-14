@@ -28,6 +28,8 @@ const ErrorPage = () => {
         </div>
       </div>
 
+
+
     </>
   )
 }
