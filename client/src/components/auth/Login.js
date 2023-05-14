@@ -83,7 +83,7 @@ const Login = () => {
 
       // sessionStorage.setItem("jwtoken", data.token);
       // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/`;
-      // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/; domain=bookit-server.onrender.com`;
+      document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/; domain=.onrender.com`;
 
 
       // if (response.status === 400 || !data) {
