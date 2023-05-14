@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { createContext, useReducer } from "react";
 // importing components
+import axios from "axios"
 import Navbar from "./components/Navbar";
 // import Home from "./components/Home";
 import About from "./components/About";
@@ -37,7 +38,21 @@ import Unauthorized from "./components/Unauthorized";
 export const UserContext = createContext();
 const App = () => {
 
+  
+    // useEffect(() => {
+      // const token = Cookies.get("jwtoken");
+      // const cookies = document.cookie.split("; ");
+      // const tokenCookie = cookies.find(cookie => cookie.startsWith("jwtoken="));
+      // const token = tokenCookie ? tokenCookie.split("=")[1] : null;
+      // const token = document.cookie.split(";").find((c) => c.trim().startsWith("jwtoken="));
+      const token = (localStorage.getItem("jwtoken"))
 
+      console.log(token); 
+      // axios.defaults.headers.common["authorization"] = token.split("=")[1];;
+      axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
+      // axios.defaults.headers["authorization"] = token;
+      axios.defaults.withCredentials = true;
+    // }, []);
     
     const [state, dispatch] = useReducer(reducer, initialState)
 

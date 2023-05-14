@@ -83,9 +83,12 @@ const Login = () => {
 
       // sessionStorage.setItem("jwtoken", data.token);
       // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/`;
-      document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/; domain=.onrender.com`;
+      // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/; `
+      // domain=.onrender.com`;
 
+      // Cookies.set("jwtoken", data.token, { expires: new Date(Date.now() + 9000000), path: "/" });
 
+      localStorage.setItem("jwtoken", data.token)
       // if (response.status === 400 || !data) {
       //   setAuthStatus("Invalid credentials");
       //   window.alert("invalid")

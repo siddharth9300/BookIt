@@ -528,16 +528,18 @@ const login = async (req, res,next) => {
       if (userLogin) {
         const isMatch = await bcrypt.compare(password, userLogin.password);
         token = await userLogin.generateAuthToken();
-        res.cookie("jwtoken", token, {
-          maxAge: 900000,
-          // expires: new Date(Date.now() + 9000000),
-          path :"/",
+        console.log("this is login token" + token);
+
+        // res.cookie("jwtoken", token, {
+        //   maxAge: 900000,
+        //   // expires: new Date(Date.now() + 9000000),
+        //   path :"/",
           
-          domain:".onrender.com",
-          // expires: new Date(Date.now() + 900),
+        //   // domain:".onrender.com",
+        //   // expires: new Date(Date.now() + 900),
           
-          httpOnly: true,
-        })
+        //   httpOnly: true,
+        // })
 
         // window.sessionStorage.setItem("jwtoken", data.token);
        
@@ -617,7 +619,8 @@ const login = async (req, res,next) => {
       );
   
       // clear the cookie
-      res.clearCookie("jwtoken",{path:"/"});
+      // res.clearCookie("jwtoken",{path:"/"});
+
   
       res.status(200).send("User logged out successfully");
     } catch (error) {

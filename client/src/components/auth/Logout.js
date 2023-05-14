@@ -29,7 +29,7 @@ const userId = localStorage.getItem("userId")
           // Clear localStorage
           // localStorage.removeItem("user");
           localStorage.removeItem("userId");
-
+          localStorage.removeItem("jwtoken");
           // Show success message
           toast.success("Logout Successful", {
             toastId: 'logout',
