@@ -59,7 +59,7 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
 
-
+    setIsLoading(true)
 
     try {
       // const response = await axios.post("http://localhost:9002/login", {
@@ -107,7 +107,7 @@ const Login = () => {
 
       localStorage.setItem("userId", data.userLogin._id)
       toast.success("Login Successfull")
-      setIsLoading(true);
+      setIsLoading(false);
 
       navigate("/");
       // }

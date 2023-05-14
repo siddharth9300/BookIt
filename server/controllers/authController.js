@@ -482,9 +482,12 @@ const emailVerificationLink = async (req, res,next) => {
 const verifyEmail = async (req, res,next) => {
   const {id,token} = req.params
   try {
+      
     const validUser = await User.findOne({_id:id,verifyToken:token})
 
-      const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
+    const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
+
+
 
       if (validUser && verifyToken._id) {
         const setUserToken = await User.findByIdAndUpdate({_id:validUser._id},{emailVerified:true})
@@ -495,15 +498,14 @@ const verifyEmail = async (req, res,next) => {
         res.status(401).json({status:401,error:"user not exist"})
       }
       console.log(setUserToken);
-
+    
+     
   //  console.log(validUser); 
   } catch (error) {
     // res.status(401).json({status:422,error})
     next(error);
 
   }
-   
-  
 }
 
 

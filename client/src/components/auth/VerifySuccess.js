@@ -16,8 +16,7 @@ const VerifySuccess = () => {
   const { id, token } = useParams();
   // console.log(email);
 
-
-
+console.log(authStatus);
   const userValid = async () => {
 
     try {
@@ -38,7 +37,9 @@ const VerifySuccess = () => {
     if (data.status === 201) {
       console.log("user Valid");
       setAuthStatus(true)
-      toast.success("Email Verified Successfull")
+      toast.success("Email Verified Successfull", {
+        toastId: 'successfull'
+    })
 
     }  else {
       console.log("user inValid");
@@ -50,19 +51,24 @@ const VerifySuccess = () => {
 
     //   // }
     } catch (error) {
-      if (error.response.status === 401 && error.response) {
+      if ((error.response.status === (401 ) || error.response.status === (500 )) && error.response) {
         // const data = error.response.data;
         // setAuthStatus(data.error)
         // setAuthStatus("Reset Link Exipired")  
+        
         setAuthStatus(false)
+        setIsLoading(false)
 
-        toast.error("Link Exipired Verify Again!")
+        toast.error("Link Exipired Verify Again!", {
+          toastId: 'Unauthrized'
+      })
         // navigate("/passwordReset")
         // console.log(data.error)
         // window.alert(data.error);
       }
       //  else {
-        
+      //   setAuthStatus(false)
+
       //   setAuthStatus("Something Went Worng")
       //   console.log(error)
 
@@ -74,6 +80,7 @@ const VerifySuccess = () => {
 
 
   useEffect(() => {
+
     userValid();
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

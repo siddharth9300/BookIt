@@ -51,7 +51,9 @@ const ForgotPassword = () => {
         // const data = error.response.data;
         // setAuthStatus(data.error)
         // setAuthStatus("Reset Link Exipired")  
-        toast.error("Link Exipired Reset Again!")
+        toast.error("Link Exipired Reset Again!", {
+          toastId: 'Unauthrized'
+      })
         navigate("/passwordReset")
         // console.log(data.error)
         // window.alert(data.error);
