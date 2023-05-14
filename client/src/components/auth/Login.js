@@ -139,7 +139,7 @@ const Login = () => {
     <>{isLoading ? (
       <LoadingSpinner />
     ) :
-      <section className="text-gray-600 body-font h-screen flex items-center justify-center bg-white">
+      <section className="text-gray-600 body-font min-h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2  bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
             {/* <h2 className="text-gray-900 font-medium text-3xl title-font mt-10 mb-5">

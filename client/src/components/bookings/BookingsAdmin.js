@@ -515,7 +515,7 @@ const BookingsAdmin = () => {
                 </div>
               ))
             ) : (
-              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No Bookings Requests found.</h2>
+              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-10">No Bookings Requests found.</h2>
 
             )
           )}

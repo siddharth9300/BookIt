@@ -66,7 +66,7 @@ const Halls = () => {
 <>{isLoading ? (
           <LoadingSpinner />
         ) : 
-    <div className="mt-6"> 
+    <div className="mt-6 min-h-screen"> 
     
     <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
    Available <span className="text-indigo-700"> Halls</span>  </h1>
@@ -211,7 +211,7 @@ const Halls = () => {
           </div>
         ))
       ) : (
-        <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No halls found.</h2>
+        <h2 className="text-2xl font-bold text-zinc-700  text-center mt-10">No halls found.</h2>
 
       )}
 

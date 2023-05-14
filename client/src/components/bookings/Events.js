@@ -274,7 +274,7 @@ const Events = () => {
 
               ))
             ) : (
-              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No Upcomming Events.</h2>
+              <h2 className="text-2xl font-bold text-zinc-700  text-center mt-10">No Upcomming Events.</h2>
 
             )}
 

@@ -140,7 +140,7 @@ const Signup = () => {
     <>{isLoading ? (
       <LoadingSpinner />
     ) :
-      <section className="text-gray-600 body-font my-10  h-screen flex items-center justify-center bg-white">
+      <section className="text-gray-600 body-font my-10  min-h-screen flex items-center justify-center bg-white">
         <div className="lg:w-2/6 md:w-1/2 my-10 bg-white shadow-2xl shadow-blue-200 rounded-lg p-8 flex flex-col md:ml-auto md:mr-auto mt-10 md:mt-0">
           <form method="POST">
             <h3 className="text-3xl my-8 sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">

@@ -114,7 +114,7 @@ const HallsAdmin = () => {
 <>{isLoading ? (
           <LoadingSpinner />
         ) : 
-    <div className="mt-6"> 
+    <div className="mt-6 min-h-screen"> 
     
    <div className="py-5 md:py-0 flex container mx-auto px-6 justify-between  items-center">
    <div className="mx-auto ">
@@ -280,7 +280,7 @@ const HallsAdmin = () => {
           </div>
         ))
       ) : (
-        <h2 className="text-2xl font-bold text-zinc-700  text-center mt-4">No halls found.</h2>
+        <h2 className="text-2xl font-bold text-zinc-700  text-center mt-10">No halls found.</h2>
 
       )}
 
