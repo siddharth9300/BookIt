@@ -60,7 +60,7 @@ const HallForm = () => {
     // setIsLoading(true)
     try {
       const response = await axios.post(
-        `http://localhost:9002/halls`,
+        `${process.env.REACT_APP_SERVER_URL}/halls`,
         {
           name,location,capacity,amenities,description 
         },

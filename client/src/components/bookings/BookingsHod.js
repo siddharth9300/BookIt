@@ -123,7 +123,7 @@ const BookingsHod = () => {
 
     console.log(isApproved);
     try {
-      const response = await axios.put(`http://localhost:9002/bookings/${bookingId}`, {
+      const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`, {
         isApproved: isApproved
       }, {
         withCredentials: true, // include credentials in the request

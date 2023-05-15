@@ -17,7 +17,7 @@ const HallsEdit = () => {
 
   const getHallsData = async () => {
     try {
-      const response = await axios.get(`http://localhost:9002/halls/${hallId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/halls/${hallId}`, {
         withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",
@@ -60,7 +60,7 @@ const HallsEdit = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:9002/halls/${hallId}`,
+        `${process.env.REACT_APP_SERVER_URL}/halls/${hallId}`,
         {
           name,location,capacity,amenities,description 
         },

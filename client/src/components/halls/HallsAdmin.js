@@ -51,7 +51,7 @@ const HallsAdmin = () => {
 
     try {
       const response = await axios.delete (
-        `http://localhost:9002/halls/${hallId}`,
+        `${process.env.REACT_APP_SERVER_URL}/halls/${hallId}`,
 
         {
           withCredentials: true, // To include credentials in the request
