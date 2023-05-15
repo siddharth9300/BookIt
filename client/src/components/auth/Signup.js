@@ -76,7 +76,7 @@ const Signup = () => {
       //   console.log(data.error)
       //   window.alert(data.error);
       // } else {
-      setIsLoading(true);
+      setIsLoading(false);
       toast.success("Sign Up Successfull!")
 
       // window.alert("Registration Successful");
@@ -84,6 +84,7 @@ const Signup = () => {
       // }
     } catch (error) {
       if (error.response.status === 422 && error.response) {
+        setIsLoading(false);
         const data = error.response.data;
         setAuthStatus(data.error);
         console.log(data.error);
