@@ -114,6 +114,7 @@ const Login = () => {
     } catch (error) {
       if (error.response.status === 400 && error.response) {
         const data = error.response.data;
+        setIsLoading(false);
         setAuthStatus(data.error)
         console.log(data.error)
         // window.alert(data.error);
