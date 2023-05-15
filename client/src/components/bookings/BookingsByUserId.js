@@ -52,7 +52,7 @@ const Bookings = () => {
 
   const getBookingData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:9002/bookings/${userId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookings/${userId}`, {
         withCredentials: true, // include credentials in the request
         headers: {
           Accept: "application/json",
