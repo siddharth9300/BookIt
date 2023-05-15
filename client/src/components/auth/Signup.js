@@ -43,9 +43,9 @@ const Signup = () => {
 
 
   const PostData = async (e) => {
-    setIsLoading(true);
+    
     e.preventDefault();
-
+    setIsLoading(true);
     const { name, email, phone, userType, department, adminKey, password, cpassword } = user;
 
     try {
