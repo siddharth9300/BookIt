@@ -184,7 +184,7 @@ const BookingsAdmin = () => {
         // setBookingData({ ...bookingData });
       }
     } catch (error) {
-      if (error.response.status === 422 && error.response) {
+      if (error.response.status === 404 && error.response) {
         const data = error.response.data;
         console.log(data.error);
         // window.alert(data.error);
