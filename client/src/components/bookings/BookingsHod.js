@@ -159,8 +159,7 @@ const BookingsHod = () => {
 
 
     try {
-      const response = await axios.delete (
-        `http://localhost:9002/bookings/${bookingId}`,
+      const response = await axios.delete (`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`,
 
         {
           withCredentials: true, // To include credentials in the request
