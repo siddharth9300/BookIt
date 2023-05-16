@@ -226,6 +226,14 @@ const BookingsHod = () => {
   // };
 
 
+  
+   const ApproveButtons = () => {
+    return (
+      <div>BookingsHod</div>
+    )
+  }
+  
+
   return (
     <>
 
@@ -487,11 +495,8 @@ const BookingsHod = () => {
                       </div>
 
 
-
-
-
-
-
+                      {booking.isApproved !== "Approved By Admin" && (
+                        
                           <div className="mt-6 grid grid-cols-3 gap-4">
                             {/* <Link to={`/bookingForm`}> */}
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
@@ -517,11 +522,18 @@ const BookingsHod = () => {
                                     </>
                             </button>
                             <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
-                        onClick={() => deleteBooking(booking._id)}
-                      >
-                        Delete Booking
-                      </button>
+                                onClick={() => deleteBooking(booking._id)}
+                              >
+                                Delete Booking
+                              </button>
                           </div>
+                          )}
+
+
+
+
+
+
 
 
                         </div>

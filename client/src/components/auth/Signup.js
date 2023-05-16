@@ -254,30 +254,152 @@ const Signup = () => {
 
 
                 <>
-                  <div className="relative mb-4">
+
+
+                    <div className="relative mb-4">
                     <label
-                      htmlFor="department"
+                      htmlFor="institution"
                       className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                      department
+                      Institution
                     </label>
 
                     <select
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                      id="department"
-                      name="department"
-                      value={user.department}
+                      id="institution"
+                      name="institution"
+                      value={user.institution}
                       onChange={handleInputs}>
                       <option value="">Select</option>
-                      <option value="CS">Computer Science</option>
-                      <option value="IT">Information Technology</option>
-                      <option value="CSIT">Computer Science and Information Technology</option>
-                      <option value="ECE">Electronics and Communication Engineering</option>
-                      <option value="CE">Civil Engineering</option>
-                      <option value="MCA">Master of Computer Applications</option>
+                      <option value="AITR">Acropolis Institute of Technology and Research</option>
+                      <option value="AIMSR">Acropolis Institute of Management Studies & Research</option>
+                      <option value="AIPER">Acropolis Institute Of Pharmaceutical Education & Research</option>
+                      <option value="AMR">Acropolis Faculty of Management and Research</option>
                     </select>
 
                   </div>
 
+                  {user.institution === 'AIPER' && (
+
+                <div className="relative mb-4">
+                <label
+                  htmlFor="department"
+                  className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold"
+                >
+                  Department
+                </label>
+
+               
+                <select
+
+                    
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  id="department"
+                  name="department"
+                  value={user.department}
+                  onChange={handleInputs}
+                >
+                  <option value="AIPER">Acropolis Institute Of Pharmaceutical Education & Research</option>
+
+                </select>
+                </div>
+
+                  )}
+
+
+
+                  {user.institution === 'AMR' && (
+
+                  <div className="relative mb-4">
+                      <label
+                        htmlFor="department"
+                        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold"
+                      >
+                        Department
+                      </label>
+
+                    
+                    
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}
+                      >
+                      <option value="AMR">Acropolis Faculty of Management and Research</option>
+
+                        {/* <option value="OTHERS">Others</option> */}
+
+                      </select>
+                      </div>
+                  )}
+
+
+                    {user.institution === 'AIMSR' && (
+
+                       <div className="relative mb-4">
+                       <label
+                         htmlFor="department"
+                         className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold"
+                       >
+                         Department
+                       </label>
+
+
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}
+                      >
+                        <option value="">Select</option>
+                        <option value="BSC">Bio Science</option>
+                        <option value="BBA"> Bachelor of Business Administration</option>
+                        <option value="LAW">LAW</option>
+                        {/* <option value="OTHERS">Others</option> */}
+                      </select>
+                      </div>
+                    )}
+                   
+
+
+                    {user.institution === 'AITR' && (
+
+                       <div className="relative mb-4">
+                       <label
+                         htmlFor="department"
+                         className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold"
+                       >
+                         Department
+                       </label>
+
+
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}
+                      >
+                        <option value="">Select</option>
+                      <option value="CE">Civil Engineering</option>
+                      <option value="ME">Mechanical Engineering</option>
+                      <option value="EC">Electronics & Communication</option>
+                      <option value="CSE">Computer Science & Engineering</option>
+                      <option value="AIML">Artificial Intelligence and Machine Learning</option>
+                      <option value="IT">Information Technology</option>
+                      <option value="CSIT">Computer Science and Information Technology</option>
+                      <option value="FCA">Faculty of Computer Applications</option>
+                      <option value="AC">Acro Care</option>
+                      <option value="CDC">Carrer Development Cell</option>
+                      <option value="HUMI">Huminities</option>
+                      <option value="CHEM">Chemistry</option>
+                        {/* <option value="OTHERS">Others</option> */}
+                      </select>
+                      </div>
+                    )}
+                   
 
 
 
