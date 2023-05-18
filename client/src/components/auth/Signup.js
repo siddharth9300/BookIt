@@ -18,6 +18,7 @@ const Signup = () => {
     email: "",
     phone: "",
     userType: "",
+    institution: "",
     department: "",
     password: "",
     cpassword: "",
@@ -46,7 +47,7 @@ const Signup = () => {
     
     e.preventDefault();
     setIsLoading(true);
-    const { name, email, phone, userType, department, adminKey, password, cpassword } = user;
+    const { name, email, phone, userType,institution, department, adminKey, password, cpassword } = user;
 
     try {
 
@@ -58,6 +59,7 @@ const Signup = () => {
           email,
           phone,
           userType,
+          institution,
           department,
           adminKey,
           password,

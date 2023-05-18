@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken")
 
 const register = async (req, res,next) => {
   try {
-    const { name, email,department, phone, userType,adminKey, password, cpassword } = req.body;
+    const { name, email,institution,department, phone, userType,adminKey, password, cpassword } = req.body;
   console.log(process.env.ADMIN_KEY);
   const hodExist = await User.findOne({ department , userType: "hod" });
 
@@ -22,13 +22,13 @@ const register = async (req, res,next) => {
         return res.status(422).json({ error: "Invalid Admin Key" });
       }
     }else if(userType === "hod"){
-      if (!name || !department || !email || !phone || !userType || !password || !cpassword) {
+      if (!name || !institution || !department || !email || !phone || !userType || !password || !cpassword) {
         return res.status(422).json({ error: "Please fill all details" });
       }else if(hodExist){
         return res.status(422).json({ error: `Hod for ${department} already exists` });
       }
     }else{
-      if (!name || !department || !email || !phone || !userType || !password || !cpassword) {
+      if (!name || !institution || !department || !email || !phone || !userType || !password || !cpassword) {
         return res.status(422).json({ error: "Please fill all details" });
       }
     }
@@ -71,13 +71,13 @@ const register = async (req, res,next) => {
        else {
         let user
         if (userType === "admin") {
-           user = new User({ name, email, phone, userType,adminKey,department:"null", password, cpassword });
+           user = new User({ name, email, phone, userType,adminKey,institution:"null",department:"null", password, cpassword });
 
         }else{
         
-           user = new User({ name, email, phone, userType,department,adminKey:"null" ,password, cpassword });
+           user = new User({ name, email, phone, userType,institution,department,adminKey:"null" ,password, cpassword });
         }
-  
+        console.log(user);
         // Perform additional validation or data processing here
         await user.save();
   

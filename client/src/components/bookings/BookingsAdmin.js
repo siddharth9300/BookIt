@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns"
 // import BookingForm from "./BookingForm";
 import { ApprovedByAdmin,ApprovedByHod,RejectedByAdmin} from "../Steps"
+import Index from "./Table";
 const BookingsAdmin = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
@@ -226,6 +227,7 @@ const BookingsAdmin = () => {
 
   return (
     <>
+    
 
       <div className="mt-6">
         <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
@@ -423,6 +425,43 @@ const BookingsAdmin = () => {
                               <p className="text-m font-semibold text-zinc-700">{booking.altNumber}</p>
                             </div>
                           </div>
+
+
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Requested By</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.userId.name}</p>
+                            </div>
+                          </div>
+
+
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Institution</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.userId.institution}</p>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                            <div>
+                              <p className="font-bold text-zinc-700">Department</p>
+                            </div>
+
+                            <div>
+                              <p className="text-m font-semibold text-zinc-700">{booking.userId.department}</p>
+                            </div>
+                          </div>
+
+
+
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>

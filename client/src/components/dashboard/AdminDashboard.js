@@ -3,6 +3,7 @@ import BookingsAdmin from '../bookings/BookingsAdmin'
 // import BookingsHod from '../bookings/BookingsHod'
 
 import Events from '../bookings/Events'
+import Index from '../bookings/Table'
 
 const AdminDashboard = () => {
   return (
@@ -12,13 +13,16 @@ const AdminDashboard = () => {
         Admin  <span className="text-indigo-700">Dashboard</span> </h1>
 
 
-
+        {/* <div className=''>
+          <BookingsAdmin/>
+          <Index/>
+        </div> */}
 
 
       <div className='mt-6 grid grid-flow-col col-auto	'>
         <div className=''>
           <BookingsAdmin/>
-          {/* <BookingsHod /> */}
+
         </div>
         <div className=''>
           <Events />

@@ -1,5 +1,6 @@
 const Booking = require('../model/bookingSchema');
 const Hall = require('../model/hallSchema');
+const User = require('../model/userSchema');
 
 const createBooking = async (req, res, next) => {
   try {
@@ -24,6 +25,13 @@ const createBooking = async (req, res, next) => {
     if (!hall) {
       return res.status(422).json({ error: 'Hall not found' });
     }
+
+    
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(422).json({ error: 'user not found' });
+    }
+
 
     if (!eventManager || !department || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
       return res.status(422).json({ error: "Please fill all details" });
@@ -65,7 +73,7 @@ const createBooking = async (req, res, next) => {
 
     const booking = new Booking({
 
-      userId,
+      userId:user._id,
       department,
       eventManager,
       eventName,
@@ -122,7 +130,7 @@ const getEvents = async (req, res, next) => {
 
 const getBookings = async (req, res, next) => {
   try {
-    const bookings = await Booking.find().populate('bookedHallId');
+    const bookings = await Booking.find().populate('bookedHallId').populate('userId');
 
     
     res.json({ bookings });
@@ -135,7 +143,7 @@ const getBookings = async (req, res, next) => {
 const getBookingById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const booking = await Booking.findById(id).populate('bookedHallId');
+    const booking = await Booking.findById(id).populate('bookedHallId').populate('userId');
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found' });
     }
@@ -148,7 +156,7 @@ const getBookingById = async (req, res, next) => {
 const getBookingByUserId = async (req, res, next) => {
   try {
     const { userId } = req.params;
-    const booking = await Booking.find({ userId: userId }).populate('bookedHallId');
+    const booking = await Booking.find({ userId: userId }).populate('bookedHallId').populate('userId');
     // if (!mongoose.Types.ObjectId.isValid(userId)) {
     //   return res.status(400).json({ message: 'Invalid userId' });
     // }
