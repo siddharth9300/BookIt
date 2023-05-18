@@ -9,7 +9,7 @@ const Footer = () => {
     <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}
           {/* <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" /> */}
-          <img className="w-12 md:w-auto" src="https://gcdnb.pbrd.co/images/3twV2z8MVDfZ.png?o=1" alt="logo" />
+          <img className="w-12 md:w-auto" src="https://gcdnb.pbrd.co/images/r9SinhF0FQPt.png?o=1" alt="logo" />
           
      
             {/* <h1 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
@@ -21,7 +21,7 @@ const Footer = () => {
        <a href="https://github.com/siddharth9300" className="text-gray-500 hover:text-gray-700 focus:text-gray-7000 ml-1" rel="noopener noreferrer" target="_blank">@siddharth9300</a>
      </p> */}
 
-  <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Book It — Made by FCA Software Development Cell
+  <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"> Developed By Students FCA Software Development Cell
        {/* <a href="https://github.com/siddharth9300" className="text-gray-500 hover:text-gray-700 focus:text-gray-7000 ml-1" rel="noopener noreferrer" target="_blank">@siddharth9300</a> */}
     </p>
      {/* <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
