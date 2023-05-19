@@ -227,11 +227,12 @@ const BookingsHod = () => {
 
 
   
-   const ApproveButtons = () => {
-    return (
-      <div>BookingsHod</div>
-    )
-  }
+ 
+
+  const handleEditClick = (bookingId) => {
+    navigate(`/bookings/${bookingId}`)
+  };
+
   
 
   return (
@@ -497,8 +498,12 @@ const BookingsHod = () => {
 
                       {booking.isApproved !== "Approved By Admin" && (
                         
-                          <div className="mt-6 grid grid-cols-3 gap-4">
+                          <div className="mt-6 grid grid-cols-2 gap-4">
                             {/* <Link to={`/bookingForm`}> */}
+
+                           
+
+
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Approved By HOD")}
                             >
@@ -510,6 +515,19 @@ const BookingsHod = () => {
                                     "Approve"}
                                     </>
                             </button>
+
+                            <button className="w-full rounded-xl border-2 border-yellow-500 bg-white px-3 py-2 font-semibold text-yellow-500 hover:bg-yellow-500 hover:text-white"
+                              onClick={() => handleEditClick(booking._id)}
+                            >
+                              <>
+                              {isLoading ? (
+                                <LoadingSpinner />
+                                ) : 
+                                 
+                                    "Edit"}
+                                    </>
+                            </button>
+
                             {/* </Link> */}
                             <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Rejected By HOD")}>

@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns"
 // import BookingForm from "./BookingForm";
 import { ApprovedByAdmin,ApprovedByHod,RejectedByAdmin} from "../Steps"
-import Index from "./Table";
 const BookingsAdmin = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
@@ -220,9 +219,10 @@ const BookingsAdmin = () => {
   // };
 
 
-  // const handleBookingClick = () => {
-  //   sendData(data);
-  // };
+  const handleEditClick = (bookingId) => {
+    navigate(`/bookings/${bookingId}`)
+  };
+
 
 
   return (
@@ -514,7 +514,10 @@ const BookingsAdmin = () => {
 
 
 
-                          <div className="mt-6 grid grid-cols-3 gap-4">
+                          <div className="mt-6 grid grid-cols-2 gap-4">
+
+                     
+
                             {/* <Link to={`/bookingForm`}> */}
                             <button className="w-full rounded-xl border-2 border-green-500 bg-white px-3 py-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white"
                               onClick={() => updateBooking(booking._id, "Approved By Admin")}
@@ -525,6 +528,18 @@ const BookingsAdmin = () => {
                                 ) : 
                                  
                                     "Approve"}
+                                    </>
+                            </button>
+
+                            <button className="w-full rounded-xl border-2 border-yellow-500 bg-white px-3 py-2 font-semibold text-yellow-500 hover:bg-yellow-500 hover:text-white"
+                              onClick={() => handleEditClick(booking._id)}
+                            >
+                              <>
+                              {isLoading ? (
+                                <LoadingSpinner />
+                                ) : 
+                                 
+                                    "Edit"}
                                     </>
                             </button>
                             {/* </Link> */}

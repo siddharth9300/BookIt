@@ -33,7 +33,7 @@ const createBooking = async (req, res, next) => {
     }
 
 
-    if (!eventManager || !department || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
+    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
       return res.status(422).json({ error: "Please fill all details" });
     }
     // Regular expression to validate full name with at least two words separated by a space
@@ -74,7 +74,7 @@ const createBooking = async (req, res, next) => {
     const booking = new Booking({
 
       userId:user._id,
-      department,
+      department:user.department,
       eventManager,
       eventName,
       eventDate,
@@ -141,11 +141,14 @@ const getBookings = async (req, res, next) => {
 
 
 const getBookingById = async (req, res, next) => {
+  console.log("function called");
+
   try {
-    const { id } = req.params;
-    const booking = await Booking.findById(id).populate('bookedHallId').populate('userId');
+    const { bookingId } = req.params;
+    const booking = await Booking.findById(bookingId).populate('bookedHallId').populate('userId');
+    console.log(booking);
     if (!booking) {
-      return res.status(404).json({ message: 'Booking not found' });
+      return res.status(404).json({ error: 'Booking not found' });
     }
     res.json({ booking });
   } catch (error) {
@@ -155,8 +158,9 @@ const getBookingById = async (req, res, next) => {
 
 const getBookingByUserId = async (req, res, next) => {
   try {
-    const { userId } = req.params;
-    const booking = await Booking.find({ userId: userId }).populate('bookedHallId').populate('userId');
+    // const { userId } = req.params;
+    const userId = req.rootUser._id
+    const booking = await Booking.find({  userId }).populate('bookedHallId').populate('userId');
     // if (!mongoose.Types.ObjectId.isValid(userId)) {
     //   return res.status(400).json({ message: 'Invalid userId' });
     // }
@@ -172,7 +176,7 @@ const getBookingByUserId = async (req, res, next) => {
 
 const getBookingAdmin = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved By Admin", "Rejected By Admin"] } }).populate('bookedHallId');    ;
+    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved By Admin", "Rejected By Admin"] } }).populate('bookedHallId').populate('userId');    ;
 
     
     res.json({ bookings });
@@ -186,7 +190,7 @@ const getBookingHod = async (req, res, next) => {
   const hodDepartment = req.rootUser.department
   console.log(hodDepartment);
   try {
-    const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId');    ;
+    const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId').populate('UserId');    ;
 
     
     res.json({ bookings });
@@ -207,7 +211,8 @@ const updateBooking = async (req, res, next) => {
       eventDate,
       startTime,
       endTime,
-      // email,
+      email,
+
       // bookedHallId,
       // hallId,
       isApproved

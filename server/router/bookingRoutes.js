@@ -10,8 +10,9 @@ router.get('/bookingsAdmin', authenticate, bookingController.getBookingAdmin);
 router.get('/bookingsHod', authenticate, bookingController.getBookingHod);
 
 router.get('/events',  bookingController.getEvents);
+router.get('/bookings/:bookingId',authenticate, bookingController.getBookingById);
 // router.get('/bookings/:id', bookingController.getBookingById);
-router.get('/bookings/:userId',authenticate,  bookingController.getBookingByUserId);
+router.get('/bookingsFaculty',authenticate,  bookingController.getBookingByUserId);
 router.post('/bookings',authenticate, bookingController.createBooking);
 router.put('/bookings/:id',authenticate, bookingController.updateBooking);
 router.delete('/bookings/:bookingId',authenticate, bookingController.deleteBooking);

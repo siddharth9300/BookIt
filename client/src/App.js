@@ -18,7 +18,7 @@ import BookingsHod from "./components/bookings/BookingsHod";
 
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import FacultyDashboard from "./components/dashboard/FacultyDashboard";
-import BookingByUserId from "./components/bookings/BookingsByUserId";
+import BookingFaculty from "./components/bookings/BookingsFaculty";
 import Footer from "./components/Footer";
 import HallsAdmin from "./components/halls/HallsAdmin";
 import { initialState, reducer } from "./reducer/UseReducer";
@@ -35,6 +35,7 @@ import PasswordReset from "./components/auth/PasswordReset";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import VerifySuccess from "./components/auth/VerifySuccess";
 import Unauthorized from "./components/Unauthorized";
+import BookingUpdateFrom from "./components/bookings/BookingUpdateForm"
 export const UserContext = createContext();
 const App = () => {
 
@@ -82,8 +83,10 @@ const App = () => {
           
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={state.userType === "admin" ?<HallsEdit /> : <Unauthorized />} />
+          <Route exact path="/bookings/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
+
           <Route path="/hallForm" element={state.userType === "admin" ?<HallForm /> : <Unauthorized />} />
-          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingByUserId/> : state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingFaculty/> : state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 

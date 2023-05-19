@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema(
-  {
-    userId: {
-      type: String,
-      required: true
-    },
+  { userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'USER',
+    required: true
+  },
     department:{
       type: String,
       required: true
@@ -41,11 +41,7 @@ const bookingSchema = new mongoose.Schema(
       ref: 'Hall',
       required: true
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'USER',
-      required: true
-    },
+   
     bookedHallName: {
       type: String,
       required: true
