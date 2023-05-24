@@ -333,7 +333,7 @@ const BookingsAdmin = () => {
                         filteredBookings.map((booking) => (
                           // <div key={booking._id} className="my-2 ">
 
-                          <tr key={booking._id} className="border-gray-200 border-b-2  ">
+                          <tr key={booking._id} className="border-gray-200 text-center border-b-2  ">
                             <td class="px-5 py-5 font-bold text-m  bg-white  border-gray-200">
                               <p class="text-gray-900 whitespace-no-wrap">
                                 {booking.eventName}
@@ -357,9 +357,20 @@ const BookingsAdmin = () => {
                             </td>
 
                             <td class="px-5 py-5 text-m bg-white  border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap">
-                                {format(new Date(booking.eventDate), "EEEE dd-MM-yyyy")}
-                              </p>
+                            {booking.eventDateType === "multiple" ? 
+                            <p class="text-gray-900 whitespace-no-wrap ">
+                              {format(new Date(booking.eventStartDate), "EEEE dd-MM-yyyy")}
+                              <br/>To<br/>
+                              {format(new Date(booking.eventEndDate), "EEEE dd-MM-yyyy")}
+
+                            </p>
+
+                            :
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              {format(new Date(booking.eventDate), "EEEE dd-MM-yyyy")}
+                            </p>
+
+                            }
                             </td>
 
 
