@@ -121,7 +121,7 @@ const BookingForm = () => {
 
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`,
+        `${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`,
         {
           userId,
           // department,
@@ -189,7 +189,7 @@ const BookingForm = () => {
             Update Booking
           </p>
           <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-          Update Your <span className="text-indigo-600">Booking </span>
+          Update <span className="text-indigo-600">Booking </span>
           </h3>
         </div>
 

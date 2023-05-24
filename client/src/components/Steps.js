@@ -25,7 +25,7 @@ export const RequestSent = () => {
         </div>
       </div>
 
-      <div className="text-xs text-center md:text-base">Request Sent</div>
+      <div className="text-s font-semibold text-center md:text-base">Request Sent</div>
     </div>
 
     
@@ -48,7 +48,7 @@ export const RequestSent = () => {
         </div>
       </div>
 
-      <div className="text-xs text-center md:text-base">Forwarded By HOD</div>
+      <div className="text-s font-semibold text-center md:text-base">Forwarded By HOD</div>
     </div>
 
     
@@ -71,7 +71,7 @@ export const RequestSent = () => {
           </span>
         </div>
       </div>
-      <div className="text-xs text-center md:text-base">Approved By Admin</div>
+      <div className="text-s font-semibold text-center md:text-base">Approved By Admin</div>
     </div>
   </div>
 </div>
@@ -99,7 +99,7 @@ export const ApprovedByHod = () => {
         </div>
       </div>
 
-      <div className="text-xs text-center md:text-base">Request Sent</div>
+      <div className="text-s font-semibold text-center md:text-base">Request Sent</div>
     </div>
 
     
@@ -121,7 +121,7 @@ export const ApprovedByHod = () => {
         </div>
       </div>
 
-      <div className="text-xs text-center md:text-base">Approved By HOD</div>
+      <div className="text-s font-semibold text-center md:text-base">Approved By HOD</div>
     </div>
 
     
@@ -146,7 +146,7 @@ export const ApprovedByHod = () => {
           </span>
         </div>
       </div>
-      <div className="text-xs text-center md:text-base">Approved By Admin</div>
+      <div className="text-s font-semibold text-center md:text-base">Approved By Admin</div>
     </div>
   </div>
 </div>
@@ -177,7 +177,7 @@ export const ApprovedByAdmin = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Request Sent</div>
+      <div class="text-s font-semibold text-center md:text-base">Request Sent</div>
     </div>
 
     
@@ -196,7 +196,7 @@ export const ApprovedByAdmin = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Approved By HOD</div>
+      <div class="text-s font-semibold text-center md:text-base">Approved By HOD</div>
     </div>
 
     
@@ -218,7 +218,7 @@ export const ApprovedByAdmin = () => {
           </span>
         </div>
       </div>
-      <div class="text-xs text-center md:text-base">Approved By Admin</div>
+      <div class="text-s font-semibold text-center md:text-base">Approved By Admin</div>
     </div>
   </div>
 </div>
@@ -252,7 +252,7 @@ export const RejectedByHod = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Request Sent</div>
+      <div class="text-s font-semibold text-center md:text-base">Request Sent</div>
     </div>
 
     
@@ -274,7 +274,7 @@ export const RejectedByHod = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Rejected By HOD</div>
+      <div class="text-s font-semibold text-center md:text-base">Rejected By HOD</div>
     </div>
 
     
@@ -296,7 +296,7 @@ export const RejectedByHod = () => {
           </span>
         </div>
       </div>
-      <div class="text-xs text-center md:text-base">Approved By Admin</div>
+      <div class="text-s font-semibold text-center md:text-base">Approved By Admin</div>
     </div>
   </div>
 </div>
@@ -330,7 +330,7 @@ export const RejectedByAdmin = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Request Sent</div>
+      <div class="text-s font-semibold text-center md:text-base">Request Sent</div>
     </div>
 
     
@@ -349,7 +349,7 @@ export const RejectedByAdmin = () => {
         </div>
       </div>
 
-      <div class="text-xs text-center md:text-base">Forwarded By HOD</div>
+      <div class="text-s font-semibold text-center md:text-base">Forwarded By HOD</div>
     </div>
 
     
@@ -370,7 +370,7 @@ export const RejectedByAdmin = () => {
           </span>
         </div>
       </div>
-      <div class="text-xs text-center md:text-base">Rejected By Admin</div>
+      <div class="text-s font-semibold text-center md:text-base">Rejected By Admin</div>
     </div>
   </div>
 </div>

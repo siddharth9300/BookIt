@@ -10,17 +10,20 @@ const HodDashboard = () => {
         HOD  <span className="text-indigo-700">Dashboard</span> </h1>
 
 
+        <div className=''>
+          <BookingsHod/>
+          {/* <Index/> */}
+        </div>
 
-
-
+{/* 
       <div className='mt-6 grid grid-flow-col col-auto	'>
         <div className='  '>
           <BookingsHod />
         </div>
         <div className=''>
           <Events />
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
     </>
   )

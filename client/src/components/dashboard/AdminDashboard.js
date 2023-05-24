@@ -2,8 +2,8 @@ import React from 'react'
 import BookingsAdmin from '../bookings/BookingsAdmin'
 // import BookingsHod from '../bookings/BookingsHod'
 
-import Events from '../bookings/Events'
-import Index from '../bookings/Table'
+// import Events from '../bookings/Events'
+// import Index from '../bookings/Table'
 
 const AdminDashboard = () => {
   return (
@@ -13,12 +13,12 @@ const AdminDashboard = () => {
         Admin  <span className="text-indigo-700">Dashboard</span> </h1>
 
 
-        {/* <div className=''>
+        <div className=''>
           <BookingsAdmin/>
-          <Index/>
-        </div> */}
+          {/* <Index/> */}
+        </div>
 
-
+{/* 
       <div className='mt-6 grid grid-flow-col col-auto	'>
         <div className=''>
           <BookingsAdmin/>
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
         <div className=''>
           <Events />
         </div>
-      </div>
+      </div> */}
     </div>
     </>
   )

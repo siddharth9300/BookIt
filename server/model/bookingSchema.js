@@ -6,6 +6,10 @@ const bookingSchema = new mongoose.Schema(
     ref: 'USER',
     required: true
   },
+  institution:{
+    type: String,
+    required: true
+  },
     department:{
       type: String,
       required: true
@@ -20,16 +24,24 @@ const bookingSchema = new mongoose.Schema(
     },
     eventDate: {
       type: Date,
-      required: true,
   
     },
+    eventDateType: {
+      type: String,
+      required: true
+    },
+    eventStartDate: {
+      type: Date,
+    },
+    eventEndDate: {
+      type: Date,
+    },
+
     startTime: {
       type: Date,
-      required: true
     },
     endTime: {
       type: Date,
-      required: true
     },
     email: {
       type: String,

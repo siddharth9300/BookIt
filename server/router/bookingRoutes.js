@@ -14,7 +14,7 @@ router.get('/bookings/:bookingId',authenticate, bookingController.getBookingById
 // router.get('/bookings/:id', bookingController.getBookingById);
 router.get('/bookingsFaculty',authenticate,  bookingController.getBookingByUserId);
 router.post('/bookings',authenticate, bookingController.createBooking);
-router.put('/bookings/:id',authenticate, bookingController.updateBooking);
+router.put('/bookingsEdit/:bookingId',authenticate, bookingController.updateBooking);
 router.delete('/bookings/:bookingId',authenticate, bookingController.deleteBooking);
 
 module.exports = router;

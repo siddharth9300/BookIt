@@ -6,10 +6,12 @@ const createBooking = async (req, res, next) => {
   try {
     const {
       userId,
-      department,
       eventManager,
       eventName,
+      eventDateType,
       eventDate,
+      eventStartDate,
+      eventEndDate,
       startTime,
       endTime,
       email,
@@ -33,8 +35,32 @@ const createBooking = async (req, res, next) => {
     }
 
 
-    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub || !eventDate || !startTime || !endTime) {
+    if (eventDateType === "full") {
+      if (!eventDate ) {
+        return res.status(422).json({ error: "Please fill all details" });
+      }
+    }else if(eventDateType === "half") {
+      if (!startTime || !endTime || !eventDate ) {
+        return res.status(422).json({ error: "Please fill all details" });
+      }
+    }else if(eventDateType === "multiple") {
+      if (!eventStartDate || !eventStartDate ) {
+        return res.status(422).json({ error: "Please fill all details" });
+      }else{
+
+        // Check if eventStartDate is before eventEndDate
+        const eventStartDateTime = new Date(eventStartDate);
+        const eventEndDateTime = new Date(eventEndDate);
+        
+        if (eventEndDateTime <= eventStartDateTime) {
+          return res.status(422).json({ error: 'Event end date should be after event start date' });
+        }
+      }
+    }
+
+    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub ) {
       return res.status(422).json({ error: "Please fill all details" });
+
     }
     // Regular expression to validate full name with at least two words separated by a space
 
@@ -44,7 +70,8 @@ const createBooking = async (req, res, next) => {
       return res.status(422).json({ error: "Please enter your full Event Manager name" });
     }
 
-
+   
+      
 
     // Phone validation
     if (phoneNumber.length !== 10) {
@@ -54,14 +81,7 @@ const createBooking = async (req, res, next) => {
     if (altNumber.length !== 10) {
       return res.status(422).json({ error: "Please enter a valid 10-digit alternate number" });
     }
-    // const now = new Date();
-    // const bookingDate = new Date(eventDate);
 
-    // if (bookingDate <= now) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "Event date must be in the future" });
-    // }
    // Validate start and end time
    const startDateTime = new Date(`2000-01-01T${startTime}:00Z`);
    const endDateTime = new Date(`2000-01-01T${endTime}:00Z`);
@@ -71,13 +91,20 @@ const createBooking = async (req, res, next) => {
      return res.status(422).json({ error: 'End time should be after start time' });
     }
 
+ 
+    
+
     const booking = new Booking({
 
       userId:user._id,
+      institution:user.institution,
       department:user.department,
       eventManager,
       eventName,
+      eventDateType,
       eventDate,
+      eventStartDate,
+      eventEndDate,
       startTime,
       endTime,
       email,
@@ -190,7 +217,7 @@ const getBookingHod = async (req, res, next) => {
   const hodDepartment = req.rootUser.department
   console.log(hodDepartment);
   try {
-    const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId').populate('UserId');    ;
+    const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId');
 
     
     res.json({ bookings });
@@ -204,14 +231,14 @@ const getBookingHod = async (req, res, next) => {
 
 const updateBooking = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { bookingId } = req.params;
 
     const {
       eventName,
       eventDate,
       startTime,
       endTime,
-      email,
+      // email,
 
       // bookedHallId,
       // hallId,
@@ -224,7 +251,7 @@ const updateBooking = async (req, res, next) => {
     // }
 
     const booking = await Booking.findByIdAndUpdate(
-      id,
+      bookingId,
       {
         eventName, eventDate, startTime, endTime,
 

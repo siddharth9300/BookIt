@@ -20,7 +20,10 @@ const BookingForm = () => {
       eventManager: "",
       // department:"",
       eventName: "",
+      eventDateType:"",
       eventDate: "",
+      eventStartDate:"",
+      eventEndDate:"",
       startTime: "",
       endTime: "",
       email: "",
@@ -106,7 +109,10 @@ const BookingForm = () => {
       userId,
       // department,
       eventName,
+      eventDateType,
       eventDate,
+      eventStartDate,
+      eventEndDate,
       startTime,
       endTime,
       email,
@@ -127,6 +133,9 @@ const BookingForm = () => {
           eventManager,
           eventName,
           eventDate,
+          eventDateType,
+          eventStartDate,
+          eventEndDate,
           startTime:parseISO(`2000-01-01T${startTime}:00.000Z`),
           endTime:parseISO(`2000-01-01T${endTime}:00.000Z`),
           email,
@@ -283,7 +292,79 @@ const BookingForm = () => {
             </div>
 
 
-            <div className="w-full md:w-1/2 px-3">
+
+
+
+
+
+                <div className="w-full md:w-1/2 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-event-date-type"
+              >
+                Event Date Type
+              </label>
+              
+
+              <select
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="eventDateType"
+                      name="eventDateType"
+                      value={bookingData.eventDateType}
+                      onChange={handleInputs}>
+                      <option value="">Select</option>
+                      <option value="half">Half Day</option>
+                      <option value="full">Full Day</option>
+                      <option value="multiple">Miltiple Days</option>
+                    </select>
+
+
+              {/* <input
+                value={bookingData.eventDate}
+                name="eventDate"
+                onChange={handleInputs}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-event-date"
+                type="date"
+                placeholder="Event Date"
+                min={new Date().toISOString().split("T")[0]}
+
+              /> */}
+            </div>
+
+            {/* <div className="w-full md:w-1/2 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-event-date"
+              >
+                Event Date
+              </label>
+              <input
+                value={bookingData.eventDate}
+                name="eventDate"
+                onChange={handleInputs}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-event-date"
+                type="date"
+                placeholder="Event Date"
+                min={new Date().toISOString().split("T")[0]}
+
+              />
+            </div> */}
+          </div>
+
+
+
+
+{/* 
+{bookingData.eventDateType === "full" && (
+
+
+
+          <div className="flex flex-wrap -mx-3 mb-6">
+
+
+              <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-event-date"
@@ -302,75 +383,100 @@ const BookingForm = () => {
 
               />
             </div>
+  
           </div>
 
 
 
+                )
+                } */}
 
 
-          <div className="flex flex-wrap -mx-3 mb-6">
+{bookingData.eventDateType === "multiple" && (
 
 
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+
+<div className="flex flex-wrap -mx-3 mb-6">
+
+<div className="w-full md:w-1/2 px-3">
               <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-start-time"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-event-date"
               >
-                Start Time
+                Event Start Date
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-start-time"
-                type="time"
-                value={bookingData.startTime}
-                name="startTime"
+                value={bookingData.eventStartDate}
+                name="eventStartDate"
                 onChange={handleInputs}
-                placeholder="Start Time"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-event-date"
+                type="date"
+                placeholder="Event Date"
+                min={new Date().toISOString().split("T")[0]}
+
               />
-              {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-end-time"
+                for="grid-event-start-date"
               >
-                End Time
+                Event End Date
               </label>
               <input
-                value={bookingData.endTime}
-                name="endTime"
+                value={bookingData.eventEndDate}
+                name="eventEndDate"
                 onChange={handleInputs}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-end-time"
-                type="time"
-                placeholder="End Time"
+                id="grid-event-end-date"
+                type="date"
+                placeholder="Event Date"
+                min={new Date().toISOString().split("T")[0]}
+
               />
             </div>
-          </div>
+</div>
+
+
+
+      )
+      }
 
 
 
           <div className="flex flex-wrap -mx-3 mb-6">
 
+          {(bookingData.eventDateType === "full" || bookingData.eventDateType === "half") &&(
 
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-department"
-              >
-                Department
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-department"
-                type="text"
-                // value={bookingData.department}
-                name="department"
-                // onChange={handleInputs}
-                placeholder="Department"
-                
-              />
-            </div>
+
+
+
+    <div className="w-full md:w-1/2 px-3">
+    <label
+      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+      for="grid-event-date"
+    >
+      Event Date
+    </label>
+    <input
+      value={bookingData.eventDate}
+      name="eventDate"
+      onChange={handleInputs}
+      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      id="grid-event-date"
+      type="date"
+      placeholder="Event Date"
+      min={new Date().toISOString().split("T")[0]}
+
+    />
+  </div>
+
+
+
+
+      )
+      }
 
 
             <div className="w-full md:w-1/2 px-3">
@@ -394,6 +500,56 @@ const BookingForm = () => {
           </div>
 
 
+
+
+          {bookingData.eventDateType === "half" && (
+
+
+
+    <div className="flex flex-wrap -mx-3 mb-6">
+
+
+      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <label
+          className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
+          for="grid-start-time"
+        >
+          Start Time
+        </label>
+        <input
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-start-time"
+          type="time"
+          value={bookingData.startTime}
+          name="startTime"
+          onChange={handleInputs}
+          placeholder="Start Time"
+          />
+        {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
+      </div>
+      <div className="w-full md:w-1/2 px-3">
+        <label
+          className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          for="grid-end-time"
+        >
+          End Time
+        </label>
+        <input
+          value={bookingData.endTime}
+          name="endTime"
+          onChange={handleInputs}
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-end-time"
+          type="time"
+          placeholder="End Time"
+        />
+      </div>
+    </div>
+
+
+
+      )
+      }
 
           <div className="flex flex-wrap -mx-3 mb-6">
 
