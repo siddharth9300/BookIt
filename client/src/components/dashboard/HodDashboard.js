@@ -1,6 +1,6 @@
 import React from 'react'
 import BookingsHod from '../bookings/BookingsHod'
-import Events from '../bookings/Events'
+// import Events from '../bookings/Events'
 
 const HodDashboard = () => {
   return (

@@ -40,6 +40,7 @@ const BookingsView = (props) => {
 
   useEffect(() => {
     getbookingById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

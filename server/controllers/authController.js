@@ -47,7 +47,13 @@ const register = async (req, res,next) => {
     if (!emailRegex.test(email)) {
       return res.status(422).json({ error: "Please enter a valid email address" });
     }
-  
+    
+    const acropolisEmailRegex = /@acropolis\.in$/;
+    const acropolisEduEmailRegex = /@acropolis\.in$/;
+
+    if (!acropolisEmailRegex.test(email) || !acropolisEduEmailRegex.test(email) ) {
+      return res.status(422).json({ error: "Please enter a email address associated with Acropolis Institute" });
+    }
     // Phone validation
     if (phone.length !== 10) {
       return res.status(422).json({ error: "Please enter a valid 10-digit phone number" });

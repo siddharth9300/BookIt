@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import { format } from "date-fns"
 // import BookingForm from "./BookingForm";
 // eslint-disable-next-line no-unused-vars
-import { ApprovedByAdmin, ApprovedByHod, RejectedByAdmin } from "../Steps"
+// import { ApprovedByAdmin, ApprovedByHod, RejectedByAdmin } from "../Steps"
 // eslint-disable-next-line no-unused-vars
-import Index from "./Table";
+// import Index from "./Table";
 const BookingsAdmin = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});

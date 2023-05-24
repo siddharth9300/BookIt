@@ -3,9 +3,9 @@ import { useNavigate ,Link} from "react-router-dom"
 import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 import { toast } from "react-toastify";
-import { format, parseISO } from "date-fns"
+import { format } from "date-fns"
 // import BookingForm from "./BookingForm";
-import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
+// import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod} from "../Steps"
 const BookingsHod = () => {
   const navigate = useNavigate();
   const [bookingData, setBookingData] = useState({});
@@ -154,44 +154,6 @@ const BookingsHod = () => {
     }
   };
 
-  const deleteBooking = async (bookingId) => {
-    // e.preventDefault();
-
-
-    try {
-      const response = await axios.delete (`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`,
-
-        {
-          withCredentials: true, // To include credentials in the request
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = response.data;
-
-      if (!data) {
-        toast.error("Request not send!")
-        // console.log("Message not send");
-      } else {
-        getBookingData();
-        toast.success("Request send Successfull!")
-        // alert("Message send");
-        navigate("/")
-        // setBookingData({ ...bookingData });
-      }
-    } catch (error) {
-      if (error.response.status === 422 && error.response) {
-        const data = error.response.data;
-        console.log(data.error);
-        // window.alert(data.error);
-      } else {
-        console.error(error);
-      }
-      // console.log(error);
-    }
-  };
   const handleFilter = (value) => {
     setFilterValue(value);
   };
