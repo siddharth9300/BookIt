@@ -117,7 +117,7 @@ const Halls = () => {
                       {/* <p className="mt-4 text-zinc-500">I am a Front End Developer and UI/UX Designer</p> */}
                     </div>
 
-                    <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
+                    {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                       <div>
                         <p className="font-bold text-zinc-700">Hall Id</p>
                       </div>
@@ -125,7 +125,7 @@ const Halls = () => {
                       <div>
                         <p className="text-m font-semibold text-zinc-700">{hall._id}</p>
                       </div>
-                    </div>
+                    </div> */}
 
 
                     {/* <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">

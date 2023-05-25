@@ -1,12 +1,14 @@
-import  { useEffect, useContext } from 'react'
+import  { useEffect, useContext,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from './../../App'
 import { toast } from "react-toastify";
 import axios from "axios";
+import LoadingSpinner from "../LoadingSpinner";
+  
 
 const Logout = () => {
   const { dispatch } = useContext(UserContext)
-
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
 const userId = localStorage.getItem("userId")
@@ -31,6 +33,7 @@ const userId = localStorage.getItem("userId")
           localStorage.removeItem("userId");
           localStorage.removeItem("jwtoken");
           // Show success message
+          setIsLoading(false)
           toast.success("Logout Successful", {
             toastId: 'logout',
         })
@@ -49,7 +52,11 @@ const userId = localStorage.getItem("userId")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return (null);
+  return (<>
+     {isLoading ? <LoadingSpinner /> : null}
+
+  </>
+  )
 }
 
 export default Logout;

@@ -125,6 +125,9 @@ const BookingForm = () => {
       altNumber,isApproved } = bookingData;
 
     try {
+      
+     
+      
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/bookings`,
         {
@@ -140,7 +143,6 @@ const BookingForm = () => {
           endTime:parseISO(`2000-01-01T${endTime}:00.000Z`),
           email,
           userType,
-         
           bookedHallId,
           bookedHallName,
           organizingClub,
@@ -157,16 +159,39 @@ const BookingForm = () => {
       );
 
       const data = response.data;
-
+      
       if (!data) {
         toast.error("Request not send!")
         // console.log("Message not send");
       } else {
+
+        setBookingData({userId:"",
+        eventManager: "",
+        // department:"",
+        eventName: "",
+        eventDateType:"",
+        eventDate: "",
+        eventStartDate:"",
+        eventEndDate:"",
+        startTime: "",
+        endTime: "",
+        email: "",
+        userType:"",
+        bookedHallId: "",
+        bookedHallName: "",
+        organizingClub: "",
+        phoneNumber: "",
+        altNumber: "",  
+        isApproved:""
+  
+  
+      })
         toast.success("Request send Successfull!")
         // alert("Message send");
         navigate("/bookings")
         // setBookingData({ ...bookingData });
       }
+    
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
@@ -179,6 +204,8 @@ const BookingForm = () => {
       // console.log(error);
     }
   };
+
+
 
   return (
     <>
@@ -452,25 +479,25 @@ const BookingForm = () => {
 
 
 
-    <div className="w-full md:w-1/2 px-3">
-    <label
-      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-      for="grid-event-date"
-    >
-      Event Date
-    </label>
-    <input
-      value={bookingData.eventDate}
-      name="eventDate"
-      onChange={handleInputs}
-      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-      id="grid-event-date"
-      type="date"
-      placeholder="Event Date"
-      min={new Date().toISOString().split("T")[0]}
+                <div className="w-full md:w-1/2 px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-event-date"
+                >
+                  Event Date
+                </label>
+                <input
+                  value={bookingData.eventDate}
+                  name="eventDate"
+                  onChange={handleInputs}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-event-date"
+                  type="date"
+                  placeholder="Event Date"
+                  min={new Date().toISOString().split("T")[0]}
 
-    />
-  </div>
+                />
+              </div>
 
 
 
@@ -635,15 +662,16 @@ const BookingForm = () => {
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               ></textarea>
             </div> */}
-
             <div className="flex justify-between w-full px-3">
-              <button
-                onClick={bookingForm}
-                className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
-                type="submit"
-              >
-                Send Request
-              </button>
+      
+                <button
+                  onClick={bookingForm}
+                  className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
+                  type="submit"
+                >
+                  Send Request
+                </button>
+               
             </div>
           </div>
         </form>

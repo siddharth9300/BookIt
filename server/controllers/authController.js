@@ -51,7 +51,7 @@ const register = async (req, res,next) => {
     const acropolisEmailRegex = /@acropolis\.in$/;
     const acropolisEduEmailRegex = /@acropolis\.edu\.in$/;
 
-    if (!acropolisEmailRegex.test(email) || !acropolisEduEmailRegex.test(email) ) {
+    if (!acropolisEmailRegex.test(email) && !acropolisEduEmailRegex.test(email) ) {
       return res.status(422).json({ error: "Please enter a email address associated with Acropolis Institute" });
     }
     // Phone validation

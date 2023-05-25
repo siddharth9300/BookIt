@@ -91,7 +91,7 @@ const Events = () => {
   return (
     <>
 
-      <div className="mt-6">
+      <div className="mt-6 min-h-screen">
         <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
           Upcomming<span className="text-indigo-700"> Events</span>  </h1>{isLoading ? (
             <LoadingSpinner />

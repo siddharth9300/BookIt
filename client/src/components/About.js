@@ -50,7 +50,7 @@ const About = () => {
       const data = response.data
       if (data) {
         setIsLoading(false)
-        toast.success("Email Sent Successfull")
+        toast.success("Email Sent To Admin Successfull")
       }
     } catch (error) {
       if (error.response.status === 400 && error.response) {
@@ -100,16 +100,18 @@ const About = () => {
               <div className="col-span-1 lg:col-span-9">
                 <div className="text-center lg:text-left">
                   <h2 className="text-2xl font-bold text-zinc-700">{userData.name}</h2>
-                  <p className="mt-2 text-l font-semibold text-zinc-700">{userData.userType}</p>
+                  <p className="mt-2 text-l font-semibold text-zinc-700">  {userData.userType === 'hod' ? `Head of ${userData.department} Department` : 
+   userData.userType === 'faculty' ? `Faculty of ${userData.department} Department` : 
+   userData.userType === 'admin' ? 'Admin' : ''}</p>
                 </div>
-                <div className="mt-6 grid grid-cols-3 gap-8 text-center items-center lg:text-left">
+                {/* <div className="mt-6 grid grid-cols-3 gap-8 text-center items-center lg:text-left">
                   <div>
                     <p className="font-bold text-zinc-700">User Id</p>
                   </div>
                   <div>
                     <p className="text-m font-semibold text-zinc-700">{userData._id}</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="mt-6 grid grid-cols-3 gap-8 text-center items-center lg:text-left">
                   <div>
                     <p className="font-bold text-zinc-700">Email</p>
