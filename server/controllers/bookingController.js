@@ -177,6 +177,7 @@ const getBookingById = async (req, res, next) => {
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found' });
     }
+    
     res.json({ booking });
   } catch (error) {
     next(error);

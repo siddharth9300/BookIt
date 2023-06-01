@@ -10,7 +10,7 @@ const BookingForm = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
   const { bookingId } = useParams();
-  console.log(bookingId);
+  //consolelog(bookingId);
   const [isLoading, setIsLoading] = useState(true);
   // const { hallId, hallName } = props.location.state;
   const [bookingData, setBookingData] = useState(
@@ -47,7 +47,7 @@ const BookingForm = () => {
       });
 
       const data = response.data.booking;
-      console.log(data);
+      //consolelog(data);
 
       // setBookingData(data)
       setBookingData({
@@ -76,7 +76,7 @@ const BookingForm = () => {
       // }
     } catch (error) {
      
-      console.log(error);
+      //consolelog(error);
       
       // navigate("/login");
     }
@@ -96,7 +96,7 @@ const BookingForm = () => {
     setBookingData({ ...bookingData, [name]: value });
   };
 
-  console.log(bookingData);
+  //consolelog(bookingData);
 
   // send to backend
 
@@ -152,7 +152,7 @@ const BookingForm = () => {
 
       if (!data) {
         toast.error("Request not send!")
-        // console.log("Message not send");
+        // //consolelog("Message not send");
       } else {
         toast.success("Request send Successfull!")
         // alert("Message send");
@@ -163,12 +163,12 @@ const BookingForm = () => {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
         setAuthStatus(data.error);
-        console.log(data.error);
+        //consolelog(data.error);
         // window.alert(data.error);
       } else {
-        console.error(error);
+        //consoleerror(error);
       }
-      // console.log(error);
+      // //consolelog(error);
     }
   };
 

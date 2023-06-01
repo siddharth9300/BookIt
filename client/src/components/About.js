@@ -55,9 +55,9 @@ const About = () => {
     } catch (error) {
       if (error.response.status === 400 && error.response) {
         const data = error.response.data;
-        console.log(data.error)
+        //consolelog(data.error)
       } else {
-        console.log(error.response.data)
+        //consolelog(error.response.data)
       }
     }
   };
@@ -71,7 +71,7 @@ const About = () => {
         }
       });
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
       setUserData(data);
       setIsLoading(false);
       if (response.status !== 200) {

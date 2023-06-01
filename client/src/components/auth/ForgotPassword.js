@@ -14,7 +14,7 @@ const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [authStatus, setAuthStatus] = useState("");
   const { id, token } = useParams();
-  // console.log(email);
+  // //consolelog(email);
 
 
 
@@ -29,18 +29,9 @@ const ForgotPassword = () => {
       },
     });
 
-    const data = response.data
+    // const data = response.data
 
 
-
-
-    if (data.status === 201) {
-      console.log("user Valid");
-
-    }  else {
-      console.log("user inValid");
-      // navigate("/")
-    }
 
 
 
@@ -55,17 +46,17 @@ const ForgotPassword = () => {
           toastId: 'Unauthrized'
       })
         navigate("/passwordReset")
-        // console.log(data.error)
+        // //consolelog(data.error)
         // window.alert(data.error);
       }
       //  else {
       //   setAuthStatus("Something Went Worng")
-      //   console.log(error)
+      //   //consolelog(error)
 
       // }
 
       }
-    // console.log(error);  
+    // //consolelog(error);  
   }
 
 
@@ -96,17 +87,17 @@ setIsLoading(true)
 
       const data = response.data;
 
-      console.log(data);
+      //consolelog(data);
 
       if (data.status === 201) {
         setIsLoading(false)
 
         toast.success("Password Changed Successfully!")
         navigate("/login")
-        console.log("user Valid");
+        //consolelog("user Valid");
   
       }  else {
-        console.log("user inValid");
+        //consolelog("user inValid");
         // navigate("/")
       }
 
@@ -121,19 +112,19 @@ setIsLoading(true)
       if (error.response.status === 401 && error.response) {
         const data = error.response.data;
         setAuthStatus(data.error)
-        console.log(data.error)
+        //consolelog(data.error)
         // window.alert(data.error);
       }else if (error.response.status === 422 && error.response) {
         const data = error.response.data;
         setAuthStatus(data.error);
-        console.log(data.error);
+        //consolelog(data.error);
         // window.alert(data.error);
       } else {
         setAuthStatus("Something Went Worng")
-        console.log(error)
+        //consolelog(error)
 
       }
-      // console.log(error);  
+      // //consolelog(error);  
     }
   };
 

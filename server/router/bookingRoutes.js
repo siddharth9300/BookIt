@@ -10,7 +10,7 @@ router.get('/bookingsAdmin', authenticate, bookingController.getBookingAdmin);
 router.get('/bookingsHod', authenticate, bookingController.getBookingHod);
 
 router.get('/events',  bookingController.getEvents);
-router.get('/bookings/:bookingId',authenticate, bookingController.getBookingById);
+router.get('/bookingsView/:bookingId',authenticate, bookingController.getBookingById);
 // router.get('/bookings/:id', bookingController.getBookingById);
 router.get('/bookingsFaculty',authenticate,  bookingController.getBookingByUserId);
 router.post('/bookings',authenticate, bookingController.createBooking);

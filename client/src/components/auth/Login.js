@@ -78,8 +78,8 @@ const Login = () => {
       
       const data = response.data;
       
-      console.log(data.userLogin);
-      console.log(data.token);
+      //consolelog(data.userLogin);
+      //consolelog(data.token);
 
       // sessionStorage.setItem("jwtoken", data.token);
       // document.cookie = `jwtoken=${data.token}; expires=${new Date(Date.now() + 9000000)}; path=/`;
@@ -116,14 +116,14 @@ const Login = () => {
         const data = error.response.data;
         setIsLoading(false);
         setAuthStatus(data.error)
-        console.log(data.error)
+        //consolelog(data.error)
         // window.alert(data.error);
       } else {
         setAuthStatus("Something Went Worng")
-        console.log(error)
+        //consolelog(error)
 
       }
-      // console.log(error);  
+      // //consolelog(error);  
     }
   };
 

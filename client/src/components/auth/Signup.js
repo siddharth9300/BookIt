@@ -26,14 +26,15 @@ const Signup = () => {
   });
 
 
+
   let name, value;
   const handleInputs = (e) => {
-    // console.log(e);
+    // //consolelog(e);
     name = e.target.name;
     value = e.target.value;
 
     setUser({ ...user, [name]: value });
-    console.log(user);
+    //consolelog(user);
   };
 
 
@@ -75,7 +76,7 @@ const Signup = () => {
 
 
       // if (response.status === 422 || !data) {
-      //   console.log(data.error)
+      //   //consolelog(data.error)
       //   window.alert(data.error);
       // } else {
       setIsLoading(false);
@@ -89,10 +90,10 @@ const Signup = () => {
         setIsLoading(false);
         const data = error.response.data;
         setAuthStatus(data.error);
-        console.log(data.error);
+        //consolelog(data.error);
         // window.alert(data.error);
       } else {
-        console.error(error);
+        //consoleerror(error);
       }
     }
   };
@@ -117,7 +118,7 @@ const Signup = () => {
 
   //     const data = response.data;
 
-  //     console.log(data);
+  //     //consolelog(data);
 
   //     if (response.status === 422) {
 
@@ -126,14 +127,14 @@ const Signup = () => {
 
   //     else {
 
-  //       console.log("logged in at time",new Date())
+  //       //consolelog("logged in at time",new Date())
 
   //       navigate("/login");
 
   //     }
   //   }
   //    catch (error) {
-  //     console.log(error);
+  //     //consolelog(error);
 
   //     alert("something is wrong");
   //   }
@@ -221,7 +222,12 @@ const Signup = () => {
 
                 <option value="faculty">Faculty</option>
                 <option value="hod">HOD</option>
+
+                {process.env.REACT_APP_ADMIN_SIGN_UP === "true" &&
+                
                 <option value="admin">Admin</option>
+                
+                }
               </select>
 
             </div>

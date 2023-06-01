@@ -8,20 +8,22 @@ import { parseISO, format } from 'date-fns';
 import { UserContext } from "../../App";
 
 import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod } from "../Steps"
-const BookingsView = (props) => {
+const BookingsView = () => {
   const navigate = useNavigate();
   const { bookingId } = useParams();
-  console.log(bookingId);
+  //consolelog(bookingId);
   const [isLoading, setIsLoading] = useState(true);
-  const [bookingData, setBookingData] = useState(
-    {
-    });
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState("");
+  const [bookingData, setBookingData] = useState({});
+    
     const { state } = useContext(UserContext)
 
-    console.log(state.userType);
+    //consolelog(state.userType);
+
   const getbookingById = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bookingsView/${bookingId}`, {
         withCredentials: true,
         headers: {
           Accept: "application/json",
@@ -29,27 +31,26 @@ const BookingsView = (props) => {
         },
       });
       const data = response.data.booking;
-      console.log(data);
+      //consolelog(data);
       setBookingData(data);
       setIsLoading(false);
+      //consolelog("booking wveie ")
     } catch (error) {
-      console.log(error);
+      navigate("/")  
+      //consoleerror(error);
+      
     }
   };
 
 
-  useEffect(() => {
-    getbookingById();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
 
-  console.log(bookingData);
+  //consolelog(bookingData);
 
 
   const updateBooking = async (bookingId, isApproved) => {
     setIsLoading(true);
-    console.log(isApproved);
+    //consolelog(isApproved);
     try {
       const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`, {
         isApproved: isApproved
@@ -61,47 +62,68 @@ const BookingsView = (props) => {
         }
       });
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
       getbookingById();
       toast.success(`Request ${isApproved} Successfull!`)
       if (response.status !== 200) {
         throw new Error(response.error);
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
     }
   };
 
 
-  const deleteBooking = async (bookingId) => {
-    try {
-      const response = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = response.data;
-      if (!data) {
-        toast.error("Request not send!")
-      } else {
-        toast.success("Request send Successfull!")
-        navigate("/")
-      }
-    } catch (error) {
-      if (error.response.status === 404 && error.response) {
-        const data = error.response.data;
-        console.log(data.error);
-      } else {
-        console.error(error);
-      }
-    }
-  };
+  // const deleteBooking = async (bookingId) => {
+  //   try {
+  //     const response = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/bookings/${bookingId}`,
+  //       {
+  //         withCredentials: true,
+  //         headers: {
+  //           // Accept: "application/json",
+  //           "Content-Type": "application/json"
+  //         },
+  //       }
+  //     );
+  //     const data = response.data;
+  //     if (data) {
+  //       navigate("/")
+  //       toast.success("Booking Deleted Successfull!")
+  //     } else {
+  //       toast.error("Request not send!")
+  //       // setShowModal(false);
+  //       // setSelectedBookingId("");
+  //     }
+  //   } catch (error) {
+  //     if (error.response.status === 404 && error.response) {
+  //       const data = error.response.data;
+  //       //consolelog(data.error);
+  //     } else {
+  //       navigate("/")  
+  //       //consoleerror(error);
+  //     }
+  //   }
+  // };
+
   const handleEditClick = (bookingId) => {
     navigate(`/bookingsEdit/${bookingId}`)
   };
+
+
+  // const handleDeleteModal = (bookingId) => {
+  //   setSelectedBookingId(bookingId);
+  //   setShowModal(true);
+  // };
+  // const handleDeleteBooking = () => {
+  //   deleteBooking(selectedBookingId);
+  // };
+
+
+  useEffect(() => {
+    getbookingById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       {isLoading ? (
@@ -398,7 +420,7 @@ const BookingsView = (props) => {
                 )}
                 
               </div>
-              <div class="px-5 py-5 text-l flex font-bold  bg-white justify-between border-gray-200">
+              <div className="px-5 py-5 text-l flex font-bold  bg-white justify-between border-gray-200">
                 {/* <button onClick={() => handleViewClick(bookingData._id)} className="text-m font-semibold ml-5 leading-none text-gray-600 py-3 px-5 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none">View</button> */}
                 {/* <button onClick={() => handleEditClick(bookingData._id)}
                   className="   leading-none text-gray-600 py-3 px-5 bg-yellow-200 rounded hover:bg-yellow-300 focus:outline-none">Edit</button>
@@ -416,12 +438,15 @@ const BookingsView = (props) => {
                <button
                onClick={() => updateBooking(bookingData._id, "Rejected By Admin")} className="   leading-none text-gray-600 py-3 px-5 bg-red-200 rounded hover:bg-red-300 focus:outline-none">Reject</button>
              
-             <button
-                  onClick={() => deleteBooking(bookingData._id)} className="   leading-none text-gray-600 py-3 px-5 bg-red-400 rounded hover:bg-red-500 focus:outline-none">Delete</button>
-           
+             {/* <button
+                  onClick={() => deleteBooking(bookingData._id)} 
+                  // onClick={() => handleDeleteModal(bookingData._id)}
+                  className="   leading-none text-gray-600 py-3 px-5 bg-red-400 rounded hover:bg-red-500 focus:outline-none">Delete</button>
+            */}
                </>
     }
     {state.userType === "hod" &&
+        
                   <>
                    <button onClick={() => handleEditClick(bookingData._id)}
                   className="   leading-none text-gray-600 py-3 px-5 bg-yellow-200 rounded hover:bg-yellow-300 focus:outline-none">Edit</button>
@@ -431,9 +456,11 @@ const BookingsView = (props) => {
               <button
               onClick={() => updateBooking(bookingData._id, "Rejected By HOD")} className="   leading-none text-gray-600 py-3 px-5 bg-red-200 rounded hover:bg-red-300 focus:outline-none">Reject</button>
             
-            <button
-                  onClick={() => deleteBooking(bookingData._id)} className="   leading-none text-gray-600 py-3 px-5 bg-red-400 rounded hover:bg-red-500 focus:outline-none">Delete</button>
-           
+            {/* <button
+                  onClick={() => deleteBooking(bookingData._id)}
+                  // onClick={() => handleDeleteModal(bookingData._id)}
+                   className="   leading-none text-gray-600 py-3 px-5 bg-red-400 rounded hover:bg-red-500 focus:outline-none">Delete</button>
+            */}
               </>
                 
               }
@@ -454,6 +481,33 @@ const BookingsView = (props) => {
           </div>
         </div>
       )}
+
+{/* {showModal && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg px-8 py-6">
+            <h2 className="text-lg font-bold mb-4">
+              Are you sure you want to delete ?
+            </h2>
+            <div className="flex justify-end">
+              <button
+                className="mr-2 px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg focus:outline-none"
+                onClick={() =>
+                  deleteBooking(selectedBookingId)
+                }
+                // onClick={handleDeleteBooking}
+              >
+                Delete
+              </button>
+              <button
+                className="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg focus:outline-none"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )} */}
     </>
   );
 };

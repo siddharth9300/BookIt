@@ -4,14 +4,14 @@ const storedUser = localStorage.getItem("user");
 const storedUserType = localStorage.getItem("userType");
 
 // set the initial state to the stored value, or to null if no value is found
-console.log(storedUser);
+//consolelog(storedUser);
 // const jwtoken = document.cookie.split(";").find(cookie => cookie.trim().startsWith("jwtoken="));
 
 
 // const jwtoken = Cookies.get("jwtoken");
 const jwtoken = localStorage.getItem("jwtoken");
 
-console.log(jwtoken);
+//consolelog(jwtoken);
 export const initialState = jwtoken  ? { user: JSON.parse(storedUser), userType: storedUserType } : { user: null, userType: null };
 
 

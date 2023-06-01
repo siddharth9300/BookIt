@@ -25,7 +25,7 @@ const BookingsHod = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
       if(data.emailVerified){
         setEmailVerified(true)
@@ -40,7 +40,7 @@ const BookingsHod = () => {
       }
     } catch (error) {
    
-      // console.log(error);
+      // //consolelog(error);
       
     }
   };
@@ -60,7 +60,7 @@ const BookingsHod = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
       const sortedBookingData = data.bookings.sort((a, b) => {
         // Convert the event date strings to Date objects and compare them
@@ -91,7 +91,7 @@ const BookingsHod = () => {
         throw new Error(response.status);
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
       if (error.response.status === 401) {
         toast.warn("Unauthrized Access! Please Login!", {
           toastId: 'Unauthrized'
@@ -121,7 +121,7 @@ const BookingsHod = () => {
   const updateBooking = async (bookingId, isApproved) => {
     setIsLoading(true);
 
-    console.log(isApproved);
+    //consolelog(isApproved);
     try {
       const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`, {
         isApproved: isApproved
@@ -134,7 +134,7 @@ const BookingsHod = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
 
       // setBookingData(data.bookings);
@@ -149,7 +149,7 @@ const BookingsHod = () => {
       }
     } catch (error) {
 
-      console.log(error);
+      //consolelog(error);
       // navigate("/login");
     }
   };
@@ -173,7 +173,7 @@ const BookingsHod = () => {
 
       if (!data) {
         toast.error("Request not send!")
-        // console.log("Message not send");
+        // //consolelog("Message not send");
       } else {
         getBookingData();
         toast.success("Request send Successfull!")
@@ -184,12 +184,12 @@ const BookingsHod = () => {
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
-        console.log(data.error);
+        //consolelog(data.error);
         // window.alert(data.error);
       } else {
-        console.error(error);
+        //consoleerror(error);
       }
-      // console.log(error);
+      // //consolelog(error);
     }
   };
   const handleFilter = (value) => {
@@ -291,16 +291,16 @@ const BookingsHod = () => {
 
       
 
-            <div class="flex items-center flex-col my-12 justify-center  ">
+            <div className="flex items-center flex-col my-12 justify-center  ">
       
-              {/* <div class="w-full lg:w-1/2"> */}
-                <h1 class=" text-2xl  lg:text-4xl font-extrabold text-gray-800 my-3">Looks Like Yout Have Not Verified Your Email!</h1>
-                <p class=" text-xl text-gray-800 my-5">Please click on the below button and verify email before booking.</p>
-                {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
+              {/* <div className="w-full lg:w-1/2"> */}
+                <h1 className=" text-2xl  lg:text-4xl font-extrabold text-gray-800 my-3">Looks Like Yout Have Not Verified Your Email!</h1>
+                <p className=" text-xl text-gray-800 my-5">Please click on the below button and verify email before booking.</p>
+                {/* <p className="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
                 <div>
       
                   <Link to="/about" ><button
-                    class="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
+                    className="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
                   </button>
                   </Link>
                 </div>

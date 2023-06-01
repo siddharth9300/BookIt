@@ -10,7 +10,9 @@ const HallsAdmin = () => {
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   // const [authStatus, setAuthStatus] = useState("");
-
+  const [showModal,setShowModal]=useState(false);
+  const [selectedHallId, setSelectedHallId] = useState("");
+  const [selectedHallName, setSelectedHallName] = useState("");
   const getHallsData = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/halls`, {
@@ -70,6 +72,9 @@ const HallsAdmin = () => {
         getHallsData();
         toast.success("Hall Deleted Successfull!")
         // alert("Message send");
+        setShowModal(false);
+        setSelectedHallId("");
+        setSelectedHallName("");
         navigate("/halls")
         // setBookingData({ ...bookingData });
       }
@@ -108,7 +113,11 @@ const HallsAdmin = () => {
   // const handleBookingClick = () => {
   //   sendData(data);
   // };
-
+  const handleDeleteModal = (hallId, hallName) => {
+    setSelectedHallId(hallId);
+    setSelectedHallName(hallName);
+    setShowModal(true);
+  };
 
   return (
 <>{isLoading ? (
@@ -262,7 +271,11 @@ const HallsAdmin = () => {
                       </button>
 
                       <button className="w-full rounded-xl border-2 border-red-500 bg-white px-3 py-2 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
-                        onClick={() => handleDeleteClick(hall._id, hall.name)}
+                        // onClick={() => handleDeleteClick(hall._id, hall.name)}
+                        // onClick={() => setShowModal(true)} 
+                        onClick={() =>
+                          handleDeleteModal(hall._id, hall.name)
+                        }
                       >
                         Delete Hall
                       </button>
@@ -278,6 +291,11 @@ const HallsAdmin = () => {
               </div>
             </div>
           </div>
+        
+
+      
+        
+
         ))
       ) : (
         <h2 className="text-2xl font-bold text-zinc-700  text-center mt-10">No halls found.</h2>
@@ -286,8 +304,50 @@ const HallsAdmin = () => {
 
       </div>
 }
-    </>
+
+  
+{/* 
+      {
+        showModal &&
+              
+        <div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
+            <div class="bg-white px-16 py-14 rounded-md text-center">
+              <h1 class="text-xl mb-4 font-bold text-slate-500">Do you Want Delete</h1>
+              <button onClick={() => handleDeleteClick(hall._id, hall.name)} class="bg-indigo-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold">Ok</button>
+              <button onClick={() => setShowModal(false)} class="bg-red-500 px-4 py-2 rounded-md text-md text-white">Cancel</button>
+            </div>
+          </div>
+        
+      } */}
+
+{showModal && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg px-8 py-6">
+            <h2 className="text-lg font-bold mb-4">
+              Are you sure you want to delete {selectedHallName}?
+            </h2>
+            <div className="flex justify-end">
+              <button
+                className="mr-2 px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg focus:outline-none"
+                onClick={() =>
+                  handleDeleteClick(selectedHallId)
+                }
+              >
+                Delete
+              </button>
+              <button
+                className="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg focus:outline-none"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+        </>
   );
+  
 };
 
 export default HallsAdmin;

@@ -18,7 +18,7 @@ const Contact = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
       setUserData({
         ...userData,
         name: data.name,
@@ -30,7 +30,7 @@ const Contact = () => {
         throw new Error(response.error);
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
     }
   };
 
@@ -47,7 +47,7 @@ const Contact = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-  console.log(userData);
+  //consolelog(userData);
 
   // send to backend
 
@@ -75,13 +75,13 @@ const Contact = () => {
       const data = response.data;
 
       if (!data) {
-        console.log("Message not send");
+        //consolelog("Message not send");
       } else {
         alert("Message send");
         setUserData({ ...userData, message: "" });
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
     }
   };
 

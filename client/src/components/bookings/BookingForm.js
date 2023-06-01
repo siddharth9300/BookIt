@@ -4,15 +4,16 @@ import {useNavigate,Link} from "react-router-dom"
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
-import { parseISO } from 'date-fns';
+import { parseISO, set } from 'date-fns';
 
 const BookingForm = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
   const [emailVerified, setEmailVerified] = useState(false);
 
+
   const { hallId, hallName } = useParams();
-  console.log(hallId);
+  //consolelog(hallId);
   const [isLoading, setIsLoading] = useState(true);
   // const { hallId, hallName } = props.location.state;
   const [bookingData, setBookingData] = useState(
@@ -50,7 +51,7 @@ const BookingForm = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
       let status;
       if(data.userType === "admin"){
@@ -81,7 +82,7 @@ const BookingForm = () => {
       }
     } catch (error) {
    
-      // console.log(error);
+      // //consolelog(error);
       navigate("/login");
     }
   };
@@ -99,12 +100,14 @@ const BookingForm = () => {
     setBookingData({ ...bookingData, [name]: value });
   };
 
-  console.log(bookingData);
+  //consolelog(bookingData);
 
   // send to backend
 
   const bookingForm = async (e) => {
     e.preventDefault();
+    // setShowModal(false)
+    setIsLoading(true)
     const { eventManager,
       userId,
       // department,
@@ -162,30 +165,9 @@ const BookingForm = () => {
       
       if (!data) {
         toast.error("Request not send!")
-        // console.log("Message not send");
+        // //consolelog("Message not send");
       } else {
 
-        setBookingData({userId:"",
-        eventManager: "",
-        // department:"",
-        eventName: "",
-        eventDateType:"",
-        eventDate: "",
-        eventStartDate:"",
-        eventEndDate:"",
-        startTime: "",
-        endTime: "",
-        email: "",
-        userType:"",
-        bookedHallId: "",
-        bookedHallName: "",
-        organizingClub: "",
-        phoneNumber: "",
-        altNumber: "",  
-        isApproved:""
-  
-  
-      })
         toast.success("Request send Successfull!")
         // alert("Message send");
         navigate("/bookings")
@@ -195,13 +177,13 @@ const BookingForm = () => {
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
-        setAuthStatus(data.error);
-        console.log(data.error);
+        setAuthStatus(data.error);  
+        //consolelog(data.error);
         // window.alert(data.error);
       } else {
-        console.error(error);
+        //consoleerror(error);
       }
-      // console.log(error);
+      // //consolelog(error);
     }
   };
 
@@ -215,21 +197,21 @@ const BookingForm = () => {
 
       
 
-      <div class="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
-        <div class="w-full lg:w-1/2">
-          {/* <img alt='error' class="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
-          <img alt='error' class="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
-          <img alt='error' class="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
+      <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
+        <div className="w-full lg:w-1/2">
+          {/* <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
+          <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
+          <img alt='error' className="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
           
         </div>
-        <div class="w-full lg:w-1/2">
-          <h1 class="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Looks Like Yout Have Not Verified Your Email!</h1>
-          <p class="py-4 text-xl text-gray-800">Please click on the below button and verify email before booking.</p>
-          {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
+        <div className="w-full lg:w-1/2">
+          <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Looks Like Yout Have Not Verified Your Email!</h1>
+          <p className="py-4 text-xl text-gray-800">Please click on the below button and verify email before booking.</p>
+          {/* <p className="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
           <div>
 
             <Link to="/about" ><button
-              class="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
+              className="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
             </button>
             </Link>
           </div>
@@ -596,7 +578,7 @@ const BookingForm = () => {
                 name="phoneNumber"
                 onChange={handleInputs}
                 placeholder="Phone Number"
-
+                
               />
               {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
             </div>
@@ -617,7 +599,7 @@ const BookingForm = () => {
                 name="altNumber"
                 onChange={handleInputs}
                 placeholder="Alternate Number"
-
+                
               />
             </div>
           </div>
@@ -665,6 +647,8 @@ const BookingForm = () => {
             <div className="flex justify-between w-full px-3">
       
                 <button
+                
+                // onClick={handleConfirmModal}
                   onClick={bookingForm}
                   className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
                   type="submit"
@@ -678,6 +662,15 @@ const BookingForm = () => {
       </div>
     </div>
           )}
+
+
+
+
+
+
+
+
+          
           </>
   );
 };

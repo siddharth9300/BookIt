@@ -25,7 +25,7 @@ const Events = () => {
       });
 
       const data = response.data.bookings;
-      console.log(data);
+      //consolelog(data);
 
 
       const sortedEventData = data.sort((a, b) => {
@@ -60,7 +60,7 @@ const Events = () => {
         throw new Error(response.status);
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
       // if (error.response.status === 401) {
       //   toast.warn("Unauthrized Access! Please Login!")
       //   navigate("/login");
@@ -203,73 +203,73 @@ const Events = () => {
 
 
                 
-                <div class="flex flex-col justify-center items-center my-10 ">
-                    <div class="relative flex flex-col items-center  mx-auto  rounded-xl p-8 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-10/12 bg-white">
-                      <div class="mt-8 mb-8 w-full">
-                        <h4 class="px-2 text-2xl font-bold text-navy-500 ">
+                <div className="flex flex-col justify-center items-center my-10 ">
+                    <div className="relative flex flex-col items-center  mx-auto  rounded-xl p-8 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-10/12 bg-white">
+                      <div className="mt-8 mb-8 w-full">
+                        <h4 className="px-2 text-2xl font-bold text-navy-500 ">
                         {event.eventName}
                         </h4>
 
                       </div>
-                      <div class="grid grid-cols-3 max-md:grid-cols-1 gap-4 px-2 w-full">
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="text-m font-bold text-gray-600">Event Venu</p>
-                          <p class="text-base font-medium text-navy-700   ">
+                      <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 px-2 w-full">
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="text-m font-bold text-gray-600">Event Venu</p>
+                          <p className="text-base font-medium text-navy-700   ">
                           {event.bookedHallName}
                           </p>
                         </div>
 
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="text-m font-bold text-gray-600">Location</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="text-m font-bold text-gray-600">Location</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {event.bookedHallId.location}
                           </p>
                         </div>
 
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Organizing Club</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Organizing Club</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {event.organizingClub}
                           </p>
                         </div>
 
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Event Date</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Event Date</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {format(new Date(event.eventDate), "EEEE dd-MM-yyyy")}
                           </p>
                         </div>
 
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Starts At</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Starts At</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {format(parseISO((event.startTime).slice(0, -1)), "hh:mm aa")}
                           </p>
                         </div>
 
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Ends At</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Ends At</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {format(parseISO((event.endTime).slice(0, -1)), "hh:mm aa")}
                           </p>
                         </div>
 
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Event Manager</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Event Manager</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {event.eventManager}
                           </p>
                         </div>
 
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Department</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Department</p>
+                          <p className="text-base font-medium text-navy-700 ">
                           {event.department}
                           </p>
                         </div>
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p class="ext-m font-bold text-gray-600">Phone</p>
-                          <p class="text-base font-medium text-navy-700 ">
+                        <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Phone</p>
+                          <p className="text-base font-medium text-navy-700 ">
                             {event.phoneNumber}
                           </p>
                         </div>

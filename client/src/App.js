@@ -50,7 +50,7 @@ const App = () => {
       // const token = document.cookie.split(";").find((c) => c.trim().startsWith("jwtoken="));
       const token = (localStorage.getItem("jwtoken"))
 
-      console.log(token); 
+      //consolelog(token); 
       // axios.defaults.headers.common["authorization"] = token.split("=")[1];;
       axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
       // axios.defaults.headers["authorization"] = token;
@@ -89,7 +89,7 @@ const App = () => {
           <Route exact path="/bookingsEdit/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
           
           
-          <Route exact path="/bookings/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
+          {/* <Route exact path="/bookings/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} /> */}
           <Route path="/hallForm" element={state.userType === "admin" ?<HallForm /> : <Unauthorized />} />
 
           <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingFaculty/> : state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />

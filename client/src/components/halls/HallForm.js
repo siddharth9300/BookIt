@@ -11,11 +11,13 @@ const HallForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [authStatus, setAuthStatus] = useState("");
   // const { hallId, hallName } = useParams();
+
   const [hallData, setHallData] = useState({
-    
     name:"",location:"",capacity:"",amenities:"",description:""
   });
   const [emailVerified, setEmailVerified] = useState(false);
+
+
 
 
   const userContact = async () => {
@@ -106,18 +108,6 @@ const HallForm = () => {
     setHallData({ ...hallData, [name]: value });
   };
 
-  // const hallId =userData.hallId
-  // const hallName = userData.hallName
-
-  // const handleBookingClick = (hallId,hallName) => {
-  //   navigate('/bookingForm', { state: { hallId, hallName } });
-
-  // };
-
-
-  // const handleBookingClick = () => {
-  //   sendData(data);
-  // };
 
 
   return (
@@ -129,15 +119,13 @@ const HallForm = () => {
 
           <div class="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
             <div class="w-full lg:w-1/2">
-              {/* <img alt='error' class="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
-              <img alt='error' class="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
+             
               <img alt='error' class="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
               
             </div>
             <div class="w-full lg:w-1/2">
               <h1 class="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Looks Like Yout Have Not Verified Your Email!</h1>
               <p class="py-4 text-xl text-gray-800">Please click on the below button and verify email before booking.</p>
-              {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
               <div>
     
                 <Link to="/about" ><button
@@ -185,7 +173,6 @@ const HallForm = () => {
                   onChange={handleInputs}
                   placeholder="Hall Name"
                 />
-                {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
   
   
@@ -230,7 +217,6 @@ const HallForm = () => {
                   type="text"
                   placeholder="Amenities"
                 />
-                {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
   
   
@@ -277,25 +263,8 @@ const HallForm = () => {
                   onChange={handleInputs}
                   placeholder="Description"
                 />
-                {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
-              {/* <div className="w-full md:w-1/2 px-3">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-end-time"
-                >
-                  End Time
-                </label>
-                <input
-                  value={hallData.capacity}
-                  name="endTime"
-                  onChange={handleInputs}
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-end-time"
-                  type="time"
-                  placeholder="End Time"
-                />
-              </div> */}
+            
             </div>
   
   
@@ -330,24 +299,11 @@ const HallForm = () => {
   
   
             <div className="flex flex-wrap -mx-3 mb-6">
-              {/* <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-password"
-                >
-                  Your Message
-                </label>
-                <textarea
-                  value={bookingData.message}
-                  name="message"
-                  onChange={handleInputs}
-                  rows="10"
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                ></textarea>
-              </div> */}
+            
   
               <div className="flex justify-between w-full px-3">
                 <button
+                // onClick={() => setShowModal(true)}
                   onClick={CreateHall}
                   className="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
                   type="submit"
@@ -359,9 +315,18 @@ const HallForm = () => {
           </form>
         </div>
       </div>
-           ) }
+
+        ) 
+         }
 
 
+
+
+
+
+
+
+     
 
 
 
@@ -406,6 +371,8 @@ const HallForm = () => {
 {/* } */}
     </>
   );
+  // <RenderModal/>
+
 };
 
 export default HallForm;

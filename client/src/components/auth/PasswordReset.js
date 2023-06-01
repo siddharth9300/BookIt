@@ -9,7 +9,7 @@ const PasswordReset = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [authStatus, setAuthStatus] = useState("");
 
-console.log(email);
+//consolelog(email);
 
 
 
@@ -43,11 +43,11 @@ console.log(email);
       if (error.response.status === 400 && error.response) {
         const data = error.response.data;
         setAuthStatus(data.error)
-        console.log(data.error)
+        //consolelog(data.error)
         // window.alert(data.error);
       } else {
         setAuthStatus("Something Went Worng")
-        console.log(error.response.data)
+        //consolelog(error.response.data)
 
       }
     }

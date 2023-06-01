@@ -44,7 +44,7 @@ const userId = localStorage.getItem("userId")
           throw new Error(res.error);
         }
       } catch (error) {
-        console.log(error);
+        //consolelog(error);
       }
     }
   useEffect(() => {

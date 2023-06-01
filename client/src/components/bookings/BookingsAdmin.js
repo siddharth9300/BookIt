@@ -28,7 +28,7 @@ const BookingsAdmin = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
       if (data.emailVerified) {
         setEmailVerified(true)
@@ -43,7 +43,7 @@ const BookingsAdmin = () => {
       }
     } catch (error) {
 
-      // console.log(error);
+      // //consolelog(error);
 
     }
   };
@@ -64,7 +64,7 @@ const BookingsAdmin = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
       const sortedBookingData = data.bookings.sort((a, b) => {
         // Convert the event date strings to Date objects and compare them
@@ -95,7 +95,7 @@ const BookingsAdmin = () => {
         throw new Error(response.status);
       }
     } catch (error) {
-      console.log(error);
+      //consolelog(error);
       if (error.response.status === 401) {
         toast.warn("Unauthrized Access! Please Login!", {
           toastId: 'Unauthrized'
@@ -125,7 +125,7 @@ const BookingsAdmin = () => {
   const updateBooking = async (bookingId, isApproved) => {
     setIsLoading(true);
 
-    console.log(isApproved);
+    //consolelog(isApproved);
     try {
       const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`, {
         isApproved: isApproved
@@ -138,7 +138,7 @@ const BookingsAdmin = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      //consolelog(data);
 
 
       // setBookingData(data.bookings);
@@ -153,7 +153,7 @@ const BookingsAdmin = () => {
       }
     } catch (error) {
 
-      console.log(error);
+      //consolelog(error);
       // navigate("/login");
     }
   };
@@ -177,7 +177,7 @@ const BookingsAdmin = () => {
 
   //     if (!data) {
   //       toast.error("Request not send!")
-  //       // console.log("Message not send");
+  //       // //consolelog("Message not send");
   //     } else {
   //       getBookingData();
   //       toast.success("Request send Successfull!")
@@ -188,12 +188,12 @@ const BookingsAdmin = () => {
   //   } catch (error) {
   //     if (error.response.status === 404 && error.response) {
   //       const data = error.response.data;
-  //       console.log(data.error);
+  //       //consolelog(data.error);
   //       // window.alert(data.error);
   //     } else {
-  //       console.error(error);
+  //       //consoleerror(error);
   //     }
-  //     // console.log(error);
+  //     // //consolelog(error);
   //   }
   // };
 
@@ -275,16 +275,16 @@ const BookingsAdmin = () => {
 
 
 
-          <div class="flex items-center flex-col my-12 justify-center  ">
+          <div className="flex items-center flex-col my-12 justify-center  ">
 
-            {/* <div class="w-full lg:w-1/2"> */}
-            <h1 class=" text-2xl  lg:text-4xl font-extrabold text-gray-800 my-3">Looks Like Yout Have Not Verified Your Email!</h1>
-            <p class=" text-xl text-gray-800 my-5">Please click on the below button and verify email before booking.</p>
-            {/* <p class="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
+            {/* <div className="w-full lg:w-1/2"> */}
+            <h1 className=" text-2xl  lg:text-4xl font-extrabold text-gray-800 my-3">Looks Like Yout Have Not Verified Your Email!</h1>
+            <p className=" text-xl text-gray-800 my-5">Please click on the below button and verify email before booking.</p>
+            {/* <p className="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
             <div>
 
               <Link to="/about" ><button
-                class="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
+                className="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
               </button>
               </Link>
             </div>
@@ -296,32 +296,32 @@ const BookingsAdmin = () => {
 
 
 
-          <div class="container w-full px-4 mx-auto sm:px-8 ">
-              <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8 ">
-                <div class="inline-block min-w-full border overflow-hidden rounded-lg  shadow-xl shadow-blue-100 ">
-                  <table class="min-w-full leading-normal    ">
+          <div className="container w-full px-4 mx-auto sm:px-8 ">
+              <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8 ">
+                <div className="inline-block min-w-full border overflow-hidden rounded-lg  shadow-xl shadow-blue-100 ">
+                  <table className="min-w-full leading-normal    ">
                     <thead>
                       <tr className="bg-gray-200 border-gray-500  leading-normal  text-center">
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Event Name
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase  border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase  border-gray-200">
                           Hall Name
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Organizing Club
 
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Department
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Event Date
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Status
                         </th>
-                        <th scope="col" class="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
+                        <th scope="col" className="px-4 py-3 text-l   text-gray-800 uppercase   border-gray-200">
                           Actions
                         </th>
                       </tr>
@@ -334,31 +334,31 @@ const BookingsAdmin = () => {
                           // <div key={booking._id} className="my-2 ">
 
                           <tr key={booking._id} className="border-gray-200 text-center border-b-2  ">
-                            <td class="px-5 py-5 font-bold text-m  bg-white  border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap">
+                            <td className="px-5 py-5 font-bold text-m  bg-white  border-gray-200">
+                              <p className="text-gray-900 whitespace-no-wrap">
                                 {booking.eventName}
                               </p>
                             </td>
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
+                              <p className="text-gray-900 whitespace-no-wrap">
                                 {booking.bookedHallName}
 
                               </p>
                             </td>
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
+                              <p className="text-gray-900 whitespace-no-wrap">
                                 {booking.organizingClub}
                               </p>
                             </td>
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
-                              <p class="text-gray-900 whitespace-no-wrap">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
+                              <p className="text-gray-900 whitespace-no-wrap">
                                 {booking.department}
                               </p>
                             </td>
 
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
                             {booking.eventDateType === "multiple" ? 
-                            <p class="text-gray-900 whitespace-no-wrap ">
+                            <p className="text-gray-900 whitespace-no-wrap ">
                               {format(new Date(booking.eventStartDate), "EEEE dd-MM-yyyy")}
                               <br/>To<br/>
                               {format(new Date(booking.eventEndDate), "EEEE dd-MM-yyyy")}
@@ -366,7 +366,7 @@ const BookingsAdmin = () => {
                             </p>
 
                             :
-                            <p class="text-gray-900 whitespace-no-wrap">
+                            <p className="text-gray-900 whitespace-no-wrap">
                               {format(new Date(booking.eventDate), "EEEE dd-MM-yyyy")}
                             </p>
 
@@ -376,11 +376,11 @@ const BookingsAdmin = () => {
 
 
 
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
 
                               {booking.isApproved === "Approved By Admin" && (
                                 // <ApprovedByAdmin />
-                                <p class="text-green-600 font-bold whitespace-no-wrap">
+                                <p className="text-green-600 font-bold whitespace-no-wrap">
                                   {booking.isApproved}
                                 </p>
                                 // <p className="text-m text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-green-500 font-black">
@@ -388,13 +388,13 @@ const BookingsAdmin = () => {
                               )}
                               {booking.isApproved === "Approved By HOD" && (
                                 // <ApprovedByHod />
-                                <p class="text-blue-600 font-bold  whitespace-no-wrap">
+                                <p className="text-blue-600 font-bold  whitespace-no-wrap">
                                   {booking.isApproved}
                                 </p>
                               )}
 
                               {booking.isApproved === "Rejected By Admin" && (
-                                <p class="text-red-900 font-bold  whitespace-no-wrap">
+                                <p className="text-red-900 font-bold  whitespace-no-wrap">
                                   {booking.isApproved}
                                 </p>
 
@@ -404,7 +404,7 @@ const BookingsAdmin = () => {
                             </td>
 
 
-                            <td class="px-5 py-5 text-m bg-white  border-gray-200">
+                            <td className="px-5 py-5 text-m bg-white  border-gray-200">
                               <button onClick={() => handleViewClick(booking._id)} className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none">View</button>
                               <button onClick={() => handleEditClick(booking._id)}
                                 className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-yellow-200 rounded hover:bg-yellow-300  focus:outline-none">Edit</button>
@@ -420,8 +420,8 @@ const BookingsAdmin = () => {
                       ) : (
 
                         <tr className="border-gray-200 border-b justify-center">
-                          <td class="px-5 py-5 font-bold text-m bg-white border-gray-200 text-center" colSpan="7">
-                            <p class="text-gray-900 whitespace-no-wrap">
+                          <td className="px-5 py-5 font-bold text-m bg-white border-gray-200 text-center" colSpan="7">
+                            <p className="text-gray-900 whitespace-no-wrap">
                               No Bookings Requests found.
                             </p>
                           </td>
