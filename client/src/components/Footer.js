@@ -8,23 +8,23 @@ const Footer = () => {
     <Link to={"/"} className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
     <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}
-          {/* <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" /> */}
-          <img className="max-w-12 max-md:w-40" src="https://gcdnb.pbrd.co/images/r9SinhF0FQPt.png?o=1" alt="logo" />
+          <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
+          {/* <img className="max-w-12 max-md:w-40" src="https://gcdnb.pbrd.co/images/r9SinhF0FQPt.png?o=1" alt="logo" /> */}
           
      
-            {/* <h1 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
-              Book  <span className="text-indigo-700">It</span> </h1> */}
+            <h1 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
+              Book  <span className="text-indigo-700">It</span> </h1>
          </div>
          
     </Link>
-     {/* <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Book It — Made with &#10084;&#65039; by
+     <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Book It — Made with &#10084;&#65039; by
        <a href="https://github.com/siddharth9300" className="text-gray-500 hover:text-gray-700 focus:text-gray-7000 ml-1" rel="noopener noreferrer" target="_blank">@siddharth9300</a>
-     </p> */}
+     </p>
 
-  <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"> Developed By Students Of FCA Department
+  {/* <p className="text-sm text-gray-500 hover:text-gray-700 focus:text-gray-700 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"> Developed By Students Of FCA Department */}
        {/* <a href="https://github.com/siddharth9300" className="text-gray-500 hover:text-gray-700 focus:text-gray-7000 ml-1" rel="noopener noreferrer" target="_blank">@siddharth9300</a> */}
-    </p>
-     {/* <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+    {/* </p> */}
+     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
 
        <a href="https://github.com/siddharth9300" rel="noopener noreferrer" target="_blank" className="ml-3 text-gray-500">
        <svg fill="currentColor" className="w-5 h-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  viewBox="0 0 640 640">
@@ -43,7 +43,7 @@ const Footer = () => {
            <circle cx="4" cy="4" r="2" stroke="none"></circle>
          </svg>
        </a>
-     </span> */}
+     </span>
   </div>
 </footer>
     </>
