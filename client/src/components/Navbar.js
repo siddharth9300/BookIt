@@ -1,6 +1,7 @@
 import React, { useContext   } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
+import logo from '../assets/logo.png'
 
 
 const Navbar = () => {
@@ -84,12 +85,12 @@ const RenderUser = () => {
           <Link to={"/"}>
         <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}
-           <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" />
-                      {/* <img className="max-w-12  max-md:w-40 " src="https://gcdnb.pbrd.co/images/r9SinhF0FQPt.png?o=1" alt="logo" /> */}
+           {/* <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" /> */}
+                      <img className="max-w-12 md:w-64" src={logo} alt="logo" />
 
-             <h1 className="text-xl sm:border-l-2  sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
+             {/* <h1 className="text-xl sm:border-l-2  sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
                Book  <span className="text-indigo-700">It</span> </h1>
-         
+          */}
         </div>
           </Link>
 

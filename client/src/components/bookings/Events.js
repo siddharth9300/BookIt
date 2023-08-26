@@ -233,13 +233,27 @@ const Events = () => {
                           </p>
                         </div>
 
+
+
+                        <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Event Date Type</p>
+                          <p className="text-base font-medium text-navy-700 ">
+                          {event.eventDateType === 'multiple' ? 'Multiple Days' : event.eventDateType === 'half' ? 'Half Day' : 'Full Day'}
+                          </p>
+                        </div>
+
+                        {(event.eventDateType === "full" || event.eventDateType === "half") &&(
+
                         <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                           <p className="ext-m font-bold text-gray-600">Event Date</p>
                           <p className="text-base font-medium text-navy-700 ">
                           {format(new Date(event.eventDate), "EEEE dd-MM-yyyy")}
                           </p>
                         </div>
+)}
 
+  {event.eventDateType === "half" && (
+    <>
                         <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                           <p className="ext-m font-bold text-gray-600">Starts At</p>
                           <p className="text-base font-medium text-navy-700 ">
@@ -253,6 +267,45 @@ const Events = () => {
                           {format(parseISO((event.endTime).slice(0, -1)), "hh:mm aa")}
                           </p>
                         </div>
+                        </>
+
+
+)}
+
+
+
+{event.eventDateType === "multiple" && (
+
+
+
+
+<>
+
+<div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Event Start Date</p>
+                          <p className="text-base font-medium text-navy-700 ">
+                          {format(new Date(event.eventStartDate), "EEEE dd-MM-yyyy")}
+                          </p>
+                        </div>
+
+
+
+                        <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                          <p className="ext-m font-bold text-gray-600">Event End Date</p>
+                          <p className="text-base font-medium text-navy-700 ">
+                          {format(new Date(event.eventEndDate), "EEEE dd-MM-yyyy")}
+                          </p>
+                        </div>
+
+
+
+</>
+
+
+)}
+
+
+
 
                         <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                           <p className="ext-m font-bold text-gray-600">Event Manager</p>

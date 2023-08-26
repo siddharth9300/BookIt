@@ -204,9 +204,16 @@ const getBookingByUserId = async (req, res, next) => {
 
 const getBookingAdmin = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ isApproved: { $in: ["Approved By HOD", "Approved By Admin", "Rejected By Admin"] } }).populate('bookedHallId').populate('userId');    ;
-
+    let statusArray = ["Approved By HOD", "Approved By Admin", "Rejected By Admin"];
     
+    if (process.env.REACT_APP_HOD_FEATURE != "true") {
+      statusArray.unshift("Request Sent"); // Add "Request Sent" at the beginning if HOD feature is on
+    }
+
+    const bookings = await Booking.find({ isApproved: { $in: statusArray } })
+      .populate('bookedHallId')
+      .populate('userId');
+
     res.json({ bookings });
   } catch (error) {
     next(error);
@@ -236,6 +243,9 @@ const updateBooking = async (req, res, next) => {
 
     const {
       eventName,
+      eventDateType,
+      eventStartDate,
+      eventEndDate,
       eventDate,
       startTime,
       endTime,
@@ -254,7 +264,9 @@ const updateBooking = async (req, res, next) => {
     const booking = await Booking.findByIdAndUpdate(
       bookingId,
       {
-        eventName, eventDate, startTime, endTime,
+        eventName, eventDate, startTime, endTime,eventDateType,
+        eventStartDate,
+        eventEndDate,
 
         //  hallId: hall._id,email,
         isApproved

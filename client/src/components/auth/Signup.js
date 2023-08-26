@@ -221,7 +221,13 @@ const Signup = () => {
                 <option value="">Select</option>
 
                 <option value="faculty">Faculty</option>
+                {process.env.REACT_APP_HOD_FEATURE === "true" &&
+                
                 <option value="hod">HOD</option>
+
+
+              }
+                
 
                 {process.env.REACT_APP_ADMIN_SIGN_UP === "true" &&
                 

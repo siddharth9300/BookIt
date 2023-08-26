@@ -70,7 +70,7 @@ const App = () => {
 
         <Navbar />
         <Routes>
-        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "faculty" ? <FacultyDashboard /> : state.userType === "hod" ? <HodDashboard /> : <Login />} />
+        <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "faculty" ? <FacultyDashboard /> : process.env.REACT_APP_HOD_FEATURE &&  state.userType === "hod" ? <HodDashboard />  : <Login />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -86,13 +86,13 @@ const App = () => {
           
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={state.userType === "admin" ?<HallsEdit /> : <Unauthorized />} />
-          <Route exact path="/bookingsEdit/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
+          <Route exact path="/bookingsEdit/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : process.env.REACT_APP_HOD_FEATURE &&  state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
           
           
           {/* <Route exact path="/bookings/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} /> */}
           <Route path="/hallForm" element={state.userType === "admin" ?<HallForm /> : <Unauthorized />} />
 
-          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingFaculty/> : state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "faculty" ? <BookingFaculty/> :  process.env.REACT_APP_HOD_FEATURE && state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 

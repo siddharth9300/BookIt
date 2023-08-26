@@ -203,8 +203,13 @@ const BookingsAdmin = () => {
   };
 
   const filteredBookings = Object.values(bookingData).filter((bookingData) => {
-    if (filterValue === "Approved By HOD") {
+  
+    if (filterValue === "Request Sent") {
+      return bookingData.isApproved === "Request Sent";
+    }else if(filterValue === "Approved By HOD") {
       return bookingData.isApproved === "Approved By HOD";
+    
+    
     } else if (filterValue === "Approved By Admin") {
       return bookingData.isApproved === "Approved By Admin";
     } else if (filterValue === "Rejected By Admin") {
@@ -213,6 +218,7 @@ const BookingsAdmin = () => {
       return bookingData
     }
   });
+  
   // const hallId =userData.hallId
   // const hallName = userData.hallName
 
@@ -248,12 +254,32 @@ const BookingsAdmin = () => {
           >
             All
           </button>
+
+
+          {/* <button
+            className={`rounded-full px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By HOD" ? "bg-indigo-100 text-indigo-800 " : "bg-white text-gray-800 hover:bg-gray-100"}`}
+            onClick={() => handleFilter("Approved By HOD")}
+          >
+            Pending
+          </button> */}
+
+
+{process.env.REACT_APP_HOD_FEATURE === "true" ?
           <button
             className={`rounded-full px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By HOD" ? "bg-indigo-100 text-indigo-800 " : "bg-white text-gray-800 hover:bg-gray-100"}`}
             onClick={() => handleFilter("Approved By HOD")}
           >
             Pending
           </button>
+:
+
+<button
+            className={`rounded-full px-4 py-2 mx-4 focus:outline-none ${filterValue === "Request Sent" ? "bg-indigo-100 text-indigo-800 " : "bg-white text-gray-800 hover:bg-gray-100"}`}
+            onClick={() => handleFilter("Request Sent")}
+          >
+            Pending
+          </button>
+}
           <button
             className={`rounded-full px-4 py-2 mx-4 focus:outline-none ${filterValue === "Approved By Admin" ? "bg-indigo-100 text-indigo-800" : "bg-white text-gray-800 hover:bg-gray-100"}`}
             onClick={() => handleFilter("Approved By Admin")}
@@ -390,6 +416,13 @@ const BookingsAdmin = () => {
                                 // <ApprovedByHod />
                                 <p className="text-blue-600 font-bold  whitespace-no-wrap">
                                   {booking.isApproved}
+                                </p>
+                              )}
+
+                              {booking.isApproved === "Request Sent" && (
+                                // <ApprovedByHod />
+                                <p className="text-blue-600 font-bold  whitespace-no-wrap">
+                                  Pending
                                 </p>
                               )}
 

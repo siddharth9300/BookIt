@@ -1,13 +1,13 @@
 import React from 'react'
 import {  Link } from "react-router-dom"
-
+import unauthorized from '../assets/unauthorized.png'
 const Unauthorized = () => {
   return (
     <div className="flex items-center flex-col justify-center lg:flex-row px-6 md:px-24  gap-16 lg:gap-28">
             <div className="w-full lg:w-1/2">
               {/* <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
               <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
-              <img alt='error' className="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
+              <img alt='error' className="hidden lg:block"  src={unauthorized} />
               
             </div>
             <div className="w-full lg:w-1/2">
