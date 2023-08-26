@@ -33,6 +33,37 @@ Book It is an online platform for booking halls for various events. This app all
 - Approve or reject booking requests from users by logging in to the admin dashboard.
 - View the list of pending booking requests and their details, including the user's name, email, and booking details.
 - Create new halls by entering the hall name, location, capacity.
+
+## Environment Variables
+
+### Client Side
+- `REACT_APP_ADMIN_SIGN_UP` = `true `
+    - ##### To Enable Admin Sign Up `true` for `On` and `false` for `Off`
+- `REACT_APP_HOD_FEATURE` = `false`
+    - ##### To Enable HOD Feature `true` for `On` and `false` for
+- `REACT_APP_SERVER_URL` = `<localhost server url here>`
+    - ##### Enter Server Url
+
+### Server Side
+- `DATABASE` = <MongoDB Url Here>
+    - ##### Enter MongoDB Url
+- `PORT`= `9002`
+  - ##### Server PORT
+- `SECRET_KEY`= `nameissiddharth`
+  - ##### MongoDB Key
+- `ADMIN_KEY`= `siddharth`
+  - ##### Key for Admin Signup
+- `SENDER_EMAIL`= `<Sender Email>`  
+  - ##### Email from which verificaion and forgot link will be sent
+- `ADMIN_EMAIL`= `<Admin Email>`
+  - ##### Email of Admin
+- `SENDER_PASSWORD`= `<Sender Email Password>`
+  - ##### Password of Email from which verificaion and forgot link will be sent
+- `CLIENT_URL`= `http://localhost:3000`
+    - ##### Enter Server Url
+- `REACT_APP_HOD_FEATURE` = `false`
+    - ##### To Enable HOD Feature `true` for `On` and `false` for
+
 ## Contributing
 
 Contributions are welcome! If you would like to contribute to this project, please follow these steps:
