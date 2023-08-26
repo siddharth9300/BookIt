@@ -49,9 +49,9 @@ Book It is an online platform for booking halls for various events. This app all
     - ##### Enter MongoDB Url
 - `PORT`= `9002`
   - ##### Server PORT
-- `SECRET_KEY`= `nameissiddharth`
+- `SECRET_KEY`= `<Secret Key>`
   - ##### MongoDB Key
-- `ADMIN_KEY`= `siddharth`
+- `ADMIN_KEY`= `<Admin Key>`
   - ##### Key for Admin Signup
 - `SENDER_EMAIL`= `<Sender Email>`  
   - ##### Email from which verificaion and forgot link will be sent
@@ -59,7 +59,7 @@ Book It is an online platform for booking halls for various events. This app all
   - ##### Email of Admin
 - `SENDER_PASSWORD`= `<Sender Email Password>`
   - ##### Password of Email from which verificaion and forgot link will be sent
-- `CLIENT_URL`= `http://localhost:3000`
+- `CLIENT_URL`= `localhost client url here`
     - ##### Enter Server Url
 - `REACT_APP_HOD_FEATURE` = `false`
     - ##### To Enable HOD Feature `true` for `On` and `false` for
