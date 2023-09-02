@@ -7,7 +7,7 @@ Book It is an online platform for booking halls for various events. This app all
 
 https://raw.githubusercontent.com/siddharth9300/BookIt/main/BookIt.png?token=GHSAT0AAAAAACEQVMWP5ZX3BHX4JM3BD5KMZHTDDXQ
 
-
+![alt text](https://github.com/siddharth9300//blob/main/BookIt.jpg?raw=true)
 
 ## Features
 
