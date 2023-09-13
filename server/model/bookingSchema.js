@@ -53,7 +53,13 @@ const bookingSchema = new mongoose.Schema(
       ref: 'Hall',
       required: true
     },
-   
+    bookedHall: {
+      // type: mongoose.Schema.Types.Subdocument,
+
+      type: Object,
+      required: true,
+    },
+
     bookedHallName: {
       type: String,
       required: true
@@ -81,7 +87,7 @@ const bookingSchema = new mongoose.Schema(
   }
 );
 
-bookingSchema.index({ eventDate: 1 }, { expireAfterSeconds: 86400 });
+// bookingSchema.index({ eventDate: 1 }, { expireAfterSeconds: 86400 });
 const Booking = mongoose.model('Booking', bookingSchema);
 
 module.exports = Booking;

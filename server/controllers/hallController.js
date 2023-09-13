@@ -1,18 +1,18 @@
 const Hall = require('../model/hallSchema');
+const User = require("../model/userSchema");
 
 const createHall = async (req, res, next) => {
   try {
-    const { name, location, capacity,amenities,description } = req.body;
+    const { name, location, capacity,amenities,description,hallCreater } = req.body;
 
-
-    if (!name || !location || !capacity || !amenities || !description) {
+    if (!name || !location || !capacity || !amenities || !description || !hallCreater) {
       return res.status(422).json({ error: "Please fill all details" });
     }
 
     if (capacity <= 0) {
       return res.status(422).json({ error: "Please enter a valid capacity greater than zero" });
     }
-    const hall = new Hall({ name, location, capacity,amenities,description });
+    const hall = new Hall({ name, location, capacity,amenities,description,hallCreater });
     await hall.save();
     res.status(201).json({ message: 'Hall created successfully' });
   } catch (error) {
@@ -46,6 +46,11 @@ const updateHall = async (req, res, next) => {
   try {
     const { hallId } = req.params;
     const { name, location, capacity ,amenities,description} = req.body;
+    const { email: hallCreater } = await Hall.findById(hallId);
+
+    if (req.rootUser.email !== hallCreater) {
+      return res.status(403).json({ message: 'Unauthorized' }); // 403 means "Forbidden"
+    }
     const hall = await Hall.findByIdAndUpdate(hallId, { name, location, capacity,amenities,description }, { new: true });
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });

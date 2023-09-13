@@ -54,11 +54,11 @@ const BookingForm = () => {
       //consolelog(data);
 
       let status;
-      if(data.userType === "admin"){
-        status = "Approved By Admin"
-      }else if (data.userType === "hod"){
-        status = "Approved By HOD"
-      }
+      // if(data.userType === "admin"){
+      //   status = "Approved By Admin"
+      // }else if (data.userType === "hod"){
+      //   status = "Approved By HOD"
+      // }
 
       if(data.emailVerified){
         setEmailVerified(true)
@@ -163,27 +163,34 @@ const BookingForm = () => {
 
       const data = response.data;
       
-      if (!data) {
-        toast.error("Request not send!")
-        // //consolelog("Message not send");
+      if (data.message === 'Booking created successfully') {
+        toast.success('Booking created successfully!');
+        navigate('/bookings');
       } else {
-
-        toast.success("Request send Successfull!")
-        // alert("Message send");
-        navigate("/bookings")
-        // setBookingData({ ...bookingData });
+        toast.error('Request not sent!');
       }
-    
     } catch (error) {
-      if (error.response.status === 422 && error.response) {
-        const data = error.response.data;
-        setAuthStatus(data.error);  
-        //consolelog(data.error);
-        // window.alert(data.error);
+      if (error.response) {
+        if (error.response.status === 422) {
+          const data = error.response.data;
+          // Handle validation errors
+          // You can set specific error messages for different fields if needed
+          if (data && data.errors) {
+            const errorMessage = data.errors.join(', ');
+            toast.error(errorMessage);
+          }
+        } else if (error.response.status === 403) {
+          toast.error('Unauthorized request!');
+        } else {
+          console.error(error);
+          toast.error('An error occurred while creating the booking.');
+        }
       } else {
-        //consoleerror(error);
+        console.error(error);
+        toast.error('An error occurred while creating the booking.');
       }
-      // //consolelog(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

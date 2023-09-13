@@ -16,7 +16,7 @@ const HallForm = () => {
     name:"",location:"",capacity:"",amenities:"",description:""
   });
   const [emailVerified, setEmailVerified] = useState(false);
-
+    const[hallCreater,setHallCreater] = useState("")
 
 
 
@@ -30,7 +30,9 @@ const HallForm = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      setHallCreater(data.email)
+
+      console.log(data.email);
 
       if(data.emailVerified){
         setEmailVerified(true)
@@ -45,11 +47,30 @@ const HallForm = () => {
       }
     } catch (error) {
    
-      // console.log(error);
-      
+      if (error.response) {
+        if (error.response.status === 422) {
+          const data = error.response.data;
+          // Handle validation errors
+          // You can set specific error messages for different fields if needed
+          if (data && data.errors) {
+            const errorMessage = data.errors.join(", ");
+            toast.error(errorMessage);
+          }
+        } else if (error.response.status === 403) {
+          toast.error("Unauthorized request!");
+        } else {
+          console.error(error);
+          toast.error("An error occurred while updating the hall.");
+        }
+      } else {
+        console.error(error);
+        toast.error("An error occurred while updating the hall.");
+      }
     }
   };
 
+
+ 
   useEffect(() => {
     userContact();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,12 +80,13 @@ const HallForm = () => {
   const CreateHall = async (e) => {
     e.preventDefault();
     const { name,location,capacity,amenities,description } = hallData;
+    // const {hallCreater} = hallCreater;
     // setIsLoading(true)
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/halls`,
         {
-          name,location,capacity,amenities,description 
+          name,location,capacity,amenities,description ,hallCreater
         },
         {
           withCredentials: true, // To include credentials in the request

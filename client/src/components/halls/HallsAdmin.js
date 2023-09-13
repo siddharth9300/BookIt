@@ -7,12 +7,46 @@ import { toast } from "react-toastify";
 
 const HallsAdmin = () => {
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({});
+  const [hallData, setHallData] = useState({});
+    const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   // const [authStatus, setAuthStatus] = useState("");
   const [showModal,setShowModal]=useState(false);
   const [selectedHallId, setSelectedHallId] = useState("");
   const [selectedHallName, setSelectedHallName] = useState("");
+
+  const callAboutPage = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/about`, {
+        withCredentials: true, 
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+      const data = response.data;
+      //consolelog(data);
+      setUserData(data);
+      console.log(data);
+      setIsLoading(false);
+      if (response.status !== 200) {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.warn("Unauthrized Access! Please Login!", {
+          toastId: 'Unauthrized'
+      })
+        navigate("/login");
+      }
+    }
+  };
+  // useEffect(() => {
+  //   callAboutPage()
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
+
+
   const getHallsData = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/halls`, {
@@ -25,7 +59,7 @@ const HallsAdmin = () => {
 
       const data = response.data;
       console.log(data);
-      setUserData(data.halls);
+      setHallData(data.halls);
       setIsLoading(false);
 
       if (response.status !== 200) {
@@ -40,7 +74,7 @@ const HallsAdmin = () => {
 
 
   useEffect(() => {
-
+  callAboutPage()
     getHallsData();
 
   }, [])
@@ -101,8 +135,8 @@ const HallsAdmin = () => {
   };
 
 
-  // const hallId =userData.hallId
-  // const hallName = userData.hallName
+  // const hallId =hallData.hallId
+  // const hallName = hallData.hallName
 
   // const handleBookingClick = (hallId,hallName) => {
   //   navigate('/bookingForm', { state: { hallId, hallName } });
@@ -137,8 +171,8 @@ const HallsAdmin = () => {
           </Link>
    </div>
 
-      {Array.isArray(userData) && userData.length > 0 ? (
-        userData.map((hall) => (
+      {Array.isArray(hallData) && hallData.length > 0 ? (
+        hallData.map((hall) => (
           <div key={hall._id} className="my-2 ">
             <div className="flex w-full items-center justify-center">
               <div className="w-full rounded-xl p-12 shadow-2xl shadow-blue-200 md:w-8/12 lg:w-8/12 bg-white">
@@ -263,7 +297,8 @@ const HallsAdmin = () => {
                       >
                         Book Now
                       </button>
-
+                {userData.email === hall.hallCreater ? 
+                <>
                       <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => handleEditClick(hall._id, hall.name)}
                       >
@@ -276,9 +311,12 @@ const HallsAdmin = () => {
                         onClick={() =>
                           handleDeleteModal(hall._id, hall.name)
                         }
-                      >
+                        >
                         Delete Hall
                       </button>
+                        </>
+
+                    : <></>}
                       {/* </Link> */}
                       {/* <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white">
                   View Profile

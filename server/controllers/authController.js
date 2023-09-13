@@ -711,6 +711,7 @@ const login = async (req, res,next) => {
   //get user data for contact us and home page
   const getdata = async (req, res) => {
         console.log("getdata page");
+        console.log(req.rootUser);
     res.send(req.rootUser);
   }
 

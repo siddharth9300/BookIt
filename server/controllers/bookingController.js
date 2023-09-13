@@ -109,6 +109,7 @@ const createBooking = async (req, res, next) => {
       endTime,
       email,
       bookedHallId: hall._id,
+      bookedHall:hall,
       bookedHallName,
       organizingClub,
       // eventDetailFile,
@@ -118,6 +119,8 @@ const createBooking = async (req, res, next) => {
       isApproved
     });
     // await booking.validate();
+    // booking.bookedHallId = hall;
+    // await booking.populate(bookedHallId);
     await booking.save();
 
     res.status(201).json({ message: 'Booking created successfully' });
@@ -205,15 +208,25 @@ const getBookingByUserId = async (req, res, next) => {
 const getBookingAdmin = async (req, res, next) => {
   try {
     let statusArray = ["Approved By HOD", "Approved By Admin", "Rejected By Admin"];
-    
+    const adminEmail = req.rootUser.email;
+    const userId = req.rootUser._id;
+    console.log("admin bookng");
+    console.log(adminEmail);
     if (process.env.REACT_APP_HOD_FEATURE != "true") {
       statusArray.unshift("Request Sent"); // Add "Request Sent" at the beginning if HOD feature is on
     }
 
-    const bookings = await Booking.find({ isApproved: { $in: statusArray } })
-      .populate('bookedHallId')
+    const bookings = await Booking.find({
+       isApproved: { $in: statusArray },
+  $or: [
+    { email: adminEmail},
+    // Add other conditions as needed
+    {'bookedHall.hallCreater': adminEmail },
+  ],
+}
+    ).populate('bookedHallId')
       .populate('userId');
-
+      console.log(bookings);
     res.json({ bookings });
   } catch (error) {
     next(error);

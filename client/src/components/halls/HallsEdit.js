@@ -84,19 +84,27 @@ const HallsEdit = () => {
         // setBookingData({ ...bookingData });
       }
     } catch (error) {
-      if (error.response.status === 422 && error.response) {
-        const data = error.response.data;
-        setAuthStatus(data.error);
-        console.log(data.error);
-        // window.alert(data.error);
+      if (error.response) {
+        if (error.response.status === 422) {
+          const data = error.response.data;
+          // Handle validation errors
+          // You can set specific error messages for different fields if needed
+          if (data && data.errors) {
+            const errorMessage = data.errors.join(", ");
+            toast.error(errorMessage);
+          }
+        } else if (error.response.status === 403) {
+          toast.error("Unauthorized request!");
+        } else {
+          console.error(error);
+          toast.error("An error occurred while updating the hall.");
+        }
       } else {
         console.error(error);
+        toast.error("An error occurred while updating the hall.");
       }
-      // console.log(error);
     }
   };
-
-
 
 
   const handleInputs = (e) => {

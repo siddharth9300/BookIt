@@ -22,6 +22,10 @@ const hallSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hallCreater: {
+    type: String,
+    required: true,
+  },
 });
 
 const Hall = mongoose.model('Hall', hallSchema);

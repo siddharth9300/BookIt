@@ -34,6 +34,7 @@ const BookingFaculty = () => {
         throw new Error(response.error);
       }
     } catch (error) {
+      
       //consolelog(error);
       // navigate("/login");
     }

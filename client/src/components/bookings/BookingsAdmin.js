@@ -15,7 +15,7 @@ const BookingsAdmin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filterValue, setFilterValue] = useState("Approved By HOD");
   const [emailVerified, setEmailVerified] = useState(false);
-
+  const [userData, setUserData] = useState({});
 
 
   const userContact = async () => {
@@ -29,7 +29,7 @@ const BookingsAdmin = () => {
 
       const data = response.data;
       //consolelog(data);
-
+      setUserData(data)
       if (data.emailVerified) {
         setEmailVerified(true)
       }
@@ -64,7 +64,7 @@ const BookingsAdmin = () => {
       });
 
       const data = response.data;
-      //consolelog(data);
+      console.log(data);
 
       const sortedBookingData = data.bookings.sort((a, b) => {
         // Convert the event date strings to Date objects and compare them
@@ -214,6 +214,8 @@ const BookingsAdmin = () => {
       return bookingData.isApproved === "Approved By Admin";
     } else if (filterValue === "Rejected By Admin") {
       return bookingData.isApproved === "Rejected By Admin";
+    }else if (filterValue === "My Requestsn") {
+      return bookingData.email === userData.email;
     } else {
       return bookingData
     }
@@ -291,6 +293,12 @@ const BookingsAdmin = () => {
             onClick={() => handleFilter("Rejected By Admin")}
           >
             Rejected
+          </button>
+          <button
+            className={`rounded-full px-4 py-2 mx-4 focus:outline-none ${filterValue === "My Requests" ? "bg-indigo-100 text-indigo-800" : "bg-white text-gray-800   hover:bg-gray-100"}`}
+            onClick={() => handleFilter("My Requests")}
+          >
+            My Requests
           </button>
         </div>
 
