@@ -214,7 +214,7 @@ const BookingsAdmin = () => {
       return bookingData.isApproved === "Approved By Admin";
     } else if (filterValue === "Rejected By Admin") {
       return bookingData.isApproved === "Rejected By Admin";
-    }else if (filterValue === "My Requestsn") {
+    }else if (filterValue === "My Requests") {
       return bookingData.email === userData.email;
     } else {
       return bookingData
