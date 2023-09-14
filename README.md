@@ -80,3 +80,5 @@ Contributions are welcome! If you would like to contribute to this project, plea
 
 - [@siddharth9300](https://www.github.com/siddharth9300)
 
+## License
+[GNU GENERAL PUBLIC LICENSE](LICENSE)
