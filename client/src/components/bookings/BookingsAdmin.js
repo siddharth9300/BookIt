@@ -229,7 +229,6 @@ const BookingsAdmin = () => {
 
   // };
 
-
   // const handleBookingClick = () => {
   //   sendData(data);
   // };
