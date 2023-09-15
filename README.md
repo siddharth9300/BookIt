@@ -7,6 +7,8 @@ Book It is an online platform for booking halls for various events. This app all
 <img  height="300" src="screenshots/BookIt (2).png"  />
 <img  height="300" src="screenshots/BookIt (3).png"  />
 <img  height="300" src="screenshots/BookIt (4).png"  />
+<img  height="300" src="screenshots/BookIt (5).png"  />
+<img  height="300" src="screenshots/BookIt (6).png"  />
 ## Features
 
 - Search and filter available halls by location, capacity
