@@ -46,16 +46,28 @@ const updateHall = async (req, res, next) => {
   try {
     const { hallId } = req.params;
     const { name, location, capacity ,amenities,description} = req.body;
-    const { email: hallCreater } = await Hall.findById(hallId);
+    const hallCreatorEmail = req.rootUser.email; // Renamed to avoid conflict
+    const hall = await Hall.findById(hallId);
 
-    if (req.rootUser.email !== hallCreater) {
-      return res.status(403).json({ message: 'Unauthorized' }); // 403 means "Forbidden"
-    }
-    const hall = await Hall.findByIdAndUpdate(hallId, { name, location, capacity,amenities,description }, { new: true });
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }
-    res.json({ hall });
+
+    if (hall.hallCreater !== hallCreatorEmail) {
+      return res.status(403).json({ message: 'Unauthorized' }); // 403 means "Forbidden"
+    }
+
+    const updatedHall = await Hall.findByIdAndUpdate(
+      hallId,
+      { name, location, capacity, amenities, description },
+      { new: true }
+    );
+
+    if (!updatedHall) {
+      return res.status(404).json({ message: 'Hall not found' });
+    }
+
+    res.json({ hall: updatedHall });
   } catch (error) {
     next(error);
   }

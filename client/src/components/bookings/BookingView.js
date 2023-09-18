@@ -340,7 +340,10 @@ const BookingsView = () => {
                   >{bookingData.altNumber}</p>
                 </div>
               </div>
-              <div className="flex flex-wrap -mx-3 mb-6">
+
+            
+
+                <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
@@ -358,15 +361,18 @@ const BookingsView = () => {
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
                     for="grid-alt-number"
-                  >
+                    >
                     Department
                   </h1>
                   <p
                     className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-alt-number"
-                  >{bookingData.userId.department}</p>
+                    >{bookingData.userId.department}</p>
                 </div>
               </div>
+
+             
+
               <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1

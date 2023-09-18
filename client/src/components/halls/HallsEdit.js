@@ -12,6 +12,7 @@ const HallsEdit = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [authStatus, setAuthStatus] = useState("");
   const { hallId } = useParams();
+ 
 
 
 
