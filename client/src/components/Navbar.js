@@ -66,7 +66,7 @@ const RenderUser = () => {
         <>
         
           <Link to="/login">
-            <button className="focus:outline-none lg:text-lg lg:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700  md:block bg-transparent transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-indigo-700 text-indigo-700  px-8 py-1 sm:py-3 text-sm">Sign In / Sign Up</button>
+            <button className="focus:outline-none lg:text-lg font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700  md:block bg-transparent transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-indigo-700 text-indigo-700  px-8 py-1 sm:py-3 text-sm">Sign In / Sign Up</button>
           </Link>
           {/* <button className="focus:outline-none lg:text-lg lg:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 hidden md:block bg-transparent transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-indigo-700 text-indigo-700  sm:px-8 py-1 sm:py-3 text-sm">Sign In</button> */}
 
@@ -86,7 +86,7 @@ const RenderUser = () => {
         <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}
            {/* <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" /> */}
-                      <img className="max-w-12 md:w-64" src={logo} alt="logo" />
+                      <img className=" w-24 md:w-64" src={logo} alt="logo" />
 
              {/* <h1 className="text-xl sm:border-l-2  sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
                Book  <span className="text-indigo-700">It</span> </h1>
@@ -96,10 +96,11 @@ const RenderUser = () => {
 
         <div>
           <button onClick={toggleMenu} className="sm:block md:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
-            <svg aria-haspopup="true" aria-label="open Main Menu" xmlns="http://www.w3.org/2000/svg" className="md:hidden icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round">
+            <svg aria-haspopup="true" aria-label="open Main Menu" xmlns="http://www.w3.org/2000/svg" className="md:hidden icon icon-tabler icon-tabler-menu" width="32" height="32" viewBox="0 0 32 32" strokeWidth="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round">
               <path stroke="none" d="M0 0h24v24H0z"></path>
               <line x1="4" y1="8" x2="20" y2="8"></line>
               <line x1="4" y1="16" x2="20" y2="16"></line>
+              <line x1="4" y1="24" x2="20" y2="24"></line>
             </svg>
           </button>
           <div id="menu" className="md:block lg:block hidden">
@@ -108,6 +109,7 @@ const RenderUser = () => {
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
+                
               </svg>
             </button>
             
@@ -132,7 +134,7 @@ const RenderUser = () => {
                 <Link to="/contact">Contact</Link>
               </li>
               <li className="text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
-                <Link to="/about">Profile</Link>
+                <Link to="/profile">Profile</Link>
               </li>
             </ul>
           </div>

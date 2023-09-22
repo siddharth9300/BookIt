@@ -10,7 +10,7 @@ const Footer = () => {
     <div aria-label="Home. logo" className="flex justify-between items-center" role="img">
           {/* <h1>asd</h1> */}
           {/* <img className="w-12 md:w-auto" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_simple-Svg1.svg" alt="logo" /> */}
-          <img className="max-w-12 md:w-64" src={logo} alt="logo" />
+          <img className="w-24 md:w-64" src={logo} alt="logo" />
           
      
             {/* <h1 className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">

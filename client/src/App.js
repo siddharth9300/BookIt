@@ -72,7 +72,7 @@ const App = () => {
         <Routes>
         <Route path="/" element={state.userType === "admin" ? <AdminDashboard /> : state.userType === "faculty" ? <FacultyDashboard /> : process.env.REACT_APP_HOD_FEATURE &&  state.userType === "hod" ? <HodDashboard />  : <Login />} />
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

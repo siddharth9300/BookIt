@@ -154,18 +154,18 @@ const register = async (req, res,next) => {
 
 <body style="font-size: 1.25rem;font-family: 'Roboto', sans-serif;padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px; background-color: #FAFAFA; width: 75%; max-width: 1280px; min-width: 600px; margin-right: auto; margin-left: auto">
 <table cellpadding="12" cellspacing="0" width="100%" bgcolor="#FAFAFA" style="border-collapse: collapse;margin: auto">
-  <thead>
-    <tr>
-      <td style="padding-left: 0; padding-right: 0">
-        <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:center; padding-bottom: 20px">
-        <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
-      </td>
-    </tr>
-  </thead>
+  // <thead>
+  //   <tr>
+  //     <td style="padding-left: 0; padding-right: 0">
+  //       <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
+  //     </td>
+  //   </tr>
+  //   <tr>
+  //     <td style="text-align:center; padding-bottom: 20px">
+  //       <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
+  //     </td>
+  //   </tr>
+  // </thead>
   <tbody>
     <tr>
       <td style="padding: 50px; background-color: #fff; max-width: 660px">
@@ -186,7 +186,7 @@ const register = async (req, res,next) => {
       <td style="text-align: center; padding-top: 30px">
         <table>
           <tr>
-            <td><img src="https://uploads-ssl.webflow.com/5e96c040bda7162df0a5646d/5f91d2a4d80f5ebbf2ec0119_image-hand%20with%20wrench%402x.png" style="width: 100px;" /></td>
+            <td><img src="../assets/support.png" style="width: 100px;" /></td>
             <td>
             <td style="text-align: left;color:#B6B6B6; font-size: 18px; padding-left: 12px">If you didn’t request this, you can ignore this email or let us know. Your password won’t change until you create a new password.</td>
       </td>
@@ -356,18 +356,18 @@ const register = async (req, res,next) => {
     
     <body style="font-size: 1.25rem;font-family: 'Roboto', sans-serif;padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px; background-color: #FAFAFA; width: 75%; max-width: 1280px; min-width: 600px; margin-right: auto; margin-left: auto">
     <table cellpadding="12" cellspacing="0" width="100%" bgcolor="#FAFAFA" style="border-collapse: collapse;margin: auto">
-      <thead>
-        <tr>
-          <td style="padding-left: 0; padding-right: 0">
-            <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align:center; padding-bottom: 20px">
-            <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
-          </td>
-        </tr>
-      </thead>
+      // <thead>
+      //   <tr>
+      //     <td style="padding-left: 0; padding-right: 0">
+      //       <img src="https://gcdnb.pbrd.co/images/zVpWVNL2VI1Y.png?o=1" style="width:80%; max-width:750px" />
+      //     </td>
+      //   </tr>
+      //   <tr>
+      //     <td style="text-align:center; padding-bottom: 20px">
+      //       <img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="max-width: 250px; width: 40%;" />
+      //     </td>
+      //   </tr>
+      // </thead>
       <tbody>
       <tr>
         <td style="padding: 50px; background-color: #fff; max-width: 660px">
@@ -404,23 +404,23 @@ const register = async (req, res,next) => {
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-       <td style="text-align: center; padding-top: 30px">
-         <table>
-           <tr>
-             <td><img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="width: 150px;" /></td>
-           <td>
-            <td style="text-align: left;color:#B6B6B6; font-size: 18px; padding-left: 12px">Thank you for your attention and cooperation. If you have any questions or need further assistance, please feel free to contact our support team.
-</td>
-       </td>
+//     <tfoot>
+//       <tr>
+//        <td style="text-align: center; padding-top: 30px">
+//          <table>
+//            <tr>
+//              <td><img src="https://gcdnb.pbrd.co/images/VXm0SxliFZYt.png?o=1" style="width: 150px;" /></td>
+//            <td>
+//             <td style="text-align: left;color:#B6B6B6; font-size: 18px; padding-left: 12px">Thank you for your attention and cooperation. If you have any questions or need further assistance, please feel free to contact our support team.
+// </td>
+//        </td>
       
-     </tr>
-</table>
+//      </tr>
+// </table>
     
-    </td>
-    </tr>
-    </tfoot>
+//     </td>
+//     </tr>
+//     </tfoot>
     </table>
     </body>
 

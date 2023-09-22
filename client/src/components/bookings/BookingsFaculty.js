@@ -166,7 +166,7 @@ const BookingFaculty = () => {
         //       {/* <p className="py-2 text-base text-gray-800">Sorry about that! Please visit our hompage to get where you need to go.</p> */}
         //       <div>
     
-        //         <Link to="/about" ><button
+        //         <Link to="/profile" ><button
         //           className="w-full lg:w-auto my-4 rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Verify Email
         //         </button>
         //         </Link>
