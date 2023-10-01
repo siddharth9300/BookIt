@@ -10,6 +10,7 @@ const HallsEdit = () => {
   const navigate = useNavigate();
   const [hallData, setHallData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [authStatus, setAuthStatus] = useState("");
   const { hallId } = useParams();
  
@@ -93,6 +94,7 @@ const HallsEdit = () => {
           if (data && data.errors) {
             const errorMessage = data.errors.join(", ");
             toast.error(errorMessage);
+            setAuthStatus(errorMessage);
           }
         } else if (error.response.status === 403) {
           toast.error("Unauthorized request!");
