@@ -22,6 +22,7 @@ const ForgotPassword = () => {
 
     try {
     // const response = await axios.post("http://localhost:9002/login", {
+    // eslint-disable-next-line no-unused-vars
     const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/forgotPassword/${id}/${token}`, {
       // withCredentials: true, // To include credentials in the request
       headers: {

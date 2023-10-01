@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
-import { parseISO, set } from "date-fns";
+import { parseISO } from "date-fns";
 
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -177,6 +177,7 @@ const BookingForm = () => {
           // You can set specific error messages for different fields if needed
           if (data && data.errors) {
             const errorMessage = data.errors.join(", ");
+            setAuthStatus(errorMessage);
             toast.error(errorMessage);
           }
         } else if (error.response.status === 403) {
