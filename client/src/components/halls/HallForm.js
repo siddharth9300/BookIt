@@ -32,7 +32,7 @@ const HallForm = () => {
       const data = response.data;
       setHallCreater(data.email)
 
-      console.log(data.email);
+      // console.log(data.email);
 
       if(data.emailVerified){
         setEmailVerified(true)
@@ -112,7 +112,7 @@ const HallForm = () => {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
         setAuthStatus(data.error);
-        console.log(data.error);
+        // console.log(data.error);
         // window.alert(data.error);
       } else {
         console.error(error);

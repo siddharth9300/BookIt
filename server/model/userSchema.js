@@ -99,7 +99,7 @@ userSchema.methods.generateAuthToken = async function () {
     await this.save();
     return token;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 // storing message
@@ -109,7 +109,7 @@ userSchema.methods.addMessage = async function(name,email,phone,message){
        await this.save();
        return this.messages;
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

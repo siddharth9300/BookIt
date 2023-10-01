@@ -28,7 +28,7 @@ const HallsEdit = () => {
       });
 
       const data = response.data;
-      console.log(data.hall);
+      // console.log(data.hall);
       setHallData(data.hall);
       setIsLoading(false);
 

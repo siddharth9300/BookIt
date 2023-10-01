@@ -22,7 +22,7 @@ const Halls = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       setUserData(data.halls);
       setIsLoading(false);
 

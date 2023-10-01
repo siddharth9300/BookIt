@@ -27,7 +27,7 @@ const HallsAdmin = () => {
       const data = response.data;
       //consolelog(data);
       setUserData(data);
-      console.log(data);
+      // console.log(data);
       setIsLoading(false);
       if (response.status !== 200) {
         throw new Error(response.error);
@@ -58,7 +58,7 @@ const HallsAdmin = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       setHallData(data.halls);
       setIsLoading(false);
 
@@ -66,7 +66,7 @@ const HallsAdmin = () => {
         throw new Error(response.error);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       // navigate("/login");
     }
   };
@@ -116,7 +116,7 @@ const HallsAdmin = () => {
       if (error.response.status === 422 && error.response) {
         const data = error.response.data;
         // setAuthStatus(data.error);
-        console.log(data.error);
+        // console.log(data.error);
         // window.alert(data.error);
       } else {
         console.error(error);
