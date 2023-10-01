@@ -1,0 +1,23 @@
+# docs at: https://eslint.org/docs/latest/use/configure/
+env:
+  commonjs: true
+  es2021: true
+  node: true
+extends:
+  - eslint:recommended
+  - prettier
+parserOptions:
+  ecmaVersion: latest
+rules:
+  indent:
+    - error
+    - 4
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - always
