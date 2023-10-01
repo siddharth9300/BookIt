@@ -105,8 +105,8 @@ export const CalendarView = () => {
     : [];
 
   return (
-    <div className="-24">
-<div className="md:ml-64 w-auto flex items-center justify-start">
+    <div className="my-12">
+<div className="w-auto flex mb-10 items-center justify-center">
   
             <div className="flex items-center m-6">
               <div className="w-2 h-2 mr-2 bg-blue-600 rounded-full"></div>
