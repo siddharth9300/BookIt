@@ -13,8 +13,8 @@ const BookingsView = () => {
   const { bookingId } = useParams();
   //consolelog(bookingId);
   const [isLoading, setIsLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedBookingId, setSelectedBookingId] = useState("");
+  // const [showModal, setShowModal] = useState(false);
+  // const [selectedBookingId, setSelectedBookingId] = useState("");
   const [bookingData, setBookingData] = useState({});
     
     const { state } = useContext(UserContext)
@@ -61,7 +61,7 @@ const BookingsView = () => {
           "Content-Type": "application/json"
         }
       });
-      const data = response.data;
+      // const data = response.data;
       //consolelog(data);
       getbookingById();
       toast.success(`Request ${isApproved} Successfull!`)

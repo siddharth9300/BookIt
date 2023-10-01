@@ -5,7 +5,8 @@ import LoadingSpinner from "../LoadingSpinner";
 import axios from 'axios';
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-
+import verisuccess from '../../assets/verification success.jpg'
+import verifail from '../../assets/verification fail.png'
 const VerifySuccess = () => {
 
   // const navigate = useNavigate()
@@ -102,9 +103,9 @@ const VerifySuccess = () => {
 
       <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
         <div className="w-full lg:w-1/2">
-        <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
-          <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" />
-          <img alt='error' className="md:hidden" src="https://i.ibb.co/8gTVH2Y/Group-198.png" />
+        <img alt='error' className="hidden lg:block" src={verifail} />
+          {/* <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" />
+          <img alt='error' className="md:hidden" src="https://i.ibb.co/8gTVH2Y/Group-198.png" /> */}
         </div>
         <div className="w-full lg:w-1/2">
           <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Verification Link Has Been Expired!</h1>
@@ -125,7 +126,7 @@ const VerifySuccess = () => {
       <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
         <div className="w-full lg:w-1/2">
           
-          <img alt='error' className="hidden lg:block" src="https://gcdnb.pbrd.co/images/wpwpHmG9Wctv.png?o=1" />
+          <img alt='error' className="hidden lg:block" src={verisuccess} />
           {/* <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" />
           <img alt='error' className="md:hidden" src="https://i.ibb.co/8gTVH2Y/Group-198.png" /> */}
         </div>

@@ -38,6 +38,7 @@ import Unauthorized from "./components/Unauthorized";
 import BookingUpdateFrom from "./components/bookings/BookingUpdateForm"
 import Events from "./components/bookings/Events";
 import BookingsView from "./components/bookings/BookingView";
+import { CalendarView } from "./components/CalendarView";
 export const UserContext = createContext();
 const App = () => {
 
@@ -74,6 +75,7 @@ const App = () => {
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/profile" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/calendar" element={<CalendarView />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
