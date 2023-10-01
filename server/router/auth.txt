@@ -62,7 +62,7 @@ router.post("/register", async (req, res) => {
       return res.status(201).json({ message: "Saved successfully" });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
@@ -88,7 +88,7 @@ router.post("/login", async (req, res) => {
         expires: new Date(Date.now() + 9000000),
         httpOnly: true,
       });
-      console.log(token);
+      // console.log(token);
 
       if (!isMatch) {
         res.status(400).json({ error: "Invalid Cridential" });
@@ -100,20 +100,20 @@ router.post("/login", async (req, res) => {
       res.status(400).json({ error: "Invalid Cridential" });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 // about us ka page
 
 router.get("/about", authenticate, (req, res) => {
-  console.log("about page");
+  // console.log("about page");
   res.send(req.rootUser);
 });
 
 //get user data for contact us and home page
 router.get("/getdata", authenticate, (req, res) => {
-  console.log("getdata page");
+  // console.log("getdata page");
   res.send(req.rootUser);
 });
 
@@ -123,14 +123,14 @@ router.post("/contact", authenticate, async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     if (!name || !email || !phone || !message) {
-      console.log("error in contact form");
+      // console.log("error in contact form");
       return res.json({ error: "Plz fill form correctly" });
     }
 
 const userContact = await  User.findOne({_id:req.userID})
 
 if (userContact){
-  console.log("user find");
+  // console.log("user find");
 
   const userMessage = await userContact.addMessage(name,email,phone,message)
   await userContact.save();
@@ -140,7 +140,7 @@ if (userContact){
 }
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -148,7 +148,7 @@ if (userContact){
 
 // logout page
 // router.get("/logout", authenticate, (req, res) => {
-//   console.log("logout page");
+//   // console.log("logout page");
 //   res.clearCookie("jwtoken",{path:"/"})
 //   res.status(200).send("user logout");
 // });
@@ -156,7 +156,7 @@ if (userContact){
 
 // logout page
 router.get("/logout", authenticate, async (req, res) => {
-  console.log("logout page");
+  // console.log("logout page");
   try {
     // Remove the token from the user document in the database
     // const userId = req.userID;
@@ -171,7 +171,7 @@ router.get("/logout", authenticate, async (req, res) => {
 
     res.status(200).send("User logged out successfully");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({ error: "Internal server error" });
   }
 });

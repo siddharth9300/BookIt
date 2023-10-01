@@ -10,7 +10,7 @@ const Authenticate = async (req, res, next) => {
 
     const bearer = bearerHeader.split(" ");
     const token = bearer[1];
-    console.log("auth called");
+    // console.log("auth called");
 
     // const token = req.sessionstotage.jwtoken;
     // const token = window.sessionStorage.getItem('jwtoken');
@@ -34,7 +34,7 @@ const Authenticate = async (req, res, next) => {
     
   } catch (error) {
     res.status(401).send("unauthorized:No token provided");
-    console.log(error);
+    // console.log(error);
   }
 };
 

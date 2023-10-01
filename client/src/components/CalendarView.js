@@ -58,7 +58,7 @@ export const CalendarView = () => {
         );
 
         setEvents(response.data.bookings);
-        console.log(response.data.bookings);
+        // console.log(response.data.bookings);
       } catch (error) {
         console.error("Error fetching events:", error);
       }

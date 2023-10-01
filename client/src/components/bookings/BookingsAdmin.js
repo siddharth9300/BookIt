@@ -64,7 +64,7 @@ const BookingsAdmin = () => {
       });
 
       const data = response.data;
-      console.log(data);
+      // console.log(data);
 
       const sortedBookingData = data.bookings.sort((a, b) => {
         // Convert the event date strings to Date objects and compare them

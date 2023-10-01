@@ -171,12 +171,12 @@ const getBookings = async (req, res, next) => {
 
 
 const getBookingById = async (req, res, next) => {
-  console.log("function called");
+  // console.log("function called");
 
   try {
     const { bookingId } = req.params;
     const booking = await Booking.findById(bookingId).populate('bookedHallId').populate('userId');
-    console.log(booking);
+    // console.log(booking);
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found' });
     }
@@ -210,8 +210,8 @@ const getBookingAdmin = async (req, res, next) => {
     let statusArray = ["Approved By HOD", "Approved By Admin", "Rejected By Admin"];
     const adminEmail = req.rootUser.email;
     const userId = req.rootUser._id;
-    console.log("admin bookng");
-    console.log(adminEmail);
+    // console.log("admin bookng");
+    // console.log(adminEmail);
     if (process.env.REACT_APP_HOD_FEATURE != "true") {
       statusArray.unshift("Request Sent"); // Add "Request Sent" at the beginning if HOD feature is on
     }
@@ -226,7 +226,7 @@ const getBookingAdmin = async (req, res, next) => {
 }
     ).populate('bookedHallId')
       .populate('userId');
-      console.log(bookings);
+      // console.log(bookings);
     res.json({ bookings });
   } catch (error) {
     next(error);
@@ -236,7 +236,7 @@ const getBookingAdmin = async (req, res, next) => {
 
 const getBookingHod = async (req, res, next) => {
   const hodDepartment = req.rootUser.department
-  console.log(hodDepartment);
+  // console.log(hodDepartment);
   try {
     const bookings = await Booking.find({ department: hodDepartment }).populate('bookedHallId');
 

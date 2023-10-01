@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken")
 const register = async (req, res,next) => {
   try {
     const { name, email,institution,department, phone, userType,adminKey, password, cpassword } = req.body;
-  console.log(process.env.ADMIN_KEY);
+  // console.log(process.env.ADMIN_KEY);
   const hodExist = await User.findOne({ department , userType: "hod" });
 
     if (userType === "admin") {
@@ -83,7 +83,7 @@ const register = async (req, res,next) => {
         
            user = new User({ name, email, phone, userType,institution,department,adminKey:"null" ,password, cpassword });
         }
-        console.log(user);
+        // console.log(user);
         // Perform additional validation or data processing here
         await user.save();
   
@@ -323,10 +323,10 @@ const passwordLink = async (req, res,next) => {
           transporter.sendMail(mailOptions,(error,info)=>
           {
             if (error) {
-              console.log(error);
+              // console.log(error);
               res.status(401).json({status:401,message:"Email not Send"})
             }else{
-              console.log("Email Sent ",info.response);
+              // console.log("Email Sent ",info.response);
               res.status(201).json({status:201,message:"Email Send Successfully"})
             }
           })
@@ -334,7 +334,7 @@ const passwordLink = async (req, res,next) => {
 
 
 
-        console.log(setUserToken);
+        // console.log(setUserToken);
 
     } else {
       res.status(400).json({ error: "Invalid Cridential" });
@@ -360,7 +360,7 @@ const forgotPassword = async (req, res,next) => {
         res.status(401).json({status:401,message:"user not exist"})
       }
 
-  //  console.log(validUser); 
+  //  // console.log(validUser); 
   } catch (error) {
     res.status(401).json({status:401,error})
     
@@ -400,7 +400,7 @@ const setNewPassword = async (req, res,next) => {
         res.status(401).json({status:401,message:"user not exist"})
       }
 
-  //  console.log(validUser); 
+  //  // console.log(validUser); 
   } catch (error) {
     res.status(401).json({status:401,error})
     
@@ -454,10 +454,10 @@ const emailVerificationLink = async (req, res,next) => {
           transporter.sendMail(mailOptions,(error,info)=>
           {
             if (error) {
-              console.log(error);
+              // console.log(error);
               res.status(401).json({status:401,message:"Email not Send"})
             }else{
-              console.log("Email Sent ",info.response);
+              // console.log("Email Sent ",info.response);
               res.status(201).json({status:201,message:"Email Send Successfully"})
             }
           })
@@ -465,7 +465,7 @@ const emailVerificationLink = async (req, res,next) => {
 
 
 
-        console.log(setUserToken);
+        // console.log(setUserToken);
 
     } else {
       res.status(400).json({ error: "Invalid Cridential" });
@@ -498,10 +498,10 @@ const verifyEmail = async (req, res,next) => {
       else{
         res.status(401).json({status:401,error:"user not exist"})
       }
-      console.log(setUserToken);
+      // console.log(setUserToken);
     
      
-  //  console.log(validUser); 
+  //  // console.log(validUser); 
   } catch (error) {
     // res.status(401).json({status:422,error})
     next(error);
@@ -531,7 +531,7 @@ const login = async (req, res,next) => {
       if (userLogin) {
         const isMatch = await bcrypt.compare(password, userLogin.password);
         token = await userLogin.generateAuthToken();
-        console.log("this is login token" + token);
+        // console.log("this is login token" + token);
 
         // res.cookie("jwtoken", token, {
         //   maxAge: 900000,
@@ -567,14 +567,14 @@ const login = async (req, res,next) => {
 
 
   const about = async (req, res) => {
-    console.log("about page");
+    // console.log("about page");
     res.send(req.rootUser);
   }
   
   //get user data for contact us and home page
   const getdata = async (req, res) => {
-        console.log("getdata page");
-        console.log(req.rootUser);
+        // console.log("getdata page");
+        // console.log(req.rootUser);
     res.send(req.rootUser);
   }
 
@@ -587,14 +587,14 @@ const login = async (req, res,next) => {
       const { name, email,department, phone, message } = req.body;
   
       if (!name || !department || !email || !phone || !message) {
-        console.log("error in contact form");
+        // console.log("error in contact form");
         return res.json({ error: "Plz fill form correctly" });
       }
   
   const userContact = await  User.findOne({_id:req.userID})
   
   if (userContact){
-    console.log("user find");
+    // console.log("user find");
   
     const userMessage = await userContact.addMessage(name,email,phone,message)
     await userContact.save();
