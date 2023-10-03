@@ -1,5 +1,0 @@
-# docs at: https://prettier.io/docs/en/options
-trailingComma: "all"
-tabWidth: 4
-semi: true
-singleQuote: false
