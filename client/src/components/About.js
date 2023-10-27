@@ -139,26 +139,33 @@ const About = () => {
                     <VerifyButton />
                   </div>
                 </div>
-                <div className="mt-6 grid grid-cols-3 gap-8  text-center items-center lg:text-left">
-                  <div>
-                    <p className="font-bold text-zinc-700">Institution</p>
-                  </div>
-                  <div>
-                    <p className="text-m font-semibold text-zinc-700">
-                      {userData.institution}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-6 grid grid-cols-3 gap-8  text-center items-center lg:text-left">
-                  <div>
-                    <p className="font-bold text-zinc-700">Department</p>
-                  </div>
-                  <div>
-                    <p className="text-m font-semibold text-zinc-700">
-                      {userData.department}
-                    </p>
-                  </div>
-                </div>
+
+                {userData.userType !== "admin" && (
+                 <>
+                 <div className="mt-6 grid grid-cols-3 gap-8  text-center items-center lg:text-left">
+               <div>
+                 <p className="font-bold text-zinc-700">Institution</p>
+               </div>
+               <div>
+                 <p className="text-m font-semibold text-zinc-700">
+                   {userData.institution}
+                 </p>
+               </div>
+             </div>
+             <div className="mt-6 grid grid-cols-3 gap-8  text-center items-center lg:text-left">
+               <div>
+                 <p className="font-bold text-zinc-700">Department</p>
+               </div>
+               <div>
+                 <p className="text-m font-semibold text-zinc-700">
+                   {userData.department}
+                 </p>
+               </div>
+             </div> 
+                </>
+              ) 
+              }
+
                 <div className="mt-6 grid grid-cols-3 gap-8  text-center items-center lg:text-left">
                   <div>
                     <p className="font-bold text-zinc-700">Phone</p>
