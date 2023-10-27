@@ -23,12 +23,11 @@ const Signup = () => {
 
   let name, value;
   const handleInputs = (e) => {
-    // //consolelog(e);
+    
     name = e.target.name;
     value = e.target.value;
 
     setUser({ ...user, [name]: value });
-    //consolelog(user);
   };
 
   const PostData = async (e) => {
@@ -47,7 +46,7 @@ const Signup = () => {
     } = user;
 
     try {
-      // eslint-disable-next-line no-unused-vars
+      
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/register`,
         {
@@ -68,70 +67,23 @@ const Signup = () => {
         }
       );
 
-      // if (response.status === 422 || !data) {
-      //   //consolelog(data.error)
-      //   window.alert(data.error);
-      // } else {
+
       setIsLoading(false);
       toast.success("Sign Up Successfull!");
 
-      // window.alert("Registration Successful");
+
       navigate("/login");
-      // }
+
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         setIsLoading(false);
         const data = error.response.data;
         setAuthStatus(data.error);
-        //consolelog(data.error);
-        // window.alert(data.error);
-      } else {
-        //consoleerror(error);
+
       }
     }
   };
 
-  // const PostData = async (e) => {
-  //       e.preventDefault();
-  //   const { name, email, phone, userType, password, cpassword } = user;
-  //   try {
-  //     const response = await axios.post("http://localhost:9002/register", {
-  //       name,
-  //       email,
-  //       phone,
-  //       userType,
-  //       password,
-  //       cpassword,
-  //     }
-  //     , {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     const data = response.data;
-
-  //     //consolelog(data);
-
-  //     if (response.status === 422) {
-
-  //       alert("something setCredentialsError is wrong");
-  //     }
-
-  //     else {
-
-  //       //consolelog("logged in at time",new Date())
-
-  //       navigate("/login");
-
-  //     }
-  //   }
-  //    catch (error) {
-  //     //consolelog(error);
-
-  //     alert("something is wrong");
-  //   }
-  // };
 
   return (
     <>
@@ -245,35 +197,7 @@ const Signup = () => {
                     />
                   </div>
 
-                  <div className="relative mb-4">
-                    <label
-                      htmlFor="institution"
-                      className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                      Institution
-                    </label>
-
-                    <select
-                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                      id="institution"
-                      name="institution"
-                      value={user.institution}
-                      onChange={handleInputs}>
-                      <option value="">Select</option>
-                      <option value="AITR">
-                        Acropolis Institute of Technology and Research
-                      </option>
-                      <option value="AIMSR">
-                        Acropolis Institute of Management Studies & Research
-                      </option>
-                      <option value="AIPER">
-                        Acropolis Institute Of Pharmaceutical Education &
-                        Research
-                      </option>
-                      <option value="AMR">
-                        Acropolis Faculty of Management and Research
-                      </option>
-                    </select>
-                  </div>
+             
                 </>
               ) : (
                 <>
@@ -347,7 +271,7 @@ const Signup = () => {
                           Acropolis Faculty of Management and Research
                         </option>
 
-                        {/* <option value="OTHERS">Others</option> */}
+
                       </select>
                     </div>
                   )}
@@ -373,7 +297,7 @@ const Signup = () => {
                           Bachelor of Business Administration
                         </option>
                         <option value="LAW">LAW</option>
-                        {/* <option value="OTHERS">Others</option> */}
+   
                       </select>
                     </div>
                   )}
@@ -413,28 +337,11 @@ const Signup = () => {
                         <option value="CDC">Carrer Development Cell</option>
                         <option value="HUMI">Huminities</option>
                         <option value="CHEM">Chemistry</option>
-                        {/* <option value="OTHERS">Others</option> */}
+
                       </select>
                     </div>
                   )}
 
-                  {/* <div className="relative mb-4">
-                    <label
-                      htmlFor="department"
-                      className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                      Department
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={user.department}
-                      onChange={handleInputs}
-                      id="department"
-                      name="department"
-                      placeholder="Department"
-                      className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div> */}
                 </>
               )}
 
