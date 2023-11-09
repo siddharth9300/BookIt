@@ -175,8 +175,7 @@ const register = async (req, res,next) => {
       <td style="text-align: center; padding-top: 30px">
         <table>
           <tr>
-            <td><img src="../assets/support.png" style="width: 100px;" /></td>
-            <td>
+              <td>
             <td style="text-align: left;color:#B6B6B6; font-size: 18px; padding-left: 12px">If you didn’t request this, you can ignore this email or let us know. Your password won’t change until you create a new password.</td>
       </td>
     </tr>
@@ -323,10 +322,10 @@ const passwordLink = async (req, res,next) => {
           transporter.sendMail(mailOptions,(error,info)=>
           {
             if (error) {
-              // console.log(error);
+              console.log(error);
               res.status(401).json({status:401,message:"Email not Send"})
             }else{
-              // console.log("Email Sent ",info.response);
+              console.log("Email Sent ",info.response);
               res.status(201).json({status:201,message:"Email Send Successfully"})
             }
           })
