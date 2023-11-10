@@ -14,7 +14,7 @@ const HallsAdmin = () => {
   const [showModal,setShowModal]=useState(false);
   const [selectedHallId, setSelectedHallId] = useState("");
   const [selectedHallName, setSelectedHallName] = useState("");
-
+  
   const callAboutPage = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/about`, {
@@ -297,7 +297,7 @@ const HallsAdmin = () => {
                       >
                         Book Now
                       </button>
-                {userData.email === hall.hallCreater ? 
+                {userData.email === hall.hallCreater || process.env.REACT_APP_MASTER_ADMIN_EMAIL ? 
                 <>
                       <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => handleEditClick(hall._id, hall.name)}
