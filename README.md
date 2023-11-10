@@ -49,6 +49,8 @@ Book It is an online platform for booking halls for various events. This app all
     - ##### To Enable HOD Feature `true` for `On` and `false` for
 - `REACT_APP_SERVER_URL` = `<localhost server url here>`
     - ##### Enter Server Url
+- `REACT_APP_MASTER_ADMIN_EMAIL` = `<Email of Master Admin>`
+    - ##### Admin who has access to edit and delete all halls 
 
 ### Server Side
 - `DATABASE` = <MongoDB Url Here>
