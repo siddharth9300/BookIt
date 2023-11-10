@@ -14,7 +14,7 @@ const HallsAdmin = () => {
   const [showModal,setShowModal]=useState(false);
   const [selectedHallId, setSelectedHallId] = useState("");
   const [selectedHallName, setSelectedHallName] = useState("");
-  
+
   const callAboutPage = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/about`, {
@@ -152,6 +152,9 @@ const HallsAdmin = () => {
     setSelectedHallName(hallName);
     setShowModal(true);
   };
+  console.log('userData.email:', userData.email);
+console.log('hall.hallCreater:', hallData.hallCreater);
+console.log('process.env.REACT_APP_MASTER_ADMIN_EMAIL:', process.env.REACT_APP_MASTER_ADMIN_EMAIL);
 
   return (
 <>{isLoading ? (
@@ -297,7 +300,7 @@ const HallsAdmin = () => {
                       >
                         Book Now
                       </button>
-                {userData.email === hall.hallCreater || process.env.REACT_APP_MASTER_ADMIN_EMAIL ? 
+                {userData.email === process.env.REACT_APP_MASTER_ADMIN_EMAIL || userData.email === hall.hallCreater  ? 
                 <>
                       <button className="w-full rounded-xl border-2 border-blue-500 bg-white px-3 py-2 font-semibold text-blue-500 hover:bg-blue-500 hover:text-white"
                         onClick={() => handleEditClick(hall._id, hall.name)}
