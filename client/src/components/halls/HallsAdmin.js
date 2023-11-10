@@ -152,9 +152,6 @@ const HallsAdmin = () => {
     setSelectedHallName(hallName);
     setShowModal(true);
   };
-  console.log('userData.email:', userData.email);
-console.log('hall.hallCreater:', hallData.hallCreater);
-console.log('process.env.REACT_APP_MASTER_ADMIN_EMAIL:', process.env.REACT_APP_MASTER_ADMIN_EMAIL);
 
   return (
 <>{isLoading ? (
