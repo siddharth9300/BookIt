@@ -47,7 +47,7 @@ const Contact = () => {
                 Siddharth Jain
               </h2>
               <p className="mt-2 text-l font-semibold text-zinc-700">
-                Studenet Coordinator
+                Student Coordinator
               </p>
             </div>
 
@@ -84,7 +84,7 @@ const Contact = () => {
                 Abhishek Kumar
               </h2>
               <p className="mt-2 text-l font-semibold text-zinc-700">
-                Studenet Coordinator
+                Student Coordinator
               </p>
             </div>
 
@@ -121,7 +121,7 @@ const Contact = () => {
                 Ashutosh Dubey
               </h2>
               <p className="mt-2 text-l font-semibold text-zinc-700">
-                Studenet Coordinator
+                Student Coordinator
               </p>
             </div>
 
