@@ -40,37 +40,34 @@ Book It is an online platform for booking halls for various events. This app all
 - View the list of pending booking requests and their details, including the user's name, email, and booking details.
 - Create new halls by entering the hall name, location, capacity.
 
+
+
 ## Environment Variables
 
-### Client Side
-- `REACT_APP_ADMIN_SIGN_UP` = `true `
-    - ##### To Enable Admin Sign Up `true` for `On` and `false` for `Off`
-- `REACT_APP_HOD_FEATURE` = `false`
-    - ##### To Enable HOD Feature `true` for `On` and `false` for
-- `REACT_APP_SERVER_URL` = `<localhost server url here>`
-    - ##### Enter Server Url
-- `REACT_APP_MASTER_ADMIN_EMAIL` = `<Email of Master Admin>`
-    - ##### Admin who has access to edit and delete all halls 
+### Client
 
-### Server Side
-- `DATABASE` = <MongoDB Url Here>
-    - ##### Enter MongoDB Url
-- `PORT`= `9002`
-  - ##### Server PORT
-- `SECRET_KEY`= `<Secret Key>`
-  - ##### MongoDB Key
-- `ADMIN_KEY`= `<Admin Key>`
-  - ##### Key for Admin Signup
-- `SENDER_EMAIL`= `<Sender Email>`  
-  - ##### Email from which verificaion and forgot link will be sent
-- `ADMIN_EMAIL`= `<Admin Email>`
-  - ##### Email of Admin
-- `SENDER_PASSWORD`= `<Sender Email Password>`
-  - ##### Password of Email from which verificaion and forgot link will be sent
-- `CLIENT_URL`= `localhost client url here`
-    - ##### Enter Server Url
-- `REACT_APP_HOD_FEATURE` = `false`
-    - ##### To Enable HOD Feature `true` for `On` and `false` for
+
+| Variable Name | Example |Description |
+|-------------------------------|:----------------:|:----------------------------------------------------------------------|
+| `REACT_APP_ADMIN_SIGN_UP`| `true`| To Enable Admin Sign Up `true` for `On` and `false` for `Off`|
+| `REACT_APP_HOD_FEATURE`| `false` | To Enable HOD Feature `true` for `On` and `false` for `Off` |
+| `REACT_APP_SERVER_URL`                  | `https://bookit********.com`             | Enter Server Url for API request                                     |
+| `REACT_APP_MASTER_ADMIN_EMAIL` | `master**min@gmail.com`       | Email of the Admin who has access to edit and delete all halls |
+
+### Server
+
+| Variable Name                       | Example | Description                                                               |
+|-------------------------------|:----------------:|:----------------------------------------------------------------------|
+|`DATABASE`|`mongodb+srv://******:*******@********.*******.mongodb.net/*****?retryWrites=true&w=majority`|Enter MongoDB connection Url |
+|`PORT`|`9002`|Server PORT|
+|`SECRET_KEY`|`<Secret Key>`|MongoDB Key|
+|`ADMIN_KEY`|`<Admin Key>`|Any word that is required whtn signup as Admin|
+|`ADMIN_EMAIL`|`ad**n@gmail.com`|Email of Admin|
+|`SENDER_EMAIL`|`ad**n@gmail.com`|Email from which verificaion and forgot link will be sent|
+|`SENDER_PASSWORD`|`******`|Password of Email from which verificaion and forgot link will be sent|
+|`CLIENT_URL`|`https://bookit********.com`|	Enter Client Url for API request|
+|`REACT_APP_HOD_FEATURE`|`false`|To Enable HOD Feature `true` for `On` and `false` for|
+
 
 ## Contributing
 
