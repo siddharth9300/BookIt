@@ -228,6 +228,12 @@ const Signup = () => {
                       <option value="AMR">
                         Acropolis Faculty of Management and Research
                       </option>
+                      <option value="CDC">
+                      Carrer Development Cell
+                                            </option>
+                      <option value="AC">
+                      Acro Care
+                      </option>
 
 
                     </select>
