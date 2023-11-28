@@ -53,7 +53,8 @@ const updateHall = async (req, res, next) => {
       return res.status(404).json({ message: 'Hall not found' });
     }
 
-    if (hall.hallCreater !== hallCreatorEmail) {
+    if (hall.hallCreater !== hallCreatorEmail  || hall.hallCreater !== process.env.MASTER_ADMIN) {
+    // if (hall.hallCreater !== hallCreatorEmail) {
       return res.status(403).json({ message: 'Unauthorized' }); // 403 means "Forbidden"
     }
 
