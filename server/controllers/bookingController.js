@@ -58,7 +58,9 @@ const createBooking = async (req, res, next) => {
       }
     }
 
-    if (!eventManager || !phoneNumber || !altNumber || !eventName || !organizingClub ) {
+    if (!eventManager || !phoneNumber 
+      // || !altNumber 
+      || !eventName || !organizingClub ) {
       return res.status(422).json({ error: "Please fill all details" });
 
     }
@@ -78,9 +80,9 @@ const createBooking = async (req, res, next) => {
       return res.status(422).json({ error: "Please enter a valid 10-digit phone number" });
     }
 
-    if (altNumber.length !== 10) {
-      return res.status(422).json({ error: "Please enter a valid 10-digit alternate number" });
-    }
+    // if (altNumber.length !== 10) {
+    //   return res.status(422).json({ error: "Please enter a valid 10-digit alternate number" });
+    // }
 
    // Validate start and end time
    const startDateTime = new Date(`2000-01-01T${startTime}:00Z`);

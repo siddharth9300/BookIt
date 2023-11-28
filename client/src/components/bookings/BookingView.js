@@ -327,6 +327,7 @@ const BookingsView = () => {
                   >{bookingData.phoneNumber}</p>
                   {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
+
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
@@ -339,6 +340,7 @@ const BookingsView = () => {
                     id="grid-alt-number"
                   >{bookingData.altNumber}</p>
                 </div>
+                
               </div>
 
             

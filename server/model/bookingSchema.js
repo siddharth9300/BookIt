@@ -73,8 +73,7 @@ const bookingSchema = new mongoose.Schema(
       required: true
     },
     altNumber: {
-      type: Number,
-      required: true
+      type: Number
     },
     isApproved: {
       default: "Request Sent",
