@@ -7,6 +7,8 @@ const createBooking = async (req, res, next) => {
     const {
       userId,
       eventManager,
+      department,
+      institution,
       eventName,
       eventDateType,
       eventDate,
@@ -58,7 +60,7 @@ const createBooking = async (req, res, next) => {
       }
     }
 
-    if (!eventManager || !phoneNumber 
+    if (!eventManager || !phoneNumber  || !department || !institution
       // || !altNumber 
       || !eventName || !organizingClub ) {
       return res.status(422).json({ error: "Please fill all details" });
@@ -99,8 +101,8 @@ const createBooking = async (req, res, next) => {
     const booking = new Booking({
 
       userId:user._id,
-      institution:user.institution,
-      department:user.department,
+      institution,
+      department,
       eventManager,
       eventName,
       eventDateType,

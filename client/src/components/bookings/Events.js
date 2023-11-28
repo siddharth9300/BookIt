@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoadingSpinner from "../LoadingSpinner";
 // import { toast } from "react-toastify";
 import {format,parseISO} from "date-fns"
+import { DepartmentList } from "../InstitutionDeptartmentList";
 // import BookingForm from "./BookingForm";
 
 const Events = () => {
@@ -317,7 +318,7 @@ const Events = () => {
                         <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                           <p className="ext-m font-bold text-gray-600">Department</p>
                           <p className="text-base font-medium text-navy-700 ">
-                          {event.department}
+                          {event.department} - {DepartmentList[event.department]}
                           </p>
                         </div>
                         <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">

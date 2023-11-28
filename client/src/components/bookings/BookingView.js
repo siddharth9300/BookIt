@@ -8,6 +8,7 @@ import { parseISO, format } from 'date-fns';
 import { UserContext } from "../../App";
 
 import {RequestSent , ApprovedByAdmin,ApprovedByHod,RejectedByAdmin,RejectedByHod } from "../Steps"
+import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
 const BookingsView = () => {
   const navigate = useNavigate();
   const { bookingId } = useParams();
@@ -123,6 +124,10 @@ const BookingsView = () => {
     getbookingById();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  const institutionName = InstitutionList[bookingData.institution] || bookingData.institution;
+  const departmentName = DepartmentList[bookingData.department] || bookingData.department;
 
   return (
     <>
@@ -340,7 +345,7 @@ const BookingsView = () => {
                     id="grid-alt-number"
                   >{bookingData.altNumber}</p>
                 </div>
-                
+
               </div>
 
             
@@ -356,7 +361,7 @@ const BookingsView = () => {
                   <p
                     className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-phone-number"
-                  >{bookingData.userId.institution}</p>
+                  >{bookingData.institution} - {institutionName}</p>
                   {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
                 <div className="w-full md:w-1/2 px-3">
@@ -369,7 +374,7 @@ const BookingsView = () => {
                   <p
                     className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-alt-number"
-                    >{bookingData.userId.department}</p>
+                    >{bookingData.department} - {departmentName}</p>
                 </div>
               </div>
 

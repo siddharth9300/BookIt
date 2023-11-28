@@ -71,6 +71,7 @@ const BookingForm = () => {
         email: data.email,
         department: data.department,
         institution: data.institution,
+        userType:data.userType,
         isApproved: status,
         // phoneNumber: data.phone,
       });
@@ -196,7 +197,9 @@ const BookingForm = () => {
     }
   };
   const institutionName = InstitutionList[bookingData.institution] || bookingData.institution;
-  const departmentName = DepartmentList[bookingData.department] || bookingData.institution;
+  const departmentName = DepartmentList[bookingData.department] || bookingData.department;
+
+  console.log(bookingData);
   return (
     <>
       {isLoading ? (
@@ -511,25 +514,51 @@ const BookingForm = () => {
                     for="grid-institution">
                     Institution
                   </label>
-                  <input
-    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-    id="grid-institution"
-    type="text"
-    value={institutionName}
-    // value={bookingData.institution}
-    name="institution"
-    onChange={handleInputs}
-    placeholder="Institution"
-    disabled
-  />
-                  {/* <select
-                  disabled
+
+
+
+
+
+
+
+
+                  {bookingData.userType !== "admin" && (
+
+
+
+                    <input
+                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-institution"
+                    type="text"
+                    value={institutionName}
+                    // value={bookingData.institution}
+                    name="institution"
+                    onChange={handleInputs}
+                    placeholder="Institution"
+                    disabled
+                    />
+
+                    
+                    )}
+
+
+
+
+
+
+
+
+{bookingData.userType === "admin" && (
+
+
+                  <select
+                  
                     className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="institution"
                     name="institution"
                     value={bookingData.institution}
                     onChange={handleInputs}>
-                    <option value="">Select</option>
+                    <option value="null">Select</option>
                     <option value="AITR">
                       Acropolis Institute of Technology and Research
                     </option>
@@ -548,7 +577,9 @@ const BookingForm = () => {
                       <option value="AC">
                       Acro Care
                       </option>
-                  </select> */}
+                  </select>
+
+)}
                   {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
 
@@ -560,6 +591,7 @@ const BookingForm = () => {
                   </label>
                  
                   {/* {bookingData.department === 'Other' && (<></> */}
+                  {bookingData.userType !== "admin" && (
   <input
     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
     id="grid-department"
@@ -570,11 +602,29 @@ const BookingForm = () => {
     placeholder="Department"
     disabled
   />
-    
-  {/* )} */}
+  )}
+ 
+
+  {bookingData.userType === "admin" && (<>
+   
 
 
-                  {/* {bookingData.institution === "CDC" && (
+    {bookingData.institution === "null" && (
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="department"
+                      name="department"
+                      value={bookingData.department}
+                      onChange={handleInputs}>
+                      <option value="">
+                      Select
+                      </option>
+                     
+                      
+                    </select>
+                  )}
+
+                   {bookingData.institution === "CDC" && (
                     <select
                       className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="department"
@@ -682,7 +732,9 @@ const BookingForm = () => {
                       <option value="CHEM">Chemistry</option>
                       
                     </select>
-                  )} */}
+                  )} 
+</>
+                  )}
                 </div>
               </div>
 
