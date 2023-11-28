@@ -46,14 +46,15 @@ const updateHall = async (req, res, next) => {
   try {
     const { hallId } = req.params;
     const { name, location, capacity ,amenities,description} = req.body;
-    const hallCreatorEmail = req.rootUser.email; // Renamed to avoid conflict
+    const currentUserMail = req.rootUser.email; // Renamed to avoid conflict
+    const masterAdminmail = process.env.MASTER_ADMIN;
     const hall = await Hall.findById(hallId);
 
     if (!hall) {
       return res.status(404).json({ message: 'Hall not found' });
     }
 
-    if (hall.hallCreater !== hallCreatorEmail  || hall.hallCreater !== process.env.MASTER_ADMIN) {
+    if (hall.hallCreater !== currentUserMail && currentUserMail !== masterAdminmail) {
     // if (hall.hallCreater !== hallCreatorEmail) {
       return res.status(403).json({ message: 'Unauthorized' }); // 403 means "Forbidden"
     }
