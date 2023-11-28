@@ -228,6 +228,13 @@ const Signup = () => {
                       <option value="AMR">
                         Acropolis Faculty of Management and Research
                       </option>
+
+                      <option value="CDC">
+                      Carrer Development Cell
+                                            </option>
+                      <option value="AC">
+                      Acro Care
+                      </option>
                     </select>
                   </div>
 
@@ -252,6 +259,55 @@ const Signup = () => {
                       </select>
                     </div>
                   )}
+
+
+ {user.institution === "CDC" && (
+                    <div className="relative mb-4">
+                      <label
+                        htmlFor="department"
+                        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                        Department
+                      </label>
+
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}>
+                        <option value="CDC">
+                        Carrer Development Cell
+                        </option>
+                      </select>
+                    </div>
+                  )}
+
+
+     
+{user.institution === "AC" && (
+                    <div className="relative mb-4">
+                      <label
+                        htmlFor="department"
+                        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                        Department
+                      </label>
+
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}>
+                        <option value="AC">
+                        Acro Care
+                                                </option>
+                      </select>
+                    </div>
+                  )}
+
+
+
+
 
                   {user.institution === "AMR" && (
                     <div className="relative mb-4">
@@ -333,8 +389,8 @@ const Signup = () => {
                         <option value="FCA">
                           Faculty of Computer Applications
                         </option>
-                        <option value="AC">Acro Care</option>
-                        <option value="CDC">Carrer Development Cell</option>
+                        {/* <option value="AC">Acro Care</option>
+                        <option value="CDC">Carrer Development Cell</option> */}
                         <option value="HUMI">Huminities</option>
                         <option value="CHEM">Chemistry</option>
 

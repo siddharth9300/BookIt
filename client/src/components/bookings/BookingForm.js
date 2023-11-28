@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
 import { parseISO } from "date-fns";
+import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
 
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -194,7 +195,8 @@ const BookingForm = () => {
       setIsLoading(false);
     }
   };
-
+  const institutionName = InstitutionList[bookingData.institution] || bookingData.institution;
+  const departmentName = DepartmentList[bookingData.department] || bookingData.institution;
   return (
     <>
       {isLoading ? (
@@ -509,17 +511,19 @@ const BookingForm = () => {
                     for="grid-institution">
                     Institution
                   </label>
-                  {/* <input
+                  <input
     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
     id="grid-institution"
     type="text"
-    value={bookingData.institution}
+    value={institutionName}
+    // value={bookingData.institution}
     name="institution"
     onChange={handleInputs}
     placeholder="Institution"
-    
-  /> */}
-                  <select
+    disabled
+  />
+                  {/* <select
+                  disabled
                     className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="institution"
                     name="institution"
@@ -538,7 +542,13 @@ const BookingForm = () => {
                     <option value="AMR">
                       Acropolis Faculty of Management and Research
                     </option>
-                  </select>
+                    <option value="CDC">
+                      Carrer Development Cell
+                                            </option>
+                      <option value="AC">
+                      Acro Care
+                      </option>
+                  </select> */}
                   {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
 
@@ -548,21 +558,51 @@ const BookingForm = () => {
                     for="grid-department">
                     Department
                   </label>
-                  {/* {bookingData.department === 'Other' && (
-    
+                 
+                  {/* {bookingData.department === 'Other' && (<></> */}
   <input
     className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
     id="grid-department"
     type="text"
-    value={bookingData.department}
+    value={departmentName}
     name="department"
     onChange={handleInputs}
     placeholder="Department"
-    
+    disabled
   />
     
-  )} */}
+  {/* )} */}
 
+
+                  {/* {bookingData.institution === "CDC" && (
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="department"
+                      name="department"
+                      value={bookingData.department}
+                      onChange={handleInputs}>
+                      <option value="CDC">
+                      Carrer Development Cell
+                      </option>
+                     
+                      
+                    </select>
+                  )}
+
+                    {bookingData.institution === "AC" && (
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="department"
+                      name="department"
+                      value={bookingData.department}
+                      onChange={handleInputs}>
+                      <option value="AC">
+                      Acro Care
+                      </option>
+                     
+                      
+                    </select>
+                  )}
                   {bookingData.institution === "AIPER" && (
                     <select
                       className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -574,8 +614,8 @@ const BookingForm = () => {
                         Acropolis Institute Of Pharmaceutical Education &
                         Research
                       </option>
-                      <option value="YHC">Yavnika Hobby Club</option>
-                      {/* <option value="Other">Other</option> */}
+                      
+                      
                     </select>
                   )}
 
@@ -589,8 +629,7 @@ const BookingForm = () => {
                       <option value="AMR">
                         Acropolis Faculty of Management and Research
                       </option>
-                      <option value="YHC">Yavnika Hobby Club</option>
-                      {/* <option value="OTHERS">Others</option> */}
+                      
                     </select>
                   )}
 
@@ -605,12 +644,11 @@ const BookingForm = () => {
                       <option value="AIMSR">Acropolis Institute of Management Studies & Research</option>
                       <option value="BSC">Bio Science</option>
                       <option value="BBA">
-                        {" "}
+                       
                         Bachelor of Business Administration
                       </option>
                       <option value="LAW">LAW</option>
-                      <option value="YHC">Yavnika Hobby Club</option>
-                      {/* <option value="OTHERS">Others</option> */}
+                      
                     </select>
                   )}
 
@@ -642,10 +680,9 @@ const BookingForm = () => {
                       <option value="CDC">Carrer Development Cell</option>
                       <option value="HUMI">Huminities</option>
                       <option value="CHEM">Chemistry</option>
-                      <option value="YHC">Yavnika Hobby Club</option>
-                      {/* <option value="OTHERS">Others</option> */}
+                      
                     </select>
-                  )}
+                  )} */}
                 </div>
               </div>
 
