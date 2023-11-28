@@ -67,7 +67,7 @@ Book It is an online platform for booking halls for various events. This app all
 |`SENDER_PASSWORD`|`******`|Password of Email from which verificaion and forgot link will be sent|
 |`CLIENT_URL`|`https://bookit********.com`|	Enter Client Url for API request|
 |`REACT_APP_HOD_FEATURE`|`false`|To Enable HOD Feature `true` for `On` and `false` for|
-
+| `REACT_APP_MASTER_ADMIN_EMAIL` | `master**min@gmail.com`       | Email of the Admin who has access to edit and delete all halls |
 
 ## Contributing
 
