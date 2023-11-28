@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
 import { toast } from "react-toastify";
+import { DepartmentList, InstitutionList } from "./InstitutionDeptartmentList";
 const About = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
@@ -94,6 +95,10 @@ const About = () => {
     callAboutPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  const institutionName = InstitutionList[userData.institution] || userData.institution;
+  const departmentName = DepartmentList[userData.department] || userData.department;
   return (
     <>
       {isLoading ? (
@@ -148,7 +153,7 @@ const About = () => {
                </div>
                <div>
                  <p className="text-m font-semibold text-zinc-700">
-                   {userData.institution}
+                   {userData.institution} - {institutionName}
                  </p>
                </div>
              </div>
@@ -158,7 +163,7 @@ const About = () => {
                </div>
                <div>
                  <p className="text-m font-semibold text-zinc-700">
-                   {userData.department}
+                   {userData.department} - {departmentName}
                  </p>
                </div>
              </div> 
