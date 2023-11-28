@@ -574,7 +574,7 @@ const BookingForm = () => {
                         Acropolis Institute Of Pharmaceutical Education &
                         Research
                       </option>
-
+                      <option value="YHC">Yavnika Hobby Club</option>
                       {/* <option value="Other">Other</option> */}
                     </select>
                   )}
@@ -589,7 +589,7 @@ const BookingForm = () => {
                       <option value="AMR">
                         Acropolis Faculty of Management and Research
                       </option>
-
+                      <option value="YHC">Yavnika Hobby Club</option>
                       {/* <option value="OTHERS">Others</option> */}
                     </select>
                   )}
@@ -602,12 +602,14 @@ const BookingForm = () => {
                       value={bookingData.department}
                       onChange={handleInputs}>
                       <option value="">Select</option>
+                      <option value="AIMSR">Acropolis Institute of Management Studies & Research</option>
                       <option value="BSC">Bio Science</option>
                       <option value="BBA">
                         {" "}
                         Bachelor of Business Administration
                       </option>
                       <option value="LAW">LAW</option>
+                      <option value="YHC">Yavnika Hobby Club</option>
                       {/* <option value="OTHERS">Others</option> */}
                     </select>
                   )}
@@ -640,6 +642,7 @@ const BookingForm = () => {
                       <option value="CDC">Carrer Development Cell</option>
                       <option value="HUMI">Huminities</option>
                       <option value="CHEM">Chemistry</option>
+                      <option value="YHC">Yavnika Hobby Club</option>
                       {/* <option value="OTHERS">Others</option> */}
                     </select>
                   )}
