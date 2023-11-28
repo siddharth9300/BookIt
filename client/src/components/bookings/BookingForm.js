@@ -175,8 +175,8 @@ const BookingForm = () => {
           const data = error.response.data;
           // Handle validation errors
           // You can set specific error messages for different fields if needed
-          if (data && data.errors) {
-            const errorMessage = data.errors.join(", ");
+          if (data && data.error) {
+            const errorMessage = data.error;
             setAuthStatus(errorMessage);
             toast.error(errorMessage);
           }
