@@ -726,8 +726,6 @@ const BookingForm = () => {
                       <option value="FCA">
                         Faculty of Computer Applications
                       </option>
-                      <option value="AC">Acro Care</option>
-                      <option value="CDC">Carrer Development Cell</option>
                       <option value="HUMI">Huminities</option>
                       <option value="CHEM">Chemistry</option>
                       
