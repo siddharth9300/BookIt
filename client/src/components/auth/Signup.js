@@ -229,12 +229,7 @@ const Signup = () => {
                         Acropolis Faculty of Management and Research
                       </option>
 
-                      <option value="CDC">
-                      Carrer Development Cell
-                                            </option>
-                      <option value="AC">
-                      Acro Care
-                      </option>
+
                     </select>
                   </div>
 
@@ -349,7 +344,6 @@ const Signup = () => {
                         <option value="">Select</option>
                         <option value="BSC">Bio Science</option>
                         <option value="BBA">
-                          {" "}
                           Bachelor of Business Administration
                         </option>
                         <option value="LAW">LAW</option>

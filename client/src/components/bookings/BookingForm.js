@@ -691,10 +691,8 @@ const BookingForm = () => {
                       value={bookingData.department}
                       onChange={handleInputs}>
                       <option value="">Select</option>
-                      <option value="AIMSR">Acropolis Institute of Management Studies & Research</option>
                       <option value="BSC">Bio Science</option>
                       <option value="BBA">
-                       
                         Bachelor of Business Administration
                       </option>
                       <option value="LAW">LAW</option>
