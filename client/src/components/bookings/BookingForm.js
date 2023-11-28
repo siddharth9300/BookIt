@@ -312,7 +312,7 @@ const BookingForm = () => {
                     <option value="">Select</option>
                     <option value="half">Half Day</option>
                     <option value="full">Full Day</option>
-                    <option value="multiple">Miltiple Days</option>
+                    <option value="multiple">Multiple Days</option>
                   </select>
 
                   {/* <input
