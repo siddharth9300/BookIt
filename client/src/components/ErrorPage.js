@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import notFound from '../assets/notFound.png'
 const ErrorPage = () => {
   return (
     <>
@@ -10,9 +11,9 @@ const ErrorPage = () => {
 
       <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
         <div className="w-full lg:w-1/2">
-          <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
-          <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" />
-          <img alt='error' className="md:hidden" src="https://i.ibb.co/8gTVH2Y/Group-198.png" />
+          <img alt='error' className="hidden lg:block" src={notFound} />
+          <img alt='error' className="hidden md:block lg:hidden" src={notFound} />
+          <img alt='error' className="md:hidden" src={notFound} />
         </div>
         <div className="w-full lg:w-1/2">
           <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">Looks like you've found the doorway to the great nothing</h1>

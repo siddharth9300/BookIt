@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 // import { useParams } from "react-router-dom";
 // import BookingForm from "./BookingForm";
-
+import notVerified from '../../assets/notVerified.jpg'
 const HallForm = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -140,9 +140,9 @@ const HallForm = () => {
       
 
           <div class="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
-            <div class="w-full lg:w-1/2">
+            <div class="w-full lg:w-1/3">
              
-              <img alt='error' class="hidden lg:block"  src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1" />
+              <img alt='error' class="hidden lg:block"  src={notVerified} />
               
             </div>
             <div class="w-full lg:w-1/2">

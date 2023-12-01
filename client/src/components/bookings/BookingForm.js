@@ -6,7 +6,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
 import { parseISO } from "date-fns";
 import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
-
+import notVerified from "../../assets/notVerified.jpg";
 const BookingForm = () => {
   const navigate = useNavigate();
   const [authStatus, setAuthStatus] = useState("");
@@ -206,13 +206,13 @@ const BookingForm = () => {
         <LoadingSpinner />
       ) : !emailVerified ? (
         <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/3">
             {/* <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
           <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
             <img
               alt="error"
               className="hidden lg:block"
-              src="https://gcdnb.pbrd.co/images/2PF5rEtb8fJL.png?o=1"
+              src={notVerified}
             />
           </div>
           <div className="w-full lg:w-1/2">

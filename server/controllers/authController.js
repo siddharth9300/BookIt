@@ -17,19 +17,19 @@ const register = async (req, res,next) => {
     if (userType === "admin") {
 
       if (!name || !adminKey || !email || !phone || !userType || !password || !cpassword) {
-        return res.status(422).json({ error: "Please fill all details" });
+        return res.status(422).json({ error: "Kindly complete all fields." });
       }else if(adminKey !== process.env.ADMIN_KEY){
-        return res.status(422).json({ error: "Invalid Admin Key" });
+        return res.status(422).json({ error: "Provided Admin Key is Invalid." });
       }
     }else if(userType === "hod"){
       if (!name || !institution || !department || !email || !phone || !userType || !password || !cpassword) {
-        return res.status(422).json({ error: "Please fill all details" });
+        return res.status(422).json({ error: "Kindly complete all fields." });
       }else if(hodExist){
         return res.status(422).json({ error: `Hod for ${department} already exists` });
       }
     }else{
       if (!name || !institution || !department || !email || !phone || !userType || !password || !cpassword) {
-        return res.status(422).json({ error: "Please fill all details" });
+        return res.status(422).json({ error: "Kindly complete all fields." });
       }
     }
 
@@ -39,24 +39,24 @@ const register = async (req, res,next) => {
     const nameRegex = /^[\w']+\s[\w']+$/;
   
     if (!nameRegex.test(name)) {
-      return res.status(422).json({ error: "Please enter your full name" });
+      return res.status(422).json({ error: "Kindly provide your complete name." });
     }
     // Regular expression to validate email format
     const emailRegex = /^\S+@\S+\.\S+$/;
   
     if (!emailRegex.test(email)) {
-      return res.status(422).json({ error: "Please enter a valid email address" });
+      return res.status(422).json({ error: "Kindly provide a valid email address." });
     }
     
     const acropolisEmailRegex = /@acropolis\.in$/;
     const acropolisEduEmailRegex = /@acropolis\.edu\.in$/;
 
     if (!acropolisEmailRegex.test(email) && !acropolisEduEmailRegex.test(email) ) {
-      return res.status(422).json({ error: "Please enter a email address associated with Acropolis Institute" });
+      return res.status(422).json({ error: "Kindly provide a email address associated with Acropolis Institute" });
     }
     // Phone validation
     if (phone.length !== 10) {
-      return res.status(422).json({ error: "Please enter a valid 10-digit phone number" });
+      return res.status(422).json({ error: "Kindly enter a valid 10-digit phone number." });
     }
   
     // Password length validation
@@ -72,7 +72,7 @@ const register = async (req, res,next) => {
       
       const userExist = await User.findOne({ email });
       if (userExist) {
-        return res.status(422).json({ error: "Email already exists" });
+        return res.status(422).json({ error: "Provide email is associated with another account." });
       }
        else {
         let user
@@ -522,7 +522,7 @@ const login = async (req, res,next) => {
       let token;
       const { email, password } = req.body;
       if (!email || !password) {
-        return res.status(400).json({ error: "Please fill all details" });
+        return res.status(400).json({ error: "Kindly complete all fields." });
       }
   
       const userLogin = await User.findOne({ email });
