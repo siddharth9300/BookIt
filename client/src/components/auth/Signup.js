@@ -19,6 +19,7 @@ const Signup = () => {
     password: "",
     cpassword: "",
     adminKey: "",
+    
   });
 
   let name, value;
@@ -26,7 +27,6 @@ const Signup = () => {
     
     name = e.target.name;
     value = e.target.value;
-
     setUser({ ...user, [name]: value });
   };
 
@@ -155,7 +155,7 @@ const Signup = () => {
                 <label
                   htmlFor="userType"
                   className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
-                  Your Profession
+                  Your Role
                 </label>
 
                 <select
@@ -229,7 +229,7 @@ const Signup = () => {
                         Acropolis Faculty of Management and Research
                       </option>
                       <option value="CDC">
-                      Carrer Development Cell
+                      Career Development Cell
                                             </option>
                       <option value="AC">
                       Acro Care
@@ -276,8 +276,9 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
+                          <option value="">Select</option>
                         <option value="CDC">
-                        Carrer Development Cell
+                        Career Development Cell
                         </option>
                       </select>
                     </div>
@@ -299,9 +300,10 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
+                          <option value="">Select</option>
                         <option value="AC">
                         Acro Care
-                                                </option>
+                      </option>
                       </select>
                     </div>
                   )}
@@ -324,6 +326,7 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
+                          <option value="">Select</option>
                         <option value="AMR">
                           Acropolis Faculty of Management and Research
                         </option>
@@ -390,7 +393,7 @@ const Signup = () => {
                           Faculty of Computer Applications
                         </option>
                         {/* <option value="AC">Acro Care</option>
-                        <option value="CDC">Carrer Development Cell</option> */}
+                        <option value="CDC">Career Development Cell</option> */}
                         <option value="HUMI">Huminities</option>
                         <option value="CHEM">Chemistry</option>
 
