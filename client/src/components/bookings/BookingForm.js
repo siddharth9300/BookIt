@@ -199,7 +199,6 @@ const BookingForm = () => {
   const institutionName = InstitutionList[bookingData.institution] || bookingData.institution;
   const departmentName = DepartmentList[bookingData.department] || bookingData.department;
 
-  console.log(bookingData);
   return (
     <>
       {isLoading ? (
