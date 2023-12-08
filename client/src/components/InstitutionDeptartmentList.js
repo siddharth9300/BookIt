@@ -30,6 +30,7 @@ const InstitutionList = {
     BBA: 'Bachelor of Business Administration',
     LAW: 'LAW',
     AMR: 'Acropolis Faculty of Management and Research',
+    AIMSR: 'Acropolis Institute of Management Studies & Research',
     AIPER: 'Acropolis Institute Of Pharmaceutical Education & Research',
     // Add more department mappings as needed
   };

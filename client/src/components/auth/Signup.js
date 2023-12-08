@@ -356,7 +356,9 @@ const Signup = () => {
                           Bachelor of Business Administration
                         </option>
                         <option value="LAW">LAW</option>
-   
+                        <option value="AIMSR">
+                        Acropolis Institute of Management Studies & Research
+                      </option>
                       </select>
                     </div>
                   )}
