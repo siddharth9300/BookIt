@@ -571,7 +571,7 @@ const BookingForm = () => {
                       Acropolis Faculty of Management and Research
                     </option>
                     <option value="CDC">
-                      Carrer Development Cell
+                      Career Development Cell
                                             </option>
                       <option value="AC">
                       Acro Care
@@ -631,7 +631,7 @@ const BookingForm = () => {
                       value={bookingData.department}
                       onChange={handleInputs}>
                       <option value="CDC">
-                      Carrer Development Cell
+                      Career Development Cell
                       </option>
                      
                       
