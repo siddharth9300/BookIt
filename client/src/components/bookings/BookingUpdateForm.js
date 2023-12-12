@@ -53,6 +53,7 @@ const BookingForm = () => {
       //consolelog(data);
 
       // setBookingData(data)
+      setIsLoading(false);
       setBookingData({
         ...bookingData,
         userId:data.userId,
@@ -60,11 +61,11 @@ const BookingForm = () => {
         // department:data.department,
         eventName: data.eventName,
         eventDateType:data.eventDateType,
-        eventStartDate: data.eventStartDate.split("T")[0],
-        eventEndDate: data.eventEndDate.split("T")[0],
-        eventDate: data.eventDate.split("T")[0],
-        startTime: data.startTime.split("T")[1].slice(0, 5),
-        endTime: data.endTime.split("T")[1].slice(0, 5),
+        eventStartDate: data.eventStartDate ? data.eventStartDate.split("T")[0] : null,
+        eventEndDate: data.eventEndDate ? data.eventEndDate.split("T")[0] : null,
+        eventDate: data.eventDate ? data.eventDate.split("T")[0] : null,
+        startTime: data.startTime ? data.startTime.split("T")[1].slice(0, 5) : null,
+        endTime: data.endTime ? data.endTime.split("T")[1].slice(0, 5) : null,
         email: data.userId.email,
         userType:data.userId.userType,
         bookedHallId: data.bookedHallId,
@@ -80,10 +81,10 @@ const BookingForm = () => {
       // if (response.status !== 200) {
       //   throw new Error(response.error);
       // }
+      
     } catch (error) {
      
-      //consolelog(error);
-      
+      //consolelog(error);      
       // navigate("/login");
     }
   };
