@@ -32,6 +32,10 @@ const InstitutionList = {
     AMR: 'Acropolis Faculty of Management and Research',
     AIMSR: 'Acropolis Institute of Management Studies & Research',
     AIPER: 'Acropolis Institute Of Pharmaceutical Education & Research',
+    EDC:'EDC',
+    PLACEMENT:'Placement',
+    TRAINING:'Training',
+    IIPC:'IIPC',
     // Add more department mappings as needed
   };
   

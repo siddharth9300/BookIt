@@ -280,6 +280,20 @@ const Signup = () => {
                         <option value="CDC">
                         Career Development Cell
                         </option>
+                        <option value="EDC">
+                        EDC
+                        </option>
+                        <option value="PLACEMENT">
+                        Placement
+                        </option>
+                        <option value="TRAINING">
+                        Training
+                        </option>
+                        <option value="IIPC">
+                        IIPC
+                        </option>
+                 
+
                       </select>
                     </div>
                   )}
