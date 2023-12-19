@@ -5,7 +5,8 @@ const InstitutionList = {
   AIPER: 'Acropolis Institute Of Pharmaceutical Education & Research',
   AMR: 'Acropolis Faculty of Management and Research',
   CDC: 'Career Development Cell',
-  AC: 'Acro Care'
+  AC: 'Acro Care',
+  AILAW: 'Acropolis Institute of LAW',
     // Add more institution mappings as needed
   };
   
@@ -28,7 +29,7 @@ const InstitutionList = {
     CDC: 'Career Development Cell',
     BSC: 'Bio Science',
     BBA: 'Bachelor of Business Administration',
-    LAW: 'LAW',
+    AILAW: 'Acropolis Institute of LAW',
     AMR: 'Acropolis Faculty of Management and Research',
     AIMSR: 'Acropolis Institute of Management Studies & Research',
     AIPER: 'Acropolis Institute Of Pharmaceutical Education & Research',

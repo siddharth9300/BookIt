@@ -19,12 +19,10 @@ const Signup = () => {
     password: "",
     cpassword: "",
     adminKey: "",
-    
   });
 
   let name, value;
   const handleInputs = (e) => {
-    
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
@@ -46,7 +44,6 @@ const Signup = () => {
     } = user;
 
     try {
-      
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/register`,
         {
@@ -67,23 +64,18 @@ const Signup = () => {
         }
       );
 
-
       setIsLoading(false);
       toast.success("Sign Up Successfull!");
 
-
       navigate("/login");
-
     } catch (error) {
       if (error.response.status === 422 && error.response) {
         setIsLoading(false);
         const data = error.response.data;
         setAuthStatus(data.error);
-
       }
     }
   };
-
 
   return (
     <>
@@ -146,7 +138,6 @@ const Signup = () => {
                   id="phone"
                   name="phone"
                   placeholder="Phone"
-                  
                   className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
@@ -196,8 +187,6 @@ const Signup = () => {
                       className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
-
-             
                 </>
               ) : (
                 <>
@@ -228,14 +217,10 @@ const Signup = () => {
                       <option value="AMR">
                         Acropolis Faculty of Management and Research
                       </option>
-                      <option value="CDC">
-                      Career Development Cell
-                                            </option>
-                      <option value="AC">
-                      Acro Care
-                      </option>
+                      <option value="AILAW">Acropolis Institute of LAW</option>
 
-
+                      <option value="CDC">Career Development Cell</option>
+                      <option value="AC">Acro Care</option>
                     </select>
                   </div>
 
@@ -261,8 +246,7 @@ const Signup = () => {
                     </div>
                   )}
 
-
- {user.institution === "CDC" && (
+                  {user.institution === "CDC" && (
                     <div className="relative mb-4">
                       <label
                         htmlFor="department"
@@ -276,31 +260,17 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
-                          <option value="">Select</option>
-                        <option value="CDC">
-                        Career Development Cell
-                        </option>
-                        <option value="EDC">
-                        EDC
-                        </option>
-                        <option value="PLACEMENT">
-                        Placement
-                        </option>
-                        <option value="TRAINING">
-                        Training
-                        </option>
-                        <option value="IIPC">
-                        IIPC
-                        </option>
-                 
-
+                        <option value="">Select</option>
+                        <option value="CDC">Career Development Cell</option>
+                        <option value="EDC">EDC</option>
+                        <option value="PLACEMENT">Placement</option>
+                        <option value="TRAINING">Training</option>
+                        <option value="IIPC">IIPC</option>
                       </select>
                     </div>
                   )}
 
-
-     
-{user.institution === "AC" && (
+                  {user.institution === "AC" && (
                     <div className="relative mb-4">
                       <label
                         htmlFor="department"
@@ -314,17 +284,33 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
-                          <option value="">Select</option>
-                        <option value="AC">
-                        Acro Care
-                      </option>
+                        <option value="">Select</option>
+                        <option value="AC">Acro Care</option>
                       </select>
                     </div>
                   )}
 
+                  {user.institution === "AILAW" && (
+                    <div className="relative mb-4">
+                      <label
+                        htmlFor="department"
+                        className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                        Department
+                      </label>
 
-
-
+                      <select
+                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        id="department"
+                        name="department"
+                        value={user.department}
+                        onChange={handleInputs}>
+                        <option value="">Select</option>
+                        <option value="AILAW">
+                          Acropolis Institute of LAW
+                        </option>
+                      </select>
+                    </div>
+                  )}
 
                   {user.institution === "AMR" && (
                     <div className="relative mb-4">
@@ -340,12 +326,10 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
-                          <option value="">Select</option>
+                        <option value="">Select</option>
                         <option value="AMR">
                           Acropolis Faculty of Management and Research
                         </option>
-
-
                       </select>
                     </div>
                   )}
@@ -371,8 +355,8 @@ const Signup = () => {
                         </option>
                         <option value="LAW">LAW</option>
                         <option value="AIMSR">
-                        Acropolis Institute of Management Studies & Research
-                      </option>
+                          Acropolis Institute of Management Studies & Research
+                        </option>
                       </select>
                     </div>
                   )}
@@ -412,11 +396,9 @@ const Signup = () => {
                         <option value="CDC">Career Development Cell</option> */}
                         <option value="HUMI">Huminities</option>
                         <option value="CHEM">Chemistry</option>
-
                       </select>
                     </div>
                   )}
-
                 </>
               )}
 

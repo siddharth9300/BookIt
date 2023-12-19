@@ -71,7 +71,7 @@ const BookingForm = () => {
         email: data.email,
         department: data.department,
         institution: data.institution,
-        userType:data.userType,
+        userType: data.userType,
         isApproved: status,
         // phoneNumber: data.phone,
       });
@@ -196,8 +196,10 @@ const BookingForm = () => {
       setIsLoading(false);
     }
   };
-  const institutionName = InstitutionList[bookingData.institution] || bookingData.institution;
-  const departmentName = DepartmentList[bookingData.department] || bookingData.department;
+  const institutionName =
+    InstitutionList[bookingData.institution] || bookingData.institution;
+  const departmentName =
+    DepartmentList[bookingData.department] || bookingData.department;
 
   return (
     <>
@@ -208,11 +210,7 @@ const BookingForm = () => {
           <div className="w-full lg:w-1/3">
             {/* <img alt='error' className="hidden lg:block" src="https://i.ibb.co/v30JLYr/Group-192-2.png" />
           <img alt='error' className="hidden md:block lg:hidden" src="https://i.ibb.co/c1ggfn2/Group-193.png" /> */}
-            <img
-              alt="error"
-              className="hidden lg:block"
-              src={notVerified}
-            />
+            <img alt="error" className="hidden lg:block" src={notVerified} />
           </div>
           <div className="w-full lg:w-1/2">
             <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800 ">
@@ -514,71 +512,47 @@ const BookingForm = () => {
                     Institution
                   </label>
 
-
-
-
-
-
-
-
                   {bookingData.userType !== "admin" && (
-
-
-
                     <input
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-institution"
-                    type="text"
-                    value={institutionName}
-                    // value={bookingData.institution}
-                    name="institution"
-                    onChange={handleInputs}
-                    placeholder="Institution"
-                    disabled
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-institution"
+                      type="text"
+                      value={institutionName}
+                      // value={bookingData.institution}
+                      name="institution"
+                      onChange={handleInputs}
+                      placeholder="Institution"
+                      disabled
                     />
+                  )}
 
-                    
-                    )}
-
-
-
-
-
-
-
-
-{bookingData.userType === "admin" && (
-
-
-                  <select
-                  
-                    className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="institution"
-                    name="institution"
-                    value={bookingData.institution}
-                    onChange={handleInputs}>
-                    <option value="null">Select</option>
-                    <option value="AITR">
-                      Acropolis Institute of Technology and Research
-                    </option>
-                    <option value="AIMSR">
-                      Acropolis Institute of Management Studies & Research
-                    </option>
-                    <option value="AIPER">
-                      Acropolis Institute Of Pharmaceutical Education & Research
-                    </option>
-                    <option value="AMR">
-                      Acropolis Faculty of Management and Research
-                    </option>
-                    <option value="CDC">
-                      Career Development Cell
-                                            </option>
-                      <option value="AC">
-                      Acro Care
+                  {bookingData.userType === "admin" && (
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="institution"
+                      name="institution"
+                      value={bookingData.institution}
+                      onChange={handleInputs}>
+                      <option value="null">Select</option>
+                      <option value="AITR">
+                        Acropolis Institute of Technology and Research
                       </option>
-                  </select>
+                      <option value="AIMSR">
+                        Acropolis Institute of Management Studies & Research
+                      </option>
+                      <option value="AIPER">
+                        Acropolis Institute Of Pharmaceutical Education &
+                        Research
+                      </option>
+                      <option value="AMR">
+                        Acropolis Faculty of Management and Research
+                      </option>
+                      <option value="AILAW">Acropolis Institute of LAW</option>
 
-)}
+                      <option value="CDC">Career Development Cell</option>
+                      <option value="AC">Acro Care</option>
+                    </select>
+                  )}
                   {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
 
@@ -588,159 +562,149 @@ const BookingForm = () => {
                     for="grid-department">
                     Department
                   </label>
-                 
+
                   {/* {bookingData.department === 'Other' && (<></> */}
                   {bookingData.userType !== "admin" && (
-  <input
-    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-    id="grid-department"
-    type="text"
-    value={departmentName}
-    name="department"
-    onChange={handleInputs}
-    placeholder="Department"
-    disabled
-  />
-  )}
- 
-
-  {bookingData.userType === "admin" && (<>
-   
-
-
-    {bookingData.institution === "null" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-department"
+                      type="text"
+                      value={departmentName}
                       name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="">
-                      Select
-                      </option>
-                     
-                      
-                    </select>
+                      onChange={handleInputs}
+                      placeholder="Department"
+                      disabled
+                    />
                   )}
 
-                   {bookingData.institution === "CDC" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="CDC">
-                      Career Development Cell
-                      </option>
-                      <option value="EDC">
-                        EDC
-                        </option>
-                        <option value="PLACEMENT">
-                        Placement
-                        </option>
-                        <option value="TRAINING">
-                        Training
-                        </option>
-                        <option value="IIPC">
-                        IIPC
-                        </option>
-                     
-                      
-                    </select>
-                  )}
+                  {bookingData.userType === "admin" && (
+                    <>
+                      {bookingData.institution === "null" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="">Select</option>
+                        </select>
+                      )}
 
-                    {bookingData.institution === "AC" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="AC">
-                      Acro Care
-                      </option>
-                     
-                      
-                    </select>
-                  )}
-                  {bookingData.institution === "AIPER" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="AIPER">
-                        Acropolis Institute Of Pharmaceutical Education &
-                        Research
-                      </option>
-                      
-                      
-                    </select>
-                  )}
+                      {bookingData.institution === "CDC" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="CDC">Career Development Cell</option>
+                          <option value="EDC">EDC</option>
+                          <option value="PLACEMENT">Placement</option>
+                          <option value="TRAINING">Training</option>
+                          <option value="IIPC">IIPC</option>
+                        </select>
+                      )}
 
-                  {bookingData.institution === "AMR" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="AMR">
-                        Acropolis Faculty of Management and Research
-                      </option>
-                      
-                    </select>
-                  )}
+                      {bookingData.institution === "AC" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="AC">Acro Care</option>
+                        </select>
+                      )}
+                      {bookingData.institution === "AIPER" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="AIPER">
+                            Acropolis Institute Of Pharmaceutical Education &
+                            Research
+                          </option>
+                        </select>
+                      )}
 
-                  {bookingData.institution === "AIMSR" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="">Select</option>
-                      <option value="BSC">Bio Science</option>
-                      <option value="BBA">
-                        Bachelor of Business Administration
-                      </option>
-                      <option value="LAW">LAW</option>
-                      <option value="AIMSR">Acropolis Institute of Management Studies & Research</option>
-                    </select>
-                  )}
+                      {bookingData.institution === "AILAW" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="AILAW">
+                            Acropolis Institute of LAW
+                          </option>
+                        </select>
+                      )}
 
-                  {bookingData.institution === "AITR" && (
-                    <select
-                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="department"
-                      name="department"
-                      value={bookingData.department}
-                      onChange={handleInputs}>
-                      <option value="">Select</option>
-                      <option value="CE">Civil Engineering</option>
-                      <option value="ME">Mechanical Engineering</option>
-                      <option value="EC">Electronics & Communication</option>
-                      <option value="CSE">
-                        Computer Science & Engineering
-                      </option>
-                      <option value="AIML">
-                        Artificial Intelligence and Machine Learning
-                      </option>
-                      <option value="IT">Information Technology</option>
-                      <option value="CSIT">
-                        Computer Science and Information Technology
-                      </option>
-                      <option value="FCA">
-                        Faculty of Computer Applications
-                      </option>
-                      <option value="HUMI">Huminities</option>
-                      <option value="CHEM">Chemistry</option>
-                      
-                    </select>
-                  )} 
-</>
+                      {bookingData.institution === "AMR" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="AMR">
+                            Acropolis Faculty of Management and Research
+                          </option>
+                        </select>
+                      )}
+
+                      {bookingData.institution === "AIMSR" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="">Select</option>
+                          <option value="BSC">Bio Science</option>
+                          <option value="BBA">
+                            Bachelor of Business Administration
+                          </option>
+                          <option value="LAW">LAW</option>
+                          <option value="AIMSR">
+                            Acropolis Institute of Management Studies & Research
+                          </option>
+                        </select>
+                      )}
+
+                      {bookingData.institution === "AITR" && (
+                        <select
+                          className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          id="department"
+                          name="department"
+                          value={bookingData.department}
+                          onChange={handleInputs}>
+                          <option value="">Select</option>
+                          <option value="CE">Civil Engineering</option>
+                          <option value="ME">Mechanical Engineering</option>
+                          <option value="EC">
+                            Electronics & Communication
+                          </option>
+                          <option value="CSE">
+                            Computer Science & Engineering
+                          </option>
+                          <option value="AIML">
+                            Artificial Intelligence and Machine Learning
+                          </option>
+                          <option value="IT">Information Technology</option>
+                          <option value="CSIT">
+                            Computer Science and Information Technology
+                          </option>
+                          <option value="FCA">
+                            Faculty of Computer Applications
+                          </option>
+                          <option value="HUMI">Huminities</option>
+                          <option value="CHEM">Chemistry</option>
+                        </select>
+                      )}
+                    </>
                   )}
                 </div>
               </div>
