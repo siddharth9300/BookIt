@@ -238,6 +238,7 @@ const Signup = () => {
                         name="department"
                         value={user.department}
                         onChange={handleInputs}>
+                        <option value="">Select</option>
                         <option value="AIPER">
                           Acropolis Institute Of Pharmaceutical Education &
                           Research
