@@ -36,7 +36,7 @@ const register = async (req, res,next) => {
    
     
     // Regular expression to validate full name with at least two words separated by a space
-    const nameRegex = /^[\w']+\s[\w']+$/;
+    const nameRegex = /^[\w'.]+\s[\w'.]+\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*$/;
   
     if (!nameRegex.test(name)) {
       return res.status(422).json({ error: "Kindly provide your complete name." });
