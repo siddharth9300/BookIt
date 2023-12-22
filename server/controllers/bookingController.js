@@ -68,7 +68,7 @@ const createBooking = async (req, res, next) => {
     }
     // Regular expression to validate full name with at least two words separated by a space
 
-    const nameRegex = /^[\w']+\s[\w']+$/;
+        const nameRegex = /^[\w'.]+\s[\w'.]+\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*$/;
 
     if (!nameRegex.test(eventManager)) {
       return res.status(422).json({ error: "Please enter your full Event Manager name" });
