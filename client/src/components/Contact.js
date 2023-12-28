@@ -7,7 +7,7 @@ const Contact = () => {
           <div className="col-span-1 lg:col-span-9">
             <div className="text-center lg:text-left">
               <h2 className="text-2xl font-bold text-zinc-700">
-                Prof. Nitin Kulkarni
+                Dr. Nitin Kulkarni
               </h2>
               <p className="mt-2 text-l font-semibold text-zinc-700">
                 Faculty Coordinator
