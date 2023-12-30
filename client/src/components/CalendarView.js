@@ -39,6 +39,10 @@ export const CalendarView = () => {
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
   let firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
 
+  const [hallNames, setHallNames] = useState([]); // State to store hall names
+
+  const [selectedHalls, setSelectedHalls] = useState([]); // State for selected hall
+
   // State for the events fetched from the API
   const [events, setEvents] = useState([]);
 
@@ -67,6 +71,39 @@ export const CalendarView = () => {
     fetchEvents();
   }, []);
 
+
+  // Fetch hall names from the API
+  useEffect(() => {
+    const fetchHallNames = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/halls`
+        );
+        setHallNames(response.data.halls); // Assuming halls are retrieved as an array of objects with 'name' property
+      } catch (error) {
+        console.error("Error fetching hall names:", error);
+      }
+    };
+
+    fetchHallNames();
+  }, []);
+    // Function to handle hall selection
+    const handleHallSelection = (hallName) => {
+      if (selectedHalls.includes(hallName)) {
+        // Deselect hall if already selected
+        setSelectedHalls(selectedHalls.filter((hall) => hall !== hallName));
+      } else {
+        // Select hall if not selected
+        setSelectedHalls([...selectedHalls, hallName]);
+      }
+    };
+    const isHallSelected = (hallName) => {
+      return selectedHalls.includes(hallName);
+    };
+    const filteredEvents = selectedHalls.length > 0
+    ? events.filter((event) => selectedHalls.includes(event.bookedHallName))
+    : events;
+
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -82,8 +119,8 @@ export const CalendarView = () => {
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
   }
 
-  let selectedDayMeetings = Array.isArray(events)
-    ? events.filter((booking) => {
+  let selectedDayMeetings = Array.isArray(filteredEvents)
+    ? filteredEvents.filter((booking) => {
         const eventStartDate = parseISO(booking.eventStartDate);
         const eventEndDate = parseISO(booking.eventEndDate);
         const eventDate = parseISO(booking.eventDate);
@@ -123,12 +160,53 @@ export const CalendarView = () => {
 
 </div>
 
-      <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6 ">
-        <div className="md:grid md:grid-cols-2 md:divide-x  md:divide-gray-300">
+      <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-7xl md:px-6 ">
+        <div className="md:grid md:grid-cols-5 md:divide-x  md:divide-gray-300">
 
 
 
-          <div className="md:pr-14 ">
+
+<div className="" >
+
+<div className="flex flex-col items-center">
+<h1 className="text-xl sm:text-3xl mb-4 md:text-4xl lg:text-3xl xl:text-3xl text-center text-gray-800 font-black leading-7 ml-3 md:leading-10">
+          Filters </h1>
+          {/* <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl text-center text-indigo-700 font-black leading-7 ml-3 md:leading-10">
+          Filters </h1> */}
+          <h2 class="text-xl font-bold mb-4 text-indigo-700 -mt-1">
+                By Hall Name
+              </h2>
+        
+
+<button
+            className={`py-2 px-8 rounded-full mb-4  mx-4  focus:outline-none ${selectedHalls.length === 0 ? "bg-indigo-100 text-indigo-800" : "bg-white text-gray-800 hover:bg-gray-100"}`}
+            onClick={() => setSelectedHalls([])}
+          >
+            All
+          </button>
+
+
+          {hallNames.map((hall) => (
+          <button key={hall.id}
+            className={` py-2 px-8 rounded-full mb-4 mx-4 focus:outline-none ${isHallSelected(hall.name) ? "bg-indigo-100 text-indigo-800 " : "bg-white text-gray-800 hover:bg-gray-100"}`}
+            onClick={() => handleHallSelection(hall.name)}
+          >
+            {hall.name}
+          </button>
+
+))}
+
+      
+      </div>
+  
+        
+      </div>
+
+
+
+
+
+          <div className="md:px-7 col-span-2">
 
 
             <div className="flex items-center ">
@@ -150,14 +228,14 @@ export const CalendarView = () => {
                 <MdChevronRight className="w-7 h-7" aria-hidden="true" />
               </button>
             </div>
-            <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-              <div>S</div>
-              <div>M</div>
-              <div>T</div>
-              <div>W</div>
-              <div>T</div>
-              <div>F</div>
-              <div>S</div>
+            <div className="grid grid-cols-7 mt-10 mb-10 text-base font-semibold leading-6 text-center text-gray-800">
+              <div>Su</div>
+              <div>Mo</div>
+              <div>Tu</div>
+              <div>We</div>
+              <div>Th</div>
+              <div>Fr</div>
+              <div>Sa</div>
             </div>
             <div className="grid grid-cols-7 mt-2 text-sm">
               {days.map((day, dayIdx) => (
@@ -198,8 +276,8 @@ export const CalendarView = () => {
                   </button>
                   <div className=" h-1 w-auto mx-auto mt-1">
                     <div className="flex mx-auto items-center">
-                      {Array.isArray(events) &&
-                        events.map((booking) => {
+                      {Array.isArray(filteredEvents) &&
+                        filteredEvents.map((booking) => {
                           const eventStartDate = parseISO(
                             booking.eventStartDate
                           );
@@ -248,7 +326,7 @@ export const CalendarView = () => {
               ))}
             </div>
           </div>
-          <section className="mt-12 md:mt-0 md:pl-14">
+          <section className="mt-12 md:mt-0 md:pl-14 col-span-2">
             <h2 className="font-semibold text-gray-900">
               Schedule for{" "}
               <time dateTime={format(selectedDay, "yyyy-MM-dd")}>
