@@ -9,6 +9,7 @@ Book It is an online platform for booking halls for various events. This app all
 <img  height="350" src="screenshots/BookIt (4).png"  />
 <img  height="350" src="screenshots/BookIt (5).png"  />
 <img  height="350" src="screenshots/BookIt (6).png"  />
+<img  height="350" src="screenshots/BookIt (7).png"  />
 
 ## Features
 
@@ -16,7 +17,8 @@ Book It is an online platform for booking halls for various events. This app all
 - Book a hall for a specific date and time
 - Submit booking requests to admin for approval
 - Admin dashboard for managing hall listings and booking requests
-  
+- real-time availability updates using a calendar feature
+
 ## Technologies Used
 
 - React: A popular JavaScript library for building user interfaces
@@ -35,6 +37,7 @@ Book It is an online platform for booking halls for various events. This app all
 - View the list of available halls and their details, including hall name, location, capacity.
 - Book a hall by selecting the desired hall and filling out the booking form.
 - View the status of their booking request and receive notifications when the request is approved or rejected.
+- View real-time availability updates using a calendar feature.
 ### Admin
 - Approve or reject booking requests from users by logging in to the admin dashboard.
 - View the list of pending booking requests and their details, including the user's name, email, and booking details.
