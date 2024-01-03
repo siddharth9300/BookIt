@@ -16,8 +16,49 @@ const BookingsAdmin = () => {
   const [filterValue, setFilterValue] = useState("Approved By HOD");
   const [emailVerified, setEmailVerified] = useState(false);
   const [userData, setUserData] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [rejectionReason, setRejectionReason] = useState('');
+  const [selectedBookingId, setSelectedBookingId] = useState('');
 
 
+  const openModal = (bookingId) => {
+    setShowModal(true);
+    setSelectedBookingId(bookingId);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    setRejectionReason('');
+    setSelectedBookingId('');
+  };
+  const handleReject = async () => {
+    if (rejectionReason.trim() === '') {
+      toast.error('Please provide a reason for rejection.');
+      return;
+    }
+
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${selectedBookingId}`,
+        {
+          isApproved: 'Rejected By Admin',
+          rejectionReason: rejectionReason.trim(), // Send rejection reason in the request
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      closeModal();
+      toast.success('Booking request rejected successfully!');
+      getBookingData(); // Refresh booking data
+    } catch (error) {
+      // Handle error
+      toast.error('Failed to reject the booking request.');
+    }
+  };
   const userContact = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getdata`, {
@@ -291,7 +332,33 @@ const BookingsAdmin = () => {
             My Requests
           </button>
         </div>
-
+        {showModal && (
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <h2 className="text-lg font-bold mb-4">Reason for Rejection</h2>
+            <textarea
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              placeholder="Enter reason for rejection..."
+              value={rejectionReason}
+              onChange={(e) => setRejectionReason(e.target.value)}
+            ></textarea>
+            <div className="flex justify-between">
+              <button
+                className="px-4 py-2 bg-red-500 text-white rounded mr-2"
+                onClick={handleReject}
+              >
+                Reject
+              </button>
+              <button
+                className="px-4 py-2 bg-gray-300 rounded"
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
         {isLoading ? (
           <LoadingSpinner />
@@ -441,8 +508,12 @@ const BookingsAdmin = () => {
                                 className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-yellow-200 rounded hover:bg-yellow-300  focus:outline-none">Edit</button>
                               <button
                                 onClick={() => updateBooking(booking._id, "Approved By Admin")} className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-green-200 rounded hover:bg-green-300 focus:outline-none">Approve</button>
-                              <button
-                                onClick={() => updateBooking(booking._id, "Rejected By Admin")} className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-red-200 rounded hover:bg-red-300 focus:outline-none">Reject</button>
+                             <button
+        onClick={() => openModal(booking._id)}
+        className="text-m font-bold ml-5 leading-none text-gray-600 py-3 px-5 bg-red-200 rounded hover:bg-red-300 focus:outline-none"
+      >
+        Reject
+      </button>
                             </td>
 
                           </tr>
