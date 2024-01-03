@@ -336,7 +336,7 @@ const passwordLink = async (req, res,next) => {
         // console.log(setUserToken);
 
     } else {
-      res.status(400).json({ error: "Invalid Cridential" });
+      res.status(400).json({ error: "Invalid Credentials" });
     }
   } catch (error) {
     res.status(401).json({status:401,message:"Invalid User"})
@@ -467,7 +467,7 @@ const emailVerificationLink = async (req, res,next) => {
         // console.log(setUserToken);
 
     } else {
-      res.status(400).json({ error: "Invalid Cridential" });
+      res.status(400).json({ error: "Invalid Credentials" });
     }
   } catch (error) {
     res.status(401).json({status:401,message:"Invalid User"})
@@ -546,14 +546,14 @@ const login = async (req, res,next) => {
         // window.sessionStorage.setItem("jwtoken", data.token);
        
         if (!isMatch) {
-          res.status(400).json({ error: "Invalid Cridential" });
+          res.status(400).json({ error: "Invalid Credentials" });
         } else {
           res.status(200).json({ userLogin, token: token, message: "User logged in successfully" });
           // res.status(200)
           // .send(userLogin).json({ message: "user login successfully" })
         }
       } else {
-        res.status(400).json({ error: "Invalid Cridential" });
+        res.status(400).json({ error: "Invalid Credentials" });
       }
       
     } catch (error) {
