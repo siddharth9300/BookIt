@@ -217,7 +217,7 @@ const BookingForm = () => {
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
                 for="grid-event-manager"
               >
-                Event Manager Name
+                Event Coordinator Name
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -226,7 +226,7 @@ const BookingForm = () => {
                 value={bookingData.eventManager}
                 name="eventManager"
                 onChange={handleInputs}
-                placeholder="Event Manager Name"
+                placeholder="Event Coordinator Name"
               />
               {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
             </div>

@@ -151,7 +151,7 @@ const BookingsView = () => {
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
                     for="grid-event-manager"
                   >
-                    Event Manager Name
+                    Event Coordinator Name
                   </h1>
                   <p
                     className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"

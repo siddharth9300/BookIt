@@ -176,7 +176,7 @@ const Events = () => {
 
                           <div className="mt-6 grid grid-cols-2 gap-6 text-center lg:text-left">
                             <div>
-                              <p className="font-bold text-zinc-700">Event Manager</p>
+                              <p className="font-bold text-zinc-700">Event Coordinator</p>
                             </div>
 
                             <div>
@@ -309,7 +309,7 @@ const Events = () => {
 
 
                         <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                          <p className="ext-m font-bold text-gray-600">Event Manager</p>
+                          <p className="ext-m font-bold text-gray-600">Event Coordinator</p>
                           <p className="text-base font-medium text-navy-700 ">
                           {event.eventManager}
                           </p>

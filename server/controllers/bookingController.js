@@ -71,7 +71,7 @@ const createBooking = async (req, res, next) => {
         const nameRegex = /^[\w'.]+\s[\w'.]+\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*$/;
 
     if (!nameRegex.test(eventManager)) {
-      return res.status(422).json({ error: "Please enter your full Event Manager name" });
+      return res.status(422).json({ error: "Please enter your full Event Coordinator name" });
     }
 
    
