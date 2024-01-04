@@ -30,35 +30,35 @@ const BookingsAdmin = () => {
     setRejectionReason('');
     setSelectedBookingId('');
   };
-  const handleReject = async () => {
-    if (rejectionReason.trim() === '') {
-      toast.error('Please provide a reason for rejection.');
-      return;
-    }
+  // const handleReject = async () => {
+  //   if (rejectionReason.trim() === '') {
+  //     toast.error('Please provide a reason for rejection.');
+  //     return;
+  //   }
 
-    try {
-      await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${selectedBookingId}`,
-        {
-          isApproved: 'Rejected By Admin',
-          rejectionReason: rejectionReason.trim(), // Send rejection reason in the request
-        },
-        {
-          withCredentials: true,
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      closeModal();
-      toast.success('Booking request rejected successfully!');
-      getBookingData(); // Refresh booking data
-    } catch (error) {
-      // Handle error
-      toast.error('Failed to reject the booking request.');
-    }
-  };
+  //   try {
+  //     await axios.put(
+  //       `${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${selectedBookingId}`,
+  //       {
+  //         isApproved: 'Rejected By Admin',
+  //         rejectionReason: rejectionReason.trim(), // Send rejection reason in the request
+  //       },
+  //       {
+  //         withCredentials: true,
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     );
+  //     closeModal();
+  //     toast.success('Booking request rejected successfully!');
+  //     getBookingData(); // Refresh booking data
+  //   } catch (error) {
+  //     // Handle error
+  //     toast.error('Failed to reject the booking request.');
+  //   }
+  // };
   const userContact = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getdata`, {
@@ -164,40 +164,46 @@ const BookingsAdmin = () => {
 
 
   const updateBooking = async (bookingId, isApproved) => {
+    if (isApproved === "Rejected By Admin") {
+      if (rejectionReason.trim() === "") {
+        toast.error("Please provide a reason for rejection.");
+        return;
+      } else {
+        setRejectionReason(null);
+      }
+    }
     setIsLoading(true);
-
     //consolelog(isApproved);
     try {
-      const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`, {
-        isApproved: isApproved
-      }, {
-        withCredentials: true, // include credentials in the request
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+      const response = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/bookingsEdit/${bookingId}`,
+        {
+          isApproved: isApproved,
+          rejectionReason:
+            isApproved === "Approved By Admin" ? null : rejectionReason,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
-      });
-
+      );
       // const data = response.data;
       //consolelog(data);
-
-
-      // setBookingData(data.bookings);
-
+      closeModal();
       getBookingData();
-      // setIsLoading(false);
-      toast.success(`Request ${isApproved} Successfull!`)
 
+      toast.success(`Request ${isApproved} Successfull!`);
       if (response.status !== 200) {
-
         throw new Error(response.error);
       }
     } catch (error) {
-
       //consolelog(error);
-      // navigate("/login");
     }
   };
+
 
   // const deleteBooking = async (bookingId) => {
   //   // e.preventDefault();
@@ -334,26 +340,29 @@ const BookingsAdmin = () => {
         </div>
         {showModal && (
         <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-md shadow-md">
+          <div className="bg-white p-4 rounded-md shadow-md w-1/3">
             <h2 className="text-lg font-bold mb-4">Reason for Rejection</h2>
-            <textarea
-              className="w-full p-2 border border-gray-300 rounded mb-4"
-              placeholder="Enter reason for rejection..."
+            <textarea 
+              className="w-full p-2 border border-gray-300 rounded mb-4 resize-none" 
+              placeholder="Enter reason for rejection"
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
             ></textarea>
             <div className="flex justify-between">
               <button
-                className="px-4 py-2 bg-red-500 text-white rounded mr-2"
-                onClick={handleReject}
-              >
-                Reject
-              </button>
-              <button
                 className="px-4 py-2 bg-gray-300 rounded"
                 onClick={closeModal}
               >
                 Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-red-500 text-white rounded mr-2"
+                // onClick={handleReject}
+                onClick={() =>
+                  updateBooking(selectedBookingId, "Rejected By Admin")
+                }
+              >
+                Reject
               </button>
             </div>
           </div>

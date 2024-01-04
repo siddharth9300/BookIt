@@ -75,6 +75,9 @@ const bookingSchema = new mongoose.Schema(
     altNumber: {
       type: Number
     },
+    rejectionReason: {
+      type: String,
+    },
     isApproved: {
       default: "Request Sent",
       type: String,
