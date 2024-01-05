@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
 import { toast } from "react-toastify";
-import { DepartmentList, InstitutionList } from "./InstitutionDeptartmentList";
+import { DepartmentList, InstitutionList } from "./Institutions";
 const About = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});

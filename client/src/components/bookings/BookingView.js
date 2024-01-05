@@ -14,7 +14,7 @@ import {
   RejectedByAdmin,
   RejectedByHod,
 } from "../Steps";
-import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
+import { DepartmentList, InstitutionList } from "../Institutions";
 const BookingsView = () => {
   const navigate = useNavigate();
   const { bookingId } = useParams();
@@ -214,7 +214,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-event-manager">
+                    htmlFor="grid-event-manager">
                     Event Coordinator Name
                   </h1>
                   <p
@@ -227,7 +227,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-name">
+                    htmlFor="grid-event-name">
                     Event Name
                   </h1>
                   <p
@@ -241,7 +241,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-organizing-club">
+                    htmlFor="grid-organizing-club">
                     Organizing Club
                   </h1>
                   <p
@@ -255,7 +255,7 @@ const BookingsView = () => {
                 {/* <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-date"
+                    htmlFor="grid-event-date"
                   >
                     Event Date
                   </h1>
@@ -268,7 +268,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-date">
+                    htmlFor="grid-event-date">
                     Event Date Type
                   </h1>
                   <p
@@ -288,7 +288,7 @@ const BookingsView = () => {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                      for="grid-start-time">
+                      htmlFor="grid-start-time">
                       Start Time
                     </h1>
                     <p
@@ -304,7 +304,7 @@ const BookingsView = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-end-time">
+                      htmlFor="grid-end-time">
                       End Time
                     </h1>
                     <p
@@ -324,7 +324,7 @@ const BookingsView = () => {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                      for="grid-start-time">
+                      htmlFor="grid-start-time">
                       Event Start Date
                     </h1>
                     <p
@@ -340,7 +340,7 @@ const BookingsView = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-end-time">
+                      htmlFor="grid-end-time">
                       Event End Date
                     </h1>
                     <p
@@ -361,7 +361,7 @@ const BookingsView = () => {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                      for="grid-department">
+                      htmlFor="grid-department">
                       Event Date
                     </h1>
                     <p
@@ -379,7 +379,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-hall-name">
+                    htmlFor="grid-hall-name">
                     Hall Name
                   </h1>
                   <p
@@ -393,7 +393,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-phone-number">
+                    htmlFor="grid-phone-number">
                     Phone Number
                   </h1>
                   <p
@@ -407,7 +407,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-alt-number">
+                    htmlFor="grid-alt-number">
                     Alternate Number
                   </h1>
                   <p
@@ -422,7 +422,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-phone-number">
+                    htmlFor="grid-phone-number">
                     Institution
                   </h1>
                   <p
@@ -435,7 +435,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-alt-number">
+                    htmlFor="grid-alt-number">
                     Department
                   </h1>
                   <p
@@ -450,7 +450,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-phone-number">
+                    htmlFor="grid-phone-number">
                     Requested By
                   </h1>
                   <p
@@ -463,7 +463,7 @@ const BookingsView = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <h1
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-alt-number">
+                    htmlFor="grid-alt-number">
                     Request Created At
                   </h1>
                   <p
@@ -482,7 +482,7 @@ const BookingsView = () => {
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <h1
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                      for="grid-phone-number">
+                      htmlFor="grid-phone-number">
                       Reason For Rejection
                     </h1>
                     <p className="text-s text-red-600	 font-bold">

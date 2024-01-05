@@ -182,7 +182,7 @@ const HallForm = () => {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                  for="grid-event-manager"
+                  htmlFor="grid-event-manager"
                 >
                   Hall Name
                 </label>
@@ -201,7 +201,7 @@ const HallForm = () => {
               <div className="w-full md:w-1/2 px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-capacity"
+                  htmlFor="grid-capacity"
                 >
                  Capacity
                 </label>
@@ -226,7 +226,7 @@ const HallForm = () => {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-amenities"
+                  htmlFor="grid-amenities"
                 >
                   Amenities
                 </label>
@@ -245,7 +245,7 @@ const HallForm = () => {
               <div className="w-full md:w-1/2 px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-location"
+                  htmlFor="grid-location"
                 >
                   Location
                 </label>
@@ -272,7 +272,7 @@ const HallForm = () => {
               <div className="w-full md:w-2/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                  for="grid-description"
+                  htmlFor="grid-description"
                 >
                   Description
                 </label>

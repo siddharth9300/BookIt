@@ -215,7 +215,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-event-manager"
+                htmlFor="grid-event-manager"
               >
                 Event Coordinator Name
               </label>
@@ -235,7 +235,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-event-name"
+                htmlFor="grid-event-name"
               >
                 Event Name
               </label>
@@ -260,7 +260,7 @@ const BookingForm = () => {
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                        for="grid-organizing-club"
+                        htmlFor="grid-organizing-club"
                       >
                         Organizing Club
                       </label>
@@ -283,7 +283,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-event-date-type"
+                      htmlFor="grid-event-date-type"
                     >
                       Event Date Type
                     </label>
@@ -320,7 +320,7 @@ const BookingForm = () => {
 <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-event-date"
+                htmlFor="grid-event-date"
               >
                 Event Start Date
               </label>
@@ -339,7 +339,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-event-start-date"
+                htmlFor="grid-event-start-date"
               >
                 Event End Date
               </label>
@@ -376,7 +376,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-date"
+                    htmlFor="grid-event-date"
                   >
                     Event Date
                   </label>
@@ -399,7 +399,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-hall-name"
+                htmlFor="grid-hall-name"
               >
                 Hall Name
               </label>
@@ -428,7 +428,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-start-time"
+                htmlFor="grid-start-time"
               >
                 Start Time
               </label>
@@ -446,7 +446,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-end-time"
+                htmlFor="grid-end-time"
               >
                 End Time
               </label>
@@ -473,7 +473,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-phone-number"
+                htmlFor="grid-phone-number"
               >
                 Phone Number
               </label>
@@ -494,7 +494,7 @@ const BookingForm = () => {
             <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                for="grid-alt-number"
+                htmlFor="grid-alt-number"
               >
                 Alternate Number
               </label>
@@ -539,7 +539,7 @@ const BookingForm = () => {
             {/* <div className="w-full px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-password"
+                htmlFor="grid-password"
               >
                 Your Message
               </label>

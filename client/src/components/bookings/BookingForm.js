@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../LoadingSpinner";
 import axios from "axios";
 import { parseISO } from "date-fns";
-import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
+// import { DepartmentList, InstitutionList } from "../InstitutionDeptartmentList";
+import { institutions, InstitutionList, DepartmentList } from "../Institutions"; // Update the path as needed
+
 import notVerified from "../../assets/notVerified.jpg";
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -98,6 +100,7 @@ const BookingForm = () => {
     const name = e.target.name;
     const value = e.target.value;
     setBookingData({ ...bookingData, [name]: value });
+    console.log(bookingData)
   };
 
   //consolelog(bookingData);
@@ -246,7 +249,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-event-manager">
+                    htmlFor="grid-event-manager">
                     Event Coordinator Name
                   </label>
                   <input
@@ -264,7 +267,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-name">
+                    htmlFor="grid-event-name">
                     Event Name
                   </label>
                   <input
@@ -283,7 +286,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-organizing-club">
+                    htmlFor="grid-organizing-club">
                     Organizing Club
                   </label>
                   <input
@@ -301,7 +304,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-event-date-type">
+                    htmlFor="grid-event-date-type">
                     Event Date Type
                   </label>
 
@@ -333,7 +336,7 @@ const BookingForm = () => {
                 {/* <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-event-date"
+                htmlFor="grid-event-date"
               >
                 Event Date
               </label>
@@ -362,7 +365,7 @@ const BookingForm = () => {
               <div className="w-full md:w-1/2 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-event-date"
+                htmlFor="grid-event-date"
               >
                 Event Date
               </label>
@@ -391,7 +394,7 @@ const BookingForm = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-event-date">
+                      htmlFor="grid-event-date">
                       Event Start Date
                     </label>
                     <input
@@ -408,7 +411,7 @@ const BookingForm = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-event-start-date">
+                      htmlFor="grid-event-start-date">
                       Event End Date
                     </label>
                     <input
@@ -431,7 +434,7 @@ const BookingForm = () => {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-event-date">
+                      htmlFor="grid-event-date">
                       Event Date
                     </label>
                     <input
@@ -450,7 +453,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-hall-name">
+                    htmlFor="grid-hall-name">
                     Hall Name
                   </label>
                   <input
@@ -471,7 +474,7 @@ const BookingForm = () => {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                      for="grid-start-time">
+                      htmlFor="grid-start-time">
                       Start Time
                     </label>
                     <input
@@ -483,12 +486,11 @@ const BookingForm = () => {
                       onChange={handleInputs}
                       placeholder="Start Time"
                     />
-                    {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                   </div>
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-end-time">
+                      htmlFor="grid-end-time">
                       End Time
                     </label>
                     <input
@@ -503,12 +505,12 @@ const BookingForm = () => {
                   </div>
                 </div>
               )}
-
+{/* 
               <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-institution">
+                    htmlFor="grid-institution">
                     Institution
                   </label>
 
@@ -518,7 +520,6 @@ const BookingForm = () => {
                       id="grid-institution"
                       type="text"
                       value={institutionName}
-                      // value={bookingData.institution}
                       name="institution"
                       onChange={handleInputs}
                       placeholder="Institution"
@@ -553,17 +554,15 @@ const BookingForm = () => {
                       <option value="AC">Acro Care</option>
                     </select>
                   )}
-                  {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                 </div>
 
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-department">
+                    htmlFor="grid-department">
                     Department
                   </label>
 
-                  {/* {bookingData.department === 'Other' && (<></> */}
                   {bookingData.userType !== "admin" && (
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -708,11 +707,145 @@ const BookingForm = () => {
                 </div>
               </div>
 
+
+
+ */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  {/* Institution Dropdown */}
+
+                  <label
+                    htmlFor="institution"
+                    className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                    Institution
+                  </label>
+                  {bookingData.userType !== "admin" && (
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-institution"
+                      type="text"
+                      value={institutionName}
+                      name="institution"
+                      onChange={handleInputs}
+                      placeholder="Institution"
+                      disabled
+                    />
+                  )}
+                  {bookingData.userType === "admin" && (
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="institution"
+                      name="institution"
+                      value={bookingData.institution}
+                      onChange={handleInputs}>
+                      <option value="null">Select</option>
+                      {Object.keys(InstitutionList).map((key) => (
+                        <option key={key} value={key}>
+                          {InstitutionList[key]}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+
+                {/* Department Dropdown */}
+                <div className="w-full md:w-1/2 px-3">
+                <label
+                      htmlFor="department"
+                      className="leading-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                      Department
+                    </label>
+                 {bookingData.userType !== "admin" && (
+
+                    
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-department"
+                      type="text"
+                      value={departmentName}
+                      name="department"
+                      onChange={handleInputs}
+                      placeholder="Department"
+                      disabled
+                    />
+                    )}
+                    
+                  {bookingData.userType === "admin" && (
+                  
+                  
+                    <select
+                      className="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="department"
+                      name="department"
+                      value={bookingData.department}
+                      onChange={handleInputs}>
+                      <option value="">Select</option>
+                      {bookingData.institution !== "null" &&
+                        institutions
+                          .find(
+                            (inst) =>
+                              inst.name ===
+                              InstitutionList[bookingData.institution]
+                          )
+                          ?.departments.map((dept, index) => (
+                            <option
+                              key={index}
+                              value={Object.keys(DepartmentList).find(
+                                (key) => DepartmentList[key] === dept
+                              )}>
+                              {dept}
+                            </option>
+                          ))}
+                    </select>
+                 )}
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-phone-number">
+                    htmlFor="grid-phone-number">
                     Phone Number
                   </label>
                   <input
@@ -730,7 +863,7 @@ const BookingForm = () => {
                 <div className="w-full md:w-1/2 px-3">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 "
-                    for="grid-alt-number">
+                    htmlFor="grid-alt-number">
                     Alternate Number
                   </label>
                   <input
@@ -753,7 +886,7 @@ const BookingForm = () => {
                 {/* <div className="w-full px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-password"
+                htmlFor="grid-password"
               >
                 Your Message
               </label>
