@@ -461,7 +461,7 @@ const updateBooking = async (req, res, next) => {
     
         const mailOptions = {
           from: process.env.SENDER_EMAIL,
-          to: process.env.SENDER_EMAIL, // Use the user's email associated with the booking
+          to: booking.email, // Use the user's email associated with the booking
           subject: 'Booking Request Approved',
           html: sendApprovalEmailTemplate(booking.eventName, booking.bookedHallName, booking.organizingClub, booking.institution, booking.department, bookingId),
         };
@@ -479,7 +479,7 @@ const updateBooking = async (req, res, next) => {
     
         const mailOptions = {
           from: process.env.SENDER_EMAIL,
-          to: process.env.SENDER_EMAIL, // Use the user's email associated with the booking
+          to: booking.email, // Use the user's email associated with the booking
           subject: "Booking Request Rejected",
           html: sendRejectionEmailTemplate(booking.eventName, booking.bookedHallName, booking.organizingClub, booking.institution, booking.department, bookingId ,rejectionReason),
         };
