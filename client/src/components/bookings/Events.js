@@ -28,12 +28,28 @@ const Events = () => {
       const data = response.data.bookings;
       //consolelog(data);
 
-      const sortedEventData = data.sort((a, b) => {
-        // Convert the event date strings to Date objects and compare them
-        return new Date(a.eventDate) - new Date(b.eventDate);
-      });
+      // const sortedEventData = data.sort((a, b) => {
+      //   // Convert the event date strings to Date objects and compare them
+      //   return new Date(a.eventDate) - new Date(b.eventDate);
+      // });
 
+      // setEventData(sortedEventData);
+
+
+      const sortedEventData = data.sort((a, b) => {
+        // Determine the relevant date for sorting based on event type
+        const aDate = a.eventStartDate ? new Date(a.eventStartDate) : new Date(a.eventDate);
+        const bDate = b.eventStartDate ? new Date(b.eventStartDate) : new Date(b.eventDate);
+      
+        // Sort by the determined dates in descending order
+        return aDate - bDate;  // Latest dates come first
+      });
+      
       setEventData(sortedEventData);
+      
+      
+      setEventData(sortedEventData);
+      
 
       // setEventData(data.bookings);
       setIsLoading(false);

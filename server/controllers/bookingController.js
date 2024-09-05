@@ -272,20 +272,42 @@ const createBooking = async (req, res, next) => {
  
 
 
+// const getEvents = async (req, res, next) => {
+//   try {
+//     const bookings = await Booking.find({ isApproved: "Approved By Admin" }).populate('bookedHallId');
+
+    
+//     res.json({ bookings });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+
+
 const getEvents = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ isApproved: "Approved By Admin" }).populate('bookedHallId');
+    const currentDate = new Date().toISOString();
 
+    const bookings = await Booking.find({
+      isApproved: "Approved By Admin",
+      $or: [
+        {
+          eventDateType: { $in: ["full", "half"] },
+          eventDate: { $gte: currentDate }
+        },
+        {
+          eventDateType: "multiple",
+          eventEndDate: { $gte: currentDate }
+        }
+      ]
+    }).populate('bookedHallId');
     
     res.json({ bookings });
   } catch (error) {
     next(error);
   }
 };
-
-
-
-
 
 
 
