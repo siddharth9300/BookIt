@@ -20,6 +20,7 @@ router.get('/verifyEmail/:id/:token', authController.verifyEmail);
 
 
 router.get('/logout/:userId', authController.logout);
+router.put('/updateProfile', authenticate, authController.updateProfile);
 
 
 router.get('/about', authenticate, authController.about);

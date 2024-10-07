@@ -21,6 +21,12 @@ const register = async (req, res,next) => {
       }else if(adminKey !== process.env.ADMIN_KEY){
         return res.status(422).json({ error: "Provided Admin Key is Invalid." });
       }
+    }else if(userType === "director"){
+      if (!name || !institution || !email || !phone || !userType || !password || !cpassword) {
+        return res.status(422).json({ error: "Kindly complete all fields." });
+      }else if(hodExist){
+        return res.status(422).json({ error: `Hod for ${department} already exists` });
+      }
     }else if(userType === "hod"){
       if (!name || !institution || !department || !email || !phone || !userType || !password || !cpassword) {
         return res.status(422).json({ error: "Kindly complete all fields." });
@@ -79,7 +85,10 @@ const register = async (req, res,next) => {
         if (userType === "admin") {
            user = new User({ name, email, phone, userType,adminKey,institution:"null",department:"null", password, cpassword });
 
-        }else{
+        }else if (userType === "director") {
+          user = new User({ name, email, phone, userType:"faculty",institution,department:"null", password, cpassword });
+
+       }else{
         
            user = new User({ name, email, phone, userType,institution,department,adminKey:"null" ,password, cpassword });
         }
@@ -261,7 +270,6 @@ const register = async (req, res,next) => {
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Full Name :</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Email :</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Phone :</h1>
-                         <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Profession :</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Institution :</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">Department :</h1>
                   </div>
@@ -269,7 +277,6 @@ const register = async (req, res,next) => {
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.name}</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.email}</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.phone}</h1>
-                         <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.userType}</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.institution}</h1>
                     <h1 style="font-size: 20px; color: #202225; margin-top: 0;">${userFind.department}</h1>
                   </div>
@@ -581,6 +588,49 @@ const login = async (req, res,next) => {
 
 
 
+  const updateProfile = async (req, res) => {
+    try {
+      const userId = req.rootUser._id;  // Get the user's ID from the request
+      console.log(userId);
+      const { name , facultyType, phone} = req.body;  // Extract the fields to be updated
+  
+
+      if (!name  || !phone ) {
+        return res.status(422).json({ error: "Kindly fill all fields." });
+      }
+       // Regular expression to validate full name with at least two words separated by a space
+    const nameRegex = /^[\w'.]+\s[\w'.]+\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*\s*[\w'.]*$/;
+  
+    if (!nameRegex.test(name)) {
+      return res.status(422).json({ error: "Kindly provide your complete name." });
+    }
+   
+    // Phone validation
+  
+
+    if (!/^\d{10}$/.test(phone)) {
+      return res.status(422).json({ error: "Kindly enter a valid 10-digit phone number." });
+    }
+  
+      // Validate input data if necessary (e.g., check phone number format)
+  
+      // Update the user data in the database
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { name , facultyType, phone},
+        { new: true }
+      );
+  
+      // Send the updated user data to the frontend
+      res.status(200).send(updatedUser);
+    } catch (error) {
+      console.error("Error updating user profile:", error);
+      res.status(500).send({ message: "Error updating profile." });
+    }
+  };
+  
+
+
   const contact = async (req, res,next) => {
     try {
       const { name, email,department, phone, message } = req.body;
@@ -632,4 +682,4 @@ const login = async (req, res,next) => {
     }
   }
   
-module.exports = { register, login, about, getdata, contact ,logout,passwordLink,forgotPassword,setNewPassword,emailVerificationLink,verifyEmail};
+module.exports = { register, login, about, getdata,updateProfile, contact ,logout,passwordLink,forgotPassword,setNewPassword,emailVerificationLink,verifyEmail};

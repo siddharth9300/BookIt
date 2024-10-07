@@ -158,11 +158,13 @@ const Signup = () => {
                   value={user.userType}
                   onChange={handleInputs}>
                   <option value="">Select</option>
+                  <option value="director">Director</option>
+                  <option value="faculty">HOD</option>
 
-                  <option value="faculty">Faculty</option>
                   {process.env.REACT_APP_HOD_FEATURE === "true" && (
                     <option value="hod">HOD</option>
                   )}
+                  <option value="faculty">Faculty</option>
 
                   {process.env.REACT_APP_ADMIN_SIGN_UP === "true" && (
                     <option value="admin">Admin</option>
@@ -220,6 +222,8 @@ const Signup = () => {
 </div>
 
 {/* Department Dropdown */}
+{user.userType !== "director" && (
+  <>
 {user.institution && (
   <div className="relative mb-4">
     <label
@@ -246,7 +250,8 @@ const Signup = () => {
     </select>
   </div>
 )}
-
+  </>
+  )}
 
 
 {/* 

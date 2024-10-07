@@ -6,6 +6,7 @@ const InstitutionList = {
   AILAW: 'Acropolis Institute of LAW',
   CDC: 'Career Development Cell',
   AC: 'Acro Care',
+  AIIH: 'AIIH Foundation',
   // Add more institution mappings as needed
 };
 
@@ -32,6 +33,10 @@ const DepartmentList = {
   PLACEMENT: 'Placement',
   TRAINING: 'Training',
   IIPC: 'IIPC',
+  AIIH: 'AIIH Foundation',
+  ADMI:'Adminiatrative',
+  STORE:'Store'
+
   // Add more department mappings as needed
 };
 
@@ -49,6 +54,8 @@ const institutions = [
       DepartmentList['FCA'],
       DepartmentList['HUMI'],
       DepartmentList['CHEM'],
+      DepartmentList['ADMI'],
+      DepartmentList['STORE']
     ],
   },
   {
@@ -90,6 +97,11 @@ const institutions = [
     name: InstitutionList['AC'],
     departments: [
       DepartmentList['AC'],
+    ],
+  }, {
+    name: InstitutionList['AIIH'],
+    departments: [
+      DepartmentList['AIIH'],
     ],
   },
   // Add more institutions based on InstitutionList mappings as needed
