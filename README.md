@@ -83,6 +83,9 @@ Contributions are welcome! If you would like to contribute to this project, plea
 4. Push your changes to your forked repository.
 5. Submit a pull request with a detailed description of your changes.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=siddharth9300/BookIt&type=Date)](https://www.star-history.com/#siddharth9300/BookIt&Date)
 
 ## Authors
 
